@@ -1,7 +1,18 @@
-self.addEventListener('fetch', function (evt) {
-    /**
-     * 控制台看着烦，不方便调试，先注释掉 <br/>
-     * modify by cf
-     */
-    // console.log('sw fetch() 发送的请求', evt.request.url)
-})
+// This is the "Offline copy of pages" service worker
+
+const CACHE = "pwabuilder-offline";
+
+importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox-sw.js');
+
+self.addEventListener("message", (event) => {
+  if (event.data && event.data.type === "SKIP_WAITING") {
+    self.skipWaiting();
+  }
+});
+
+workbox.routing.registerRoute(
+  new RegExp('/*'),
+  new workbox.strategies.StaleWhileRevalidate({
+    cacheName: CACHE
+  })
+);

@@ -1,14 +1,79 @@
 {
+  "shortcuts": [
+    {
+      "name": "发布",
+      "url": "https://chao.fan/f/submit",
+      "icons": [
+        {
+          "src": "new.png"
+        }
+      ],
+      "description": "单击以发帖"
+    },
+    {
+      "name": "主页",
+      "url": "https://chao.fan",
+      "icons": [
+        {
+          "src": "home.png"
+        }
+      ],
+      "description": "回到主页"
+    },
+    {
+      "name": "地图",
+      "url": "https://map.baidu.com",
+      "icons": [
+        {
+          "src": "map.png"
+        }
+      ],
+      "description": "打开百度地图"
+    }
+  ],
+"screenshots": [
+  {
+    "src": "screenshots1.jpeg",
+    "sizes": "3393x1716",
+    "type": "image/png",
+    "description": "Home page"
+  },
+  {
+    "src": "screenshots2.jpeg",
+    "sizes": "3393x1716",
+    "type": "image/png",
+    "description": "None"
+  },
+  {
+    "src": "screenshots3.jpeg",
+    "sizes": "3393x1716",
+    "type": "image/png",
+    "description": "None"
+  }
+], 
+"categories": [
+  "entertainment"
+],
+"orientation": "any", 
   "name": "炒饭",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#ffffff",
   "description": "炒饭-世界那么大",
   "icons": [
-      {
-          "src": "logo.png",
-          "sizes": "80x80",
-          "type": "image/png"
-      }
+    {
+      "src": "logo.png",
+      "sizes": "640x640",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#000000",
+  "short_name": "chaofun",
+  "lang": "zh",
+  "protocol_handlers": [
+    {
+      "protocol": "chaofun",
+      "url": "https://chao.fan/search?q=$s"
+    }
   ]
 }
