@@ -13,9 +13,6 @@
         <div class="title">
           {{item.name}}
         </div>
-        <div class="describe">
-          {{item.desc}}
-        </div>
         <div class="players">
           玩家人次: {{item.players}}
         </div>
