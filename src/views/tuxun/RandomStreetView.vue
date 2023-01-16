@@ -150,6 +150,10 @@ export default {
   bottom: 1rem;
   padding-left: 1rem;
   z-index: 500;
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
 }
 </style>
 
