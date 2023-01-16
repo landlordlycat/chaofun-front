@@ -22,8 +22,13 @@
     <div v-if="name" class="nav">
       {{this.name}}
     </div>
-    <div style="color: white">发布题库需要题库中有5个状态为已发布或者待发布状态的街景，当系统检测到题库中有5个Google官方街景，会自动将题库标记为「可移动」</div>
+    <div v-if="mapsData && mapsData.desc" class="describe">
+      {{mapsData.desc}}
+    </div>
+    <el-button @click="modify" type="primary">修改基础信息</el-button>
+    <div style="padding-bottom: 2rem"></div>
     <el-button @click="addPano" type="primary">增加街景</el-button>
+    <div style="color: white">发布题库需要题库中有5个状态为已发布或者待发布状态的街景，当系统检测到题库中有5个Google官方街景，会自动将题库标记为「可移动」</div>
     <div class="list_container">
       <div style="margin-top: 1rem; font-size: 20px; color: white">
         街景列表
@@ -54,6 +59,7 @@ export default {
       panos: [],
       mapsId: null,
       submitPanoramaShow: false,
+      mapsData: null,
       form: {
         applyModReason: '',
       },
@@ -69,7 +75,7 @@ export default {
 
     setInterval(() => {
       this.getPanos();
-    }, 2000 );
+    }, 10000 );
   },
   methods: {
     goHome() {
@@ -78,6 +84,7 @@ export default {
     getMapsName() {
       api.getByPath('/api/v0/tuxun/maps/get', {mapsId: this.mapsId}).then(res=>{
         this.name = res.data.name;
+        this.mapsData = res.data;
       })
     },
     getPanos() {
@@ -129,6 +136,10 @@ export default {
     },
     toGuid() {
       tuxunOpen('https://www.yuque.com/ucun5p/kfw26e/ttqiucknz7sifo5u')
+    },
+    modify() {
+      tuxunJump('/tuxun/maps_create?mapsId=' + this.mapsId);
+
     }
   }
 }
@@ -142,6 +153,12 @@ export default {
   min-height: 120%;
   text-align: center;
   background-color: #090723;
+
+  .describe {
+    color: yellow;
+    font-size: 1rem;
+    font-weight: 700;
+  }
 
   .nav {
     color: white;
