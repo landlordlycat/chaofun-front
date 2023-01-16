@@ -16,7 +16,7 @@
     <el-input v-model="desc" id="input" placeholder="题库描述" style="max-width: 60%;" round></el-input>
     <div></div>
     <el-button v-if="!modify" @click="addMap" style="margin-top: 1rem" type="primary">创建</el-button>
-    <el-button v-else @click="modify" style="margin-top: 1rem" type="primary">修改</el-button>
+    <el-button v-else @click="modifyMap" style="margin-top: 1rem" type="primary">修改</el-button>
   </div>
 </template>
 
@@ -59,7 +59,7 @@ export default {
         }
       })
     },
-    modify() {
+    modifyMap() {
       api.getByPath('/api/v0/tuxun/maps/modify', {mapsId: this.mapsId, name: this.name, desc: this.desc}).then(res => {
         if (res.success) {
           tuxunJump('/tuxun/maps_modify?mapsId=' + res.data.id);
