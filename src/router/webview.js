@@ -463,6 +463,13 @@ routes = [
     hidden: true
   },
   {
+    path: '/tuxun/replay',
+    component: () => import('@/views/tuxun/Replay'),
+    name: 'maps',
+    meta: { title: '练习赛-图寻'},
+    hidden: true
+  },
+  {
     path: '/tuxun/maps_detail',
     component: () => import('@/views/tuxun/MapsDetail'),
     name: 'maps',

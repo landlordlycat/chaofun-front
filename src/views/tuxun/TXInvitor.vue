@@ -291,6 +291,9 @@
             <div v-if="gameData && ( gameData.type === 'solo' || gameData.type === 'team')">
               <el-button class="home_button"  type="primary" @click="again" round>再来一局</el-button>
             </div>
+            <div v-if="gameData && ( gameData.type === 'solo' || gameData.type === 'team')">
+              <el-button class="home_button"  type="primary" @click="replay" round>题目复盘</el-button>
+            </div>
             <div>
               <el-button class="home_button" type="warning" @click="goHome" round>回到图寻首页</el-button>
             </div>
@@ -818,7 +821,7 @@ export default {
             this.heading = this.lastRound.heading;
 
             setTimeout(function () {
-              if (!this.lastRound.source) {
+              if (!this.lastRound.source && this.lastRound.move) {
                 if (!this.viewer) {
                   var plugins = [];
                   plugins.push([CompassPlugin, {
@@ -944,9 +947,6 @@ export default {
           this.showRoundResult = false;
         }
         if (!this.targetLng) {
-
-
-
           if (this.lastRound.obsoleteTeamIds) {
             this.gameData.teams.forEach(v => {
               if (this.lastRound.obsoleteTeamIds.includes(v.id)) {
@@ -1407,6 +1407,10 @@ export default {
         }
       })
     },
+    replay() {
+      tuxunJump('/tuxun/replay?gameId=' + this.gameId);
+    },
+
 
     challengeAgain() {
       this.doLoginStatus().then((res) => {
