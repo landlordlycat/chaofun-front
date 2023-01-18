@@ -821,7 +821,7 @@ export default {
             this.heading = this.lastRound.heading;
 
             setTimeout(function () {
-              if (!this.lastRound.source && this.lastRound.move) {
+              if (!this.lastRound.move) {
                 if (!this.viewer) {
                   var plugins = [];
                   plugins.push([CompassPlugin, {

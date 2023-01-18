@@ -466,7 +466,7 @@ routes = [
     path: '/tuxun/replay',
     component: () => import('@/views/tuxun/Replay'),
     name: 'maps',
-    meta: { title: '练习赛-图寻'},
+    meta: { title: '复盘-图寻'},
     hidden: true
   },
   {

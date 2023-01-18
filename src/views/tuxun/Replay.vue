@@ -80,11 +80,15 @@ export default {
       };
     },
     toPanorama(round) {
+      if (!round.source || !round.panoId ) {
+        this.$toast('不支持跳转');
+      }
       if (round.source === 'baidu_pano') {
         tuxunOpen('https://maps.baidu.com/#panoid=' + round.panoId + '&panotype=street&pitch=0&l=13&tn=B_NORMAL_MAP&sc=0&newmap=1&shareurl=1&pid=' + round.panoId)
       } else {
         tuxunOpen('https://www.google.com/maps/@?api=1&map_action=pano&pano=' + round.panoId)
       }
+
     },
     goHome() {
       window.location.href = '/scratch/home'
