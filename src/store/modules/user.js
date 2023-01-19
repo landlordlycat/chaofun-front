@@ -134,12 +134,14 @@ const actions = {
         //   offset: 20
         // });
         setTimeout(()=>{
-          if(location.pathname == '/'){
+          if (location.pathname.includes('/tuxun/')) {
+            location.href = '/tuxun/'
+          } else if(location.pathname == '/'){
             location.reload()
           }else{
             location.href = '/'
           }
-          
+
         },100)
       }
     })

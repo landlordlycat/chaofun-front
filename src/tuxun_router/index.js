@@ -54,6 +54,13 @@ export const constantRoutes = [
     hidden: true
   },
   {
+    path: '/replay_pano',
+    component: () => import('@/views/tuxun/ReplayPanorama'),
+    name: 'maps',
+    meta: { title: '复盘街景-图寻'},
+    hidden: true
+  },
+  {
     path: '/maps_modify',
     component: () => import('@/views/tuxun/MapsModify'),
     meta: { title: '修改题库-图寻'},

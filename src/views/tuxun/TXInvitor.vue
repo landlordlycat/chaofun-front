@@ -233,11 +233,12 @@
             <div v-if="gameData.type === 'daily_challenge'">
               <el-button class="result_button" type="primary" @click="goDailyChallenge" round>查看总排名</el-button>
             </div>
-
             <div v-if="gameData.type === 'challenge'">
               <el-button class="result_button" type="primary" @click="challengeAgain" round>再来一局</el-button>
             </div>
-
+            <div v-if="gameData">
+              <el-button class="result_button"  type="primary" @click="replay" round>题目复盘</el-button>
+            </div>
             <div v-if="gameData.type === 'challenge'">
               <el-button class="result_button" @click="goMaps" round>回到练习赛首页</el-button>
             </div>
@@ -258,6 +259,9 @@
             </div>
             <div>
               <el-button class="result_button" type="primary" @click="createNew" round>再来一局</el-button>
+            </div>
+            <div v-if="gameData">
+              <el-button class="result_button"  type="primary" @click="replay" round>题目复盘</el-button>
             </div>
             <div>
               <el-button class="result_button"  @click="goHome" round>回到图寻首页</el-button>
@@ -288,10 +292,10 @@
               </div>
               <el-button class="home_button"  type="primary" @click="goTuxun" round>继续匹配</el-button>
             </div>
-            <div v-if="gameData && ( gameData.type === 'solo' || gameData.type === 'team')">
+            <div v-if="gameData">
               <el-button class="home_button"  type="primary" @click="again" round>再来一局</el-button>
             </div>
-            <div v-if="gameData && ( gameData.type === 'solo' || gameData.type === 'team')">
+            <div v-if="gameData">
               <el-button class="home_button"  type="primary" @click="replay" round>题目复盘</el-button>
             </div>
             <div>

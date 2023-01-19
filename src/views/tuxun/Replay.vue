@@ -13,7 +13,7 @@ import * as api from '@/api/api'
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import "./SmoothWheelZoom"
-import {tuxunOpen} from "./common";
+import {tuxunJump, tuxunOpen} from "./common";
 export default {
   name: "Replay",
   data() {
@@ -68,38 +68,86 @@ export default {
         var options = JSON.parse(JSON.stringify(L.Icon.Default.prototype.options))
         options.iconUrl = this.imgOrigin + 'biz/1662830770348_9499340182724556af66f2b42846135b_0.png';
         options.iconRetinaUrl = this.imgOrigin + 'biz/1662830707508_d7e5c8ce884a4fb692096396a5405f5b_0.png';
-        var marker = L.marker([round.lat, round.lng], {icon: new L.Icon(options)}).on('click', function(e) {
-          this.toPanorama(round);
-        }.bind(this)).bindTooltip("第" + round.round + "轮",
+        var marker = L.marker([round.lat, round.lng], {icon: new L.Icon(options)}).bindTooltip("第" + round.round + "轮",
             {
               permanent: true,
               direction: 'auto'
             }).addTo(this.map);
+        marker.round = round;
+        marker.on("click", function (e) {
+          console.log(e);
+          this.toPanorama(gameData.id, e.target.round)
+        }.bind(this));
         group.push([round.lat, round.lng])
-        this.map.fitBounds(group);
       };
-    },
-    toPanorama(round) {
-      if (!round.source || !round.panoId ) {
-        this.$toast('不支持跳转');
-      }
-      if (round.source === 'baidu_pano') {
-        tuxunOpen('https://maps.baidu.com/#panoid=' + round.panoId + '&panotype=street&pitch=0&l=13&tn=B_NORMAL_MAP&sc=0&newmap=1&shareurl=1&pid=' + round.panoId)
-      } else {
-        tuxunOpen('https://www.google.com/maps/@?api=1&map_action=pano&pano=' + round.panoId)
+
+      var user = null;
+      if (gameData != null && gameData.player != null && gameData.requestUserId === gameData.player.user.userId) {
+        user = gameData.player;
       }
 
+      if (gameData.teams && gameData.teams.length >= 1) {
+        gameData.teams.forEach(team => {
+          team.teamUsers.forEach(teamUser => {
+            if (gameData.requestUserId === gameData.player.user.userId) {
+              user = teamUser;
+            }
+          })
+        });
+      }
+
+      console.log(user);
+
+      user.guesses.forEach(guess => {
+        var marker = L.marker([guess.lat, guess.lng], {icon: new L.Icon.Default()}).bindTooltip("你的选择",
+            {
+              permanent: true,
+              direction: 'auto'
+            }).addTo(this.map);
+
+        var latlngs = [
+          [guess.lat, guess.lng],
+          [gameData.rounds[guess.round-1].lat, gameData.rounds[guess.round-1].lng],
+        ];
+
+        this.polylinePath = new L.Polyline(latlngs, {
+          color: 'blue',
+          weight: 3,
+          opacity: 0.5,
+          smoothFactor: 1
+        });
+        this.polylinePath.addTo(this.map);
+
+        group.push([guess.lat, guess.lng])
+      })
+
+      this.map.fitBounds(group);
+    },
+    toPanorama(gameId, round) {
+      // console.log(round);
+      if (!round.source || !round.panoId ) {
+        this.$toast('该街景暂不支持跳转');
+        return;
+      }
+      if (round.source === 'baidu_pano') {
+        console.log(round.panoId)
+        tuxunOpen('https://maps.baidu.com/#panoid=' + round.panoId + '&panotype=street&pitch=0&l=13&tn=B_NORMAL_MAP&sc=0&newmap=1&shareurl=1&pid=' + round.panoId)
+      } else {
+        tuxunJump('/tuxun/replay_pano?gameId=' + gameId + '&round=' + round.round)
+      }
+      console.log('123');
     },
     goHome() {
-      window.location.href = '/scratch/home'
+      tuxunJump('/tuxun/')
     },
     goBack() {
       try {
-        this.$router.go(-1);
+        window.history.back();
       } catch (e) {
         tuxunJump('/tuxun/')
       }
     },
+
   }
 }
 </script>

@@ -470,6 +470,13 @@ routes = [
     hidden: true
   },
   {
+    path: '/tuxun/replay_pano',
+    component: () => import('@/views/tuxun/ReplayPanorama'),
+    name: 'maps',
+    meta: { title: '复盘街景-图寻'},
+    hidden: true
+  },
+  {
     path: '/tuxun/maps_detail',
     component: () => import('@/views/tuxun/MapsDetail'),
     name: 'maps',
