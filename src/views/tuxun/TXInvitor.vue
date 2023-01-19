@@ -143,9 +143,9 @@
 
         <div v-if="showRoundResult" class="round_result">
           <div class="round_result_top">
-            <span v-if="gameData.type === 'daily_challenge'">每日挑战<span v-if="lastRound.source">(移动)</span><span v-if="!lastRound.source">(固定)</span> - </span>
-            <span v-if="gameData.type === 'challenge'">{{gameData.mapsName}}<span v-if="lastRound.source">(移动)</span><span v-if="!lastRound.source">(固定)</span> - </span>
-            <span v-if="gameData.type === 'country_streak'">国家连胜<span v-if="lastRound.source">(移动)</span><span v-if="!lastRound.source">(固定)</span> - </span>
+            <span v-if="gameData.type === 'daily_challenge'">每日挑战<span v-if="gameData.move">(移动)</span><span v-if="!gameData.move">(固定)</span> - </span>
+            <span v-if="gameData.type === 'challenge'">{{gameData.mapsName}}<span v-if="gameData.move">(移动)</span><span v-if="!gameData.move">(固定)</span> - </span>
+            <span v-if="gameData.type === 'country_streak'">国家连胜<span v-if="gameData.move">(移动)</span><span v-if="!gameData.move">(固定)</span> - </span>
             <span v-if="gameData.type === 'province_streak'">省份连胜 - </span>
             第 {{gameData.currentRound}} 轮
             <span v-if="lastRound.isDamageMultiple"> - {{lastRound.damageMultiple}} 倍伤害</span>
@@ -392,7 +392,7 @@
       <div class="home">
         <el-button v-if="gameData.type === 'challenge' || gameData.type === 'battle_royale'" size="mini" @click="goHome" round>返回首页</el-button>
         <el-button size="mini"  @click="toReport" round> 坏题反馈 </el-button>
-        <el-button v-if="lastRound && lastRound.source" size="mini"  @click="reset" round> 回到原点</el-button>
+        <el-button v-if="gameData && gameData.move" size="mini"  @click="reset" round> 回到原点</el-button>
         <el-button size="mini" v-if="gameData && !gameData.player && gameData.type != 'battle_royale'"  @click="sendEmoji=true" round> 发送表情 </el-button>
         <el-button size="mini" v-if="gameData && (gameData.type ==='country_streak' || gameData.type ==='province_streak')"  @click="skip" round> 换一题 <span>
           ({{gameData.leftSkipTimes}})
@@ -1086,7 +1086,7 @@ export default {
       if (this.gameData.type === 'country_streak' ) {
         var tType = 'country';
 
-        if (this.lastRound.source) {
+        if (this.gameData.move) {
           tType = 'country_move'
         }
         api.getByPath("/api/v0/tuxun/streak/create", {type: tType}).then(res => {
