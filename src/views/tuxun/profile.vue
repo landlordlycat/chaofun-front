@@ -147,7 +147,9 @@ export default {
   methods: {
     async logout() {
       await this.$store.dispatch('user/logout')
-      tuxunJump('/tuxun/')
+      setTimeout(() => {
+        tuxunJump('/tuxun/')
+      }, 1000);
     },
     getUserProfile() {
       api.getByPath('/api/v0/tuxun/getProfile', {userId: this.userId}).then(res=>{
