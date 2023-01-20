@@ -89,7 +89,8 @@ export default {
       if (gameData.teams && gameData.teams.length >= 1) {
         gameData.teams.forEach(team => {
           team.teamUsers.forEach(teamUser => {
-            if (gameData.requestUserId === gameData.player.user.userId) {
+            console.log(teamUser)
+            if (gameData.requestUserId === teamUser.user.userId) {
               user = teamUser;
             }
           })

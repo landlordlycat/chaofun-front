@@ -84,7 +84,7 @@ export default {
           id: round.round,
           position: [0, 0],
           links: [],
-          panoData: {poseHeading: this.heading}
+          panoData: {poseHeading: round.heading}
         }])
 
         this.viewer.animate({
@@ -95,8 +95,8 @@ export default {
 
         var compassPlugin = this.viewer.getPlugin(CompassPlugin);
         if (compassPlugin) {
-          console.log(this.heading);
-          if (this.heading) {
+          console.log(round.heading);
+          if (round.heading) {
             compassPlugin.show();
           } else {
             compassPlugin.hide();

@@ -292,7 +292,7 @@
               </div>
               <el-button class="home_button"  type="primary" @click="goTuxun" round>继续匹配</el-button>
             </div>
-            <div v-if="gameData">
+            <div v-if="gameData && ( gameData.type === 'solo' || gameData.type === 'team')">
               <el-button class="home_button"  type="primary" @click="again" round>再来一局</el-button>
             </div>
             <div v-if="gameData">
@@ -1411,10 +1411,10 @@ export default {
         }
       })
     },
+
     replay() {
       tuxunJump('/tuxun/replay?gameId=' + this.gameId);
     },
-
 
     challengeAgain() {
       this.doLoginStatus().then((res) => {
