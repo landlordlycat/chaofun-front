@@ -25,13 +25,13 @@
         </div>
       </div>
       <div :class="['admin']">
-        <div class="admin_header admin_titles"> 
-          版主  
+        <div class="admin_header admin_titles">
+          版主
           <span class="iconsss" v-if="sticky">
             <i @click="toggle" :class="(showAllAdmin)?'el-icon-arrow-up':'el-icon-arrow-down'"></i>
           </span>
         </div>
-        
+
         <div v-for="(item,index) in forumAdmin" :key="index" class="admin_item">
           <span @click="toUser(item)" class="admin_name">{{item.userName}}</span>
         </div>
@@ -60,7 +60,7 @@
           <div class="rank">
             <div class="rank_title"> <img src="../../assets/images/game/snake/rank.png" alt="">  排行榜
               <span class="rule">规则
-                
+
               </span>
               <div class="rules">
                 <p>1、活动时间：2020/4/1 00:00-23:25;</p>
@@ -83,7 +83,7 @@
       <div class="chatbtn">
         <div class=""></div>
       </div>
-      
+
       <!-- v-if="$store.state.user.userInfo&&($store.state.user.userInfo.userId==1||$store.state.user.userInfo.userId==2||$store.state.user.userInfo.userId==146)" -->
       <div :class="['help_con',sticky?'help_con_fixed':'']">
         <div class="help_item">
@@ -157,7 +157,7 @@
     created() {
       console.log(this.$route.params)
       this.forumId = this.$route.params.forumId;
-      
+
     },
     destroyed(){
       this.$(".infinite-list")[0].removeEventListener('scroll', this.handleScroll)
@@ -168,7 +168,7 @@
         this.gamemodule = true
       }
       this.modlist();
-      
+
       if(this.$route.params.forumId){
         this.$(".infinite-list")[0].addEventListener('scroll',()=>{
           if(!this.rightComHeight){
@@ -181,11 +181,17 @@
           }else{
             this.sticky = false;
           }
-          console.log("top", top);
+          // console.log("top", top);
         })
       }
-      
+
     },
+
+    // fix: issues #344 帮助文档组件吸顶问题
+    activated(){
+      this.sticky = false;
+    },
+
     methods: {
       toggle(){
         this.showAllAdmin = !this.showAllAdmin;
@@ -202,7 +208,7 @@
             }else{
               this.$store.dispatch('user/SET_showChatBox',true);
             }
-            
+
           }
         })
       },
@@ -317,7 +323,7 @@
     border: 1px solid #f1f1f1;
     border-radius: 6px;
     background: #fff;
-    
+
     div.body-right{
       padding: 14px;
       border-bottom: 1px solid #f1f1f1;
@@ -526,7 +532,7 @@
         }
       }
     }
-    
+
     .admin_titles{
       margin: 0;
       padding-left: 12px;
