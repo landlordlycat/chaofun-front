@@ -676,6 +676,36 @@ export default {
         }
       }
       api.getPosts(params).then((res) => {
+
+        // fix: 快速切换标签时，部分内容标签内无法与选择标签对应的问题
+
+        // this.params.tagId总为后选择的值。
+        // 分三种情况
+        // 总要舍弃先选择的对应数据
+        // 1. 先选择全部，再选择标签       tagId存在，key不存在或不以tag_开头
+        // 2. 先选择标签，再选择全部       tagId不存在，key以tag_开头
+        // 3. 先选择标签1，再选择标签2     tagId存在，key以 tag_%tagId% 开头
+
+        // 代码还可以优化，先这样。
+        // TODO: 排序为最新时，会显示置顶内容。后续再处理吧。
+        if(this.params.tagId){
+          // 情况1 - 1 （仅在排序方式为最新时出现）
+          if(!res.data.key){
+            // console.log("情况1 - 1");
+            return;
+          }
+          // 情况1 - 2
+          if(!res.data.key.startsWith("tag_"+this.params.tagId)){
+            // console.log("情况1 - 2 or 情况3");
+            return;
+          }
+        }else if(res.data.key && res.data.key.startsWith("tag_")){
+          // 情况2
+          // console.log("情况2");
+          return;
+        }
+
+
         if (res.data.marker && res.data.posts.length != 0) {
           this.ifcanget = true;
         }
