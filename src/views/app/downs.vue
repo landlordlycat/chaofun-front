@@ -177,7 +177,7 @@ import * as api from '../../api/api'
               // } else if (/(Android)/i.test(navigator.userAgent)) {
             } else {
                 // location.href = 'vivoMarket://details?id=com.chao.app'
-                if(type==2) {window.open('https://chao.fan/chaofan.apk',"_blank"); return;}
+                if(type==2) {window.open('https://chaofun.oss-cn-hangzhou.aliyuncs.com/packages/chaofan.apk',"_blank"); return;}
                 //跳转到安卓商城地址
                 let ua = u.toLowerCase();
                 let isVivo = ua.indexOf("vivo") != -1;
@@ -204,7 +204,7 @@ import * as api from '../../api/api'
                 try{
                     window.location.href = hreff;
                 }catch(e){
-                    window.open('https://chao.fan/chaofan.apk',"_blank");
+                    window.open('https://chaofun.oss-cn-hangzhou.aliyuncs.com/packages/chaofan.apk',"_blank");
                 }
 
             //   window.open('https://chao.fun/chaofan.apk',"_blank");
