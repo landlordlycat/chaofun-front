@@ -169,12 +169,11 @@
             背景图：巴塞罗那
           </p>
           <p>
-            问题反馈电话：15058139992
+            问题反馈：电话：15058139992，或图寻群, 可能有1个月会员奖励
           </p>
           <a target="_blank" href="https://beian.miit.gov.cn/">浙ICP备2022031450号</a>
         </div>
       </section>
-
     </div>
   </div>
 </template>
