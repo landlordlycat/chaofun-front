@@ -1108,6 +1108,13 @@ export default {
         this.lng = e.latlng.wrap().lng;
         this.lat = e.latlng.wrap().lat;
         this.addChooseMarker();
+        if (this.gameData.type === 'team' || this.gameData.type === 'solo' || this.gameData.type === 'solo_match' ) {
+          api.getByPath("/api/v0/tuxun/game/pin", {gameId: this.gameId, lng: this.lng, lat: this.lat}).then(res => {
+          });
+        } else if (this.gameData.type === 'daily_challenge') {
+          api.getByPath("/api/v0/tuxun/challenge/pin", {streakId: this.gameId, lng: this.lng, lat: this.lat}).then(res => {
+          });
+        }
       }
     },
 

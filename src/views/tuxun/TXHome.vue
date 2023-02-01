@@ -703,6 +703,7 @@ export default {
           this.lng = e.latlng.wrap().lng;
           this.lat = e.latlng.wrap().lat;
           this.addChooseMarker();
+          this.wsSend("{\"scope\": \"tuxun\", \"data\": {\"type\": \"pin\", \"lat\": " + this.lat + ", \"lng\": " + this.lng + "}}");
         }
       } else {
         this.$toast('暂不支持选择, 请等待结果或者下一题');
