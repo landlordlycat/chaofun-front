@@ -15,7 +15,7 @@
     </div>
 
     <div class="game">
-      <div class="info" @click="toFirstTournament">玩家图寻第一届组队赛圆满结束!</div>
+      <div class="info" @click="toFirstTournament">炒饭&图寻于2月2日凌晨2点开始维护，预计需要3小时，中间功能或不可用。</div>
       <div v-if="times" class="times">图寻总轮次数：<span style="font-size: 18px">{{times}}</span></div>
       <section class="game_entrance">
         <div class="first_session_head">单人</div>
@@ -284,9 +284,9 @@ export default {
     },
     toFirstTournament() {
       try {
-        window.flutter_inappwebview.callHandler('toAppPost', {postId: '1234957'});
+        window.flutter_inappwebview.callHandler('toAppPost', {postId: '1236830'});
       } catch (e) {
-        tuxunOpen('https://chao.fan/p/1234957');
+        tuxunOpen('https://chao.fan/p/1236830');
       }
     }
   }
