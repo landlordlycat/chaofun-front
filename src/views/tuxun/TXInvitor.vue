@@ -1112,7 +1112,7 @@ export default {
           api.getByPath("/api/v0/tuxun/game/pin", {gameId: this.gameId, lng: this.lng, lat: this.lat}).then(res => {
           });
         } else if (this.gameData.type === 'daily_challenge') {
-          api.getByPath("/api/v0/tuxun/challenge/pin", {streakId: this.gameId, lng: this.lng, lat: this.lat}).then(res => {
+          api.getByPath("/api/v0/tuxun/challenge/pin", {gameId: this.gameId, lng: this.lng, lat: this.lat}).then(res => {
           });
         }
       }
