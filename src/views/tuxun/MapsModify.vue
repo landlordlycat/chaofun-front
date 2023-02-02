@@ -109,8 +109,10 @@ export default {
     submitPano() {
       api.postByPath('/api/v0/tuxun/maps/userAddPanorama',
           {links: this.panoramaSubmitForm.links, mapsId: this.mapsId}).then(res=>{
+        if (res.success) {
+          this.$toast('提交成功, 谢谢你！');
+        }
         this.panoramaSubmitForm.links = '';
-        this.$toast('提交成功, 谢谢你！');
         this.submitPanoramaShow = false;
         this.getPanos();
       })
