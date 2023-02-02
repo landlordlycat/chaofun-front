@@ -1114,6 +1114,9 @@ export default {
         } else if (this.gameData.type === 'daily_challenge') {
           api.getByPath("/api/v0/tuxun/challenge/pin", {gameId: this.gameId, lng: this.lng, lat: this.lat}).then(res => {
           });
+        } else if (this.gameData.type === 'battle_royale') {
+          api.getByPath("/api/v0/tuxun/br/pin", {gameId: this.gameId, lng: this.lng, lat: this.lat}).then(res => {
+          });
         }
       }
     },
