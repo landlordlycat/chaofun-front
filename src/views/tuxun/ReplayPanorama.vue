@@ -4,7 +4,7 @@
     <div class="back_home">
       <el-button @click="goBack" size="small" round>←返回</el-button>
       <el-button @click="goHome" size="small" round>图寻首页</el-button>
-      <el-button @click="toReport" round> 坏题反馈 </el-button>
+      <el-button @click="toReport" size="small"  round> 坏题反馈 </el-button>
 
     </div>
   </div>
