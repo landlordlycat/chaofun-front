@@ -4,6 +4,8 @@
     <div class="back_home">
       <el-button @click="goBack" size="small" round>←返回</el-button>
       <el-button @click="goHome" size="small" round>图寻首页</el-button>
+      <el-button @click="toReport" round> 坏题反馈 </el-button>
+
     </div>
   </div>
 </template>
@@ -28,6 +30,7 @@ export default {
       gameId: null,
       round: null,
       gameData: null,
+      image: null,
       viewer: null
     }
   },
@@ -51,6 +54,11 @@ export default {
     },
     goBack() {
       window.history.back();
+    },
+    toReport() {
+      api.getByPath('/api/v0/tuxun/game/report', {content: this.image}).then(res => {
+        this.$toast("反馈成功");
+      })
     },
     render(round) {
       console.log(round);
@@ -79,8 +87,13 @@ export default {
           });
         }
         var virtualTour = this.viewer.getPlugin(VirtualTourPlugin);
+        if (this.canUseWebP() && round.contentSpeedUp) {
+          this.image = round.contentSpeedUp;
+        } else {
+          this.image = round.content;
+        }
         virtualTour.setNodes([{
-          panorama: 'https://i.chao-fan.com/' + round.contentSpeedUp,
+          panorama: 'https://i.chao-fan.com/' + this.image,
           id: round.round,
           position: [0, 0],
           links: [],
