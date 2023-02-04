@@ -32,7 +32,7 @@ export default {
       smoothSensitivity: 3,   // zoom speed. default is 1
       maxBoundsViscosity: 1.0,
       maxBounds: [[-90, -540], [90, 540]]
-    }).setView([38.8, 106.0], 3)
+    }).setView([38.8, 106.0], 2)
     map.scrollWheelZoom = true;
     map.attributionControl.setPosition('bottomleft');
     map.zoomControl.setPosition('bottomright');
