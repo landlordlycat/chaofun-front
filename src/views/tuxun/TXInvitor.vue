@@ -360,6 +360,8 @@
         </div>
       </div>
 
+      <img v-if="lastRound && lastRound.source === 'baidu_pano'" style="position: absolute; bottom: 10px; left: 10px; width: 100px" src="https://webmap0.bdimg.com/wolfman/static/common/images/new/newlogo-new_3c175be.png">
+
       <div id="map-container" :class="[{'bm-view-container': !ISPHONE}, {'bm-view-container-phone': ISPHONE && showMap}, {'bm-view-container-phone-hidden': ISPHONE && !showMap}]"@mouseover="mapMouseOver" @mouseout="mapMouseOut">
         <div v-if="!this.isMapSmall && !ISPHONE" style="text-align: left">
           <el-button size="small" @click="mapBig" round>放大</el-button>
