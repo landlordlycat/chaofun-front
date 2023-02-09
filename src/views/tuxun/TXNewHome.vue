@@ -15,7 +15,7 @@
     </div>
 
     <div class="game">
-      <div class="info" @click="toFirstTournament">玩家图寻第一届组队赛圆满结束!</div>
+      <div class="info" @click="toFirstTournament"> 崭新赛制！玩家图寻第二届团体赛即将开赛！</div>
       <div v-if="times" class="times">图寻总轮次数：<span style="font-size: 18px">{{times}}</span></div>
       <section class="game_entrance">
         <div class="first_session_head">单人</div>
@@ -108,6 +108,15 @@
             </div>
             <div class="describe">
               漫步孤独星球
+            </div>
+            <div class="card-top-right">可移动</div>
+          </div>
+          <div class="card" @click="redirectPage( '/tuxun/')">
+            <div class="title">
+              随机百度街景
+            </div>
+            <div class="describe">
+              走遍神舟大陆
             </div>
             <div class="card-top-right">可移动</div>
           </div>
@@ -284,9 +293,9 @@ export default {
     },
     toFirstTournament() {
       try {
-        window.flutter_inappwebview.callHandler('toAppPost', {postId: '1234957'});
+        window.flutter_inappwebview.callHandler('toAppPost', {postId: '1247302'});
       } catch (e) {
-        tuxunOpen('https://chao.fan/p/1234957');
+        tuxunOpen('https://chao.fan/p/1247302');
       }
     }
   }
