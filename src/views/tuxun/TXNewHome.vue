@@ -111,15 +111,15 @@
             </div>
             <div class="card-top-right">可移动</div>
           </div>
-          <div class="card" @click="redirectPage( '/tuxun/')">
-            <div class="title">
-              随机百度街景
-            </div>
-            <div class="describe">
-              走遍神舟大陆
-            </div>
-            <div class="card-top-right">可移动</div>
-          </div>
+<!--          <div class="card" @click="redirectPage( '/tuxun/')">-->
+<!--            <div class="title">-->
+<!--              随机百度街景-->
+<!--            </div>-->
+<!--            <div class="describe">-->
+<!--              走遍神舟大陆-->
+<!--            </div>-->
+<!--            <div class="card-top-right">可移动</div>-->
+<!--          </div>-->
           <div class="card" @click="toBilibili">
             <div class="title">
               直播/视频/教程
