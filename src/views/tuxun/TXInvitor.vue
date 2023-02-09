@@ -360,7 +360,7 @@
         </div>
       </div>
 
-      <img v-if="lastRound && lastRound.source === 'baidu_pano'" style="position: absolute; bottom: 10px; left: 10px; width: 100px" src="https://webmap0.bdimg.com/wolfman/static/common/images/new/newlogo-new_3c175be.png">
+      <img v-if="lastRound && lastRound.source === 'baidu_pano'" style="position: absolute; bottom: 10px; left: 10px; width: 100px" src="https://webmap0.bdimg.com/wolfman/static/pano/images/pano-logo_7969e0c.png">
 
       <div id="map-container" :class="[{'bm-view-container': !ISPHONE}, {'bm-view-container-phone': ISPHONE && showMap}, {'bm-view-container-phone-hidden': ISPHONE && !showMap}]"@mouseover="mapMouseOver" @mouseout="mapMouseOut">
         <div v-if="!this.isMapSmall && !ISPHONE" style="text-align: left">
