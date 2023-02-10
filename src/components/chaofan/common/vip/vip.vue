@@ -13,21 +13,6 @@
               我是学生
             </div>
           </div>
-          <div @click="changeTo('month')" :class="{'card': choose !== 'month', 'choose-card': choose === 'month'}">
-            <div>
-              <div style="font-size: 20px;">
-                <span style="font-size: 10px; text-decoration: none">￥</span>
-                <span style="text-decoration: line-through">9.99</span>
-              </div>
-              <div style="font-size: 30px; color: #FF0037">
-                <span style="font-size: 10px;">￥</span>5.99
-              </div>
-              <div>
-                一个月
-              </div>
-              <div style="height: 10px"></div>
-            </div>
-          </div>
           <div @click="changeTo('year')" :class="{'card': choose !== 'year', 'choose-card': choose === 'year'}">
             <div>
               <div style="font-size: 20px;">
@@ -39,6 +24,21 @@
               </div>
               <div>
                 一年
+              </div>
+              <div style="height: 10px"></div>
+            </div>
+          </div>
+          <div @click="changeTo('month')" :class="{'card': choose !== 'month', 'choose-card': choose === 'month'}">
+            <div>
+              <div style="font-size: 20px;">
+                <span style="font-size: 10px; text-decoration: none">￥</span>
+                <span style="text-decoration: line-through">9.99</span>
+              </div>
+              <div style="font-size: 30px; color: #FF0037">
+                <span style="font-size: 10px;">￥</span>5.99
+              </div>
+              <div>
+                一个月
               </div>
               <div style="height: 10px"></div>
             </div>
@@ -131,7 +131,7 @@ import { Checkbox } from 'element-ui'
        cancelImg: require('@/assets/images/icon/cancel1.png'),
        show: false,
        pay: false,
-       choose: 'month',
+       choose: 'year',
        orderId: null,
        totalTryTimes: null,
        payImageUrl: null,
