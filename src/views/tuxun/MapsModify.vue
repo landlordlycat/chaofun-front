@@ -2,8 +2,14 @@
   <div class="container">
     <el-dialog title="提交街景" :visible.sync="submitPanoramaShow" :append-to-body="true">
       <el-form :model="form">
-        <el-form-item label="街景链接:一行一条，支持百度街景和Google街景">
-          <a target="_blank" href="https://www.yuque.com/ucun5p/kfw26e/ttqiucknz7sifo5u">点击跳转教程</a>
+        <el-form-item>
+          <div>
+            街景链接:一行一条，支持百度街景和Google街景
+            <a target="_blank" href="https://www.yuque.com/ucun5p/kfw26e/ttqiucknz7sifo5u">点击跳转教程</a>
+          </div>
+          <div>
+            也支持 map-making.app 的 json 字符串, 请直接粘贴
+          </div>
           <el-input type="textarea" :autosize="{ minRows: 4}"
                     v-model="panoramaSubmitForm.links" autocomplete="off"> </el-input>
         </el-form-item>
@@ -27,6 +33,7 @@
     </div>
     <el-button @click="modify" type="primary">修改基础信息</el-button>
     <div style="padding-bottom: 2rem"></div>
+    <el-button @click="toDistribute" type="primary">查看题库分布</el-button>
     <el-button @click="addPano" type="primary">增加街景</el-button>
     <div style="color: white">发布题库需要题库中有5个状态为已发布或者待发布状态的街景，当系统检测到题库中有5个Google官方街景，会自动将题库标记为「可移动」</div>
     <div style="color: white">注意：请勿使用脚本提交</div>
@@ -99,6 +106,9 @@ export default {
           tuxunJump('/tuxun/my_maps');
         }
       })
+    },
+    toDistribute() {
+      tuxunJump('/tuxun/maps_distribute?mapsId=' + this.mapsId);
     },
     addPano() {
       this.submitPanoramaShow = true;

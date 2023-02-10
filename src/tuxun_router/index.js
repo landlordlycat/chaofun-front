@@ -35,6 +35,13 @@ export const constantRoutes = [
     hidden: true
   },
   {
+    path: '/maps_distribute',
+    component: () => import('@/views/tuxun/MapsDistribute'),
+    name: 'maps_distribute',
+    meta: { title: '题库题目分布'},
+    hidden: true
+  },
+  {
     path: '/my_maps',
     component: () => import('@/views/tuxun/MyMaps'),
     meta: { title: '图寻-练习赛'},

@@ -463,6 +463,13 @@ routes = [
     hidden: true
   },
   {
+    path: '/tuxun/maps_distribute',
+    component: () => import('@/views/tuxun/MapsDistribute'),
+    name: 'maps_distribute',
+    meta: { title: '题库题目分布'},
+    hidden: true
+  },
+  {
     path: '/tuxun/replay',
     component: () => import('@/views/tuxun/Replay'),
     name: 'maps',
