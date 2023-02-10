@@ -34,7 +34,7 @@
       <div style="margin-top: 1rem; font-size: 20px; color: white">
         街景列表
       </div>
-      <div v-for="(item, index) in panos" style="display: flex;justify-content: space-between">
+      <div v-for="(item, index) in panos" class="list_item" style="display: flex;justify-content: space-between ">
         <div style="display: flex; color: white">
           <div @click="toPano(item)">{{item.panoId}}</div>
           <div v-if="item.status === 'crawling'" class="status">准备中</div>
@@ -178,6 +178,11 @@ export default {
   .list_container {
     width: 60%;
     margin: 0 auto;
+    .list_item {
+      &:hover {
+        background-color: grey;
+      }
+    }
 
   }
   .status {
