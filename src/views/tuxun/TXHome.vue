@@ -95,7 +95,6 @@
       <el-button size="mini" @click="toHome" round> 图寻首页 </el-button>
       <el-button v-if="!this.isMaps" size="mini"  @click="toSend" round> 发送弹幕 </el-button>
       <el-button size="mini"  @click="toReport" round> 坏题反馈 </el-button>
-      <el-button v-if="!ISPHONE && this.isMaps" size="mini"  @click="toSubmitPanorama" round> 提交街景 </el-button>
       <el-button v-if="ISPHONE" @click="reloadPage" size="mini" round>刷新页面</el-button>
       <el-button v-if="this.$store.state.user.userInfo.userId === 1" size="mini"  @click="deleteTuxun" round> 删除该题 </el-button>
       <el-button v-if="this.$store.state.user.userInfo.userId === 1 && this.isMaps" size="mini"  @click="removeFromMaps" round> 移除该题 </el-button>
@@ -140,9 +139,6 @@ export default {
       danmus: [''],
       form: {
         applyModReason: '',
-      },
-      panoramaSubmitForm: {
-        links: '',
       },
       dialogVisible: false,
       submitPanoramaShow: false,

@@ -179,6 +179,11 @@ export default {
         return parseFloat(version.join('.')) >= 13.9999;
       }
 
+
+      var isiOSQQ = navigator.userAgent.indexOf('QQ/') !== -1 && navigator.platform.indexOf('iPhone') !== -1;
+      if (isiOSQQ) {
+        return false;
+      }
       return true;
     },
     doLoginStatus() { // 判断是否登录
