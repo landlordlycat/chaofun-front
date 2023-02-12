@@ -9,6 +9,9 @@
 
     <div class="tab_container">
       <div class="tab">
+        <div @click="type='province';init();"  :class="{'normal': type!=='province', 'choose': type==='province'}">
+          省份连胜
+        </div>
         <div @click="type='country';init()" :class="{'normal': type!=='country', 'choose': type==='country'}">
           <div>
             <div style="line-height: 1">
@@ -24,9 +27,6 @@
               <p>移动</p>
             </div>
           </div>
-        </div>
-        <div @click="type='province';init();"  :class="{'normal': type!=='province', 'choose': type==='province'}">
-          省份连胜
         </div>
       </div>
     </div>
@@ -76,7 +76,7 @@ export default {
   data(){
     return {
       rank: null,
-      type: 'country',
+      type: 'province',
     }
   },
   mounted() {

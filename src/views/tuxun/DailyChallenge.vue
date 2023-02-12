@@ -12,18 +12,21 @@
           {{this.getDate()}}
         </div>
         <div class="hint">
-          每日0点更新，两种模式各5个所有人统一的题目，满分25000，使用小号会被取消每日挑战资格，不建议看过当日解析视频/讨论的用户挑战
+          每日0点更新，三种模式各5个所有人统一的题目，满分25000，使用小号会被取消每日挑战资格，不建议看过当日解析视频/讨论的用户挑战
           <p>
             固定街景为不可移动的街景，较考验技术，移动街景为可无限制移动的街景，更侧重趣味性。
           </p>
         </div>
         <div class="tab_container">
           <div class="tab">
+            <div @click="type='china';init();" :class="{'normal': type!=='china', 'choose': type==='china'}">
+              中国固定
+            </div>
             <div @click="type='noMove';init();" :class="{'normal': type!=='noMove', 'choose': type==='noMove'}">
-              固定街景
+              世界固定
             </div>
             <div @click="type='move';init()" :class="{'normal': type!=='move', 'choose': type==='move'}">
-              移动街景
+              世界移动
             </div>
           </div>
         </div>
@@ -73,7 +76,7 @@ export default {
       dailyChallengeTotalPlayers: null,
       dailyChallengePercent: null,
       showBegin: false,
-      type: 'noMove',
+      type: 'china',
       total: null,
 
     }
