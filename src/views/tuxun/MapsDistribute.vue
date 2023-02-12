@@ -69,7 +69,7 @@ export default {
         options.iconUrl = this.imgOrigin + 'biz/1662830770348_9499340182724556af66f2b42846135b_0.png';
         options.iconRetinaUrl = this.imgOrigin + 'biz/1662830707508_d7e5c8ce884a4fb692096396a5405f5b_0.png';
         var marker = L.marker([latlng.lat, latlng.lng], {icon: new L.Icon(options)}).addTo(this.map);
-        marker.latlng = round;
+        marker.latlng = latlng;
         marker.on("click", function (e) {
           console.log(e);
           this.toPanorama(e.target.latlng);
