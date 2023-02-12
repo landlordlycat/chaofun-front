@@ -15,7 +15,7 @@
     </div>
 
     <div class="game">
-      <div class="info" @click="toFirstTournament"> 崭新赛制！玩家图寻第二届团体赛即将开赛！</div>
+      <div class="info" @click="toFirstTournament"> 玩家图寻第二届组队赛圆满结束 </div>
       <div v-if="times" class="times">图寻总轮次数：<span style="font-size: 18px">{{times}}</span></div>
       <section class="game_entrance">
         <div class="first_session_head">单人</div>
@@ -293,9 +293,9 @@ export default {
     },
     toFirstTournament() {
       try {
-        window.flutter_inappwebview.callHandler('toAppPost', {postId: '1247302'});
+        window.flutter_inappwebview.callHandler('toAppPost', {postId: '1248018'});
       } catch (e) {
-        tuxunOpen('https://chao.fan/p/1247302');
+        tuxunOpen('https://choa.fun/p/1248018');
       }
     }
   }
