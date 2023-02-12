@@ -23,10 +23,10 @@
               中国固定
             </div>
             <div @click="type='noMove';init();" :class="{'normal': type!=='noMove', 'choose': type==='noMove'}">
-              世界固定
+              全球固定
             </div>
             <div @click="type='move';init()" :class="{'normal': type!=='move', 'choose': type==='move'}">
-              世界移动
+              全球移动
             </div>
           </div>
         </div>
