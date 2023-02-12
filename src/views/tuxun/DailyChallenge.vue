@@ -258,7 +258,7 @@ export default {
             align-content: center;
             width: 50%;
             height: 50px;
-            font-size: 32px;
+            font-size: 24px;
             color: gold;
             background-color: #3590FF;
             -webkit-user-select: none;
@@ -281,7 +281,7 @@ export default {
             user-select: none;
             height: 50px;
             width: 50%;
-            font-size: 32px;
+            font-size: 24px;
             background-color: white;
           }
         }
