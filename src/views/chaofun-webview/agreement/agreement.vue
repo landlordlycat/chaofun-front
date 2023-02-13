@@ -332,12 +332,12 @@ export default {
       showCover: false,
       version: 'new',
       list: [
-        {
-          imgUrl: require('../assets/images/secret.jpg'),
-          path: '/webview/secret',
-          title: '秘密花园',
-          showBottom: false,
-        },
+        // {
+        //   imgUrl: require('../assets/images/secret.jpg'),
+        //   path: '/webview/secret',
+        //   title: '秘密花园',
+        //   showBottom: false,
+        // },
         {
           // imgUrl: require('../assets/images/secret.jpg'),
           path: '/userRank',

@@ -206,13 +206,13 @@ export const constantRoutes = [
 			import ('@/views/list/fbi'),
 		hidden: true
 	  },
-      {
-        path: '/secret',
-        name: 'secret',
-        component: () => import('@/views/secret/secret'),
-        meta: {keepAlive: false},
-        hidden: true
-      },
+      // {
+      //   path: '/secret',
+      //   name: 'secret',
+      //   component: () => import('@/views/secret/secret'),
+      //   meta: {keepAlive: false},
+      //   hidden: true
+      // },
       {
         path: '/search',
         name: 'search',
