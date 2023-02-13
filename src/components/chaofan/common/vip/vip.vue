@@ -45,7 +45,7 @@
           </div>
         </div>
         <div v-if="choose==='student'">
-          <div>注：2小时免费会员，可循环使用，请勿滥用</div>
+          <div>注：2小时免费会员，可循环使用</div>
           <div v-if="this.totalTryTimes !== null">图寻已经被白嫖了 {{this.totalTryTimes}} 次，救救孩子吧</div>
         </div>
         <div v-if="choose==='month'">
