@@ -147,6 +147,9 @@
         </div>
         <div style="display: flex;">
           <div @click="toDocument" style="color: white;font-size: medium; padding-top: 1rem; padding-right: 1rem; text-decoration:underline;">
+            图寻文档
+          </div>
+          <div @click="toUpdate" style="color: white;font-size: medium; padding-top: 1rem; padding-right: 1rem; text-decoration:underline;">
             更新日志
           </div>
 <!--          <div @click="window.location.href = '/tuxun/change_log'" style="color: white;font-size: medium; padding-top: 1rem; text-decoration:underline;">-->
@@ -288,8 +291,11 @@ export default {
     toScratch() {
       tuxunOpen('https://choa.fun/scratch/home')
     },
-    toDocument() {
+    toUpdate() {
       tuxunOpen('https://www.yuque.com/ucun5p/kfw26e/dp7hvxnm7tes88g7')
+    },
+    toDocument() {
+      tuxunOpen('https://www.yuque.com/ucun5p/tuxun')
     },
     toFirstTournament() {
       try {
