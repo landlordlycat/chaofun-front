@@ -508,6 +508,8 @@ export default {
   },
 
   mounted() {
+    THREE.Cache.enabled = false;
+
     this.gameId = this.$route.query.gameId;
     this.challengeId = this.$route.query.challengeId;
     this.streakId = this.$route.query.streakId;

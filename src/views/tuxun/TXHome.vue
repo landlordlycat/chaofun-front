@@ -202,6 +202,8 @@ export default {
     }
   },
   mounted() {
+    THREE.Cache.enabled = false;
+
     if (!this.isMaps) {
       this.initWS();
     } else {

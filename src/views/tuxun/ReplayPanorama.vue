@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import * as THREE from 'three';
 import * as api from '../../api/api'
 import {Viewer} from 'photo-sphere-viewer'
 import 'photo-sphere-viewer/dist/photo-sphere-viewer.css'
@@ -35,6 +36,7 @@ export default {
     }
   },
   mounted() {
+    THREE.Cache.enabled = false;
     this.gameId = this.$route.query.gameId;
     this.round = this.$route.query.round;
 
