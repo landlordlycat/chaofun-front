@@ -293,17 +293,17 @@ export default {
             this.chatHistoryMap.set(item.id, item);
           }
 
-          // channel
-          if (this.$route.query && this.$route.query.id && this.$route.query.id.toString() && this.chatHistoryMap.has(parseInt(this.$route.query.id.toString()))) {
-            this.currentChannelId = parseInt(this.$route.query.id.toString());
-          } else if (data) {
-            this.currentChannelId = data[0].id;
-          }
-
-          // title
-          this.modifyDocumentTitle();
-
         }
+
+        // currentChannel
+        if (this.$route.query && this.$route.query.id && this.$route.query.id.toString() && this.chatHistoryMap.has(parseInt(this.$route.query.id.toString()))) {
+          this.currentChannelId = parseInt(this.$route.query.id.toString());
+        } else if (data) {
+          this.currentChannelId = data[0].id;
+        }
+
+        // title
+        this.modifyDocumentTitle();
 
         //
         this.wsInit();
@@ -536,7 +536,9 @@ export default {
 
     modifyDocumentTitle() {
       setTimeout(() => {
-        document.title = "炒饭 - 聊天 - " + this.chatHistoryMap.get(this.currentChannelId).name;
+        if (this.currentChannelId && this.chatHistoryMap.get(this.currentChannelId)) {
+          document.title = "炒饭 - 聊天 - " + this.chatHistoryMap.get(this.currentChannelId).name;
+        }
       }, 1);
     },
 
