@@ -40,7 +40,7 @@
     "normalize.css": "^8.0.1",
     "nprogress": "^0.2.0",
     "path-to-regexp": "^6.1.0",
-    "photo-sphere-viewer": "github:cijianzy/Photo-Sphere-Viewer",
+    "@photo-sphere-viewer/core": "^5.1.1",
     "piexifjs": "^1.0.6",
     "prosemirror-transform": "^1.7.0",
     "qs": "^6.9.1",

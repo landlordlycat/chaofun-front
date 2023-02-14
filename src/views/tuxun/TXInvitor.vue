@@ -835,11 +835,6 @@ export default {
                     size: '5vh',
                     position: 'left bottom'
                   }]);
-                  plugins.push([VirtualTourPlugin, {
-                    positionMode: VirtualTourPlugin.MODE_GPS,
-                    renderMode: VirtualTourPlugin.MODE_3D,
-                    // preload: true,
-                  }]);
 
                   this.viewer = new Viewer({
                     loadingImg: this.imgOrigin + 'biz/1659528755270_550cd22e10c84073a12e6f83840320bc.gif',
@@ -852,43 +847,12 @@ export default {
                     plugins: plugins
                   });
                 }
-                if (this.contents && this.contents.length > 1) {
-                  var nodes = [];
-                  console.log(this.contents)
-                  for (var i in this.contents) {
-                    console.log(content);
-                    const content = this.contents[i];
-                    var k = {};
-                    if (this.canUseWebP() && content.contentSpeedUp && content.contentSpeedUp !== null) {
-                      k.panorama = 'https://i.chao-fan.com/' + content.contentSpeedUp;
-                    } else {
-                      k.panorama = 'https://i.chao-fan.com/' + content.content;
-                    }
-                    // k.panorama =  k.panorama + '?x-oss-process=image/resize,h_1664'
-                    k.links = [];
-                    for (var j in content.links) {
-                      k.links.push({nodeId: content.links[j]});
-                    }
-                    k.name = '全景图_' + i;
-                    k.id = content.id;
-                    k.position = [content.lng, content.lat];
-                    k.panoData = {poseHeading: content.heading};
-                    nodes.push(k);
-                  }
 
-                  console.log(nodes);
-                  var virtualTour = this.viewer.getPlugin(VirtualTourPlugin);
-                  virtualTour.setNodes(nodes, nodes[0].id);
-                } else {
-                  var virtualTour = this.viewer.getPlugin(VirtualTourPlugin);
-                  virtualTour.setNodes([{
-                    panorama: 'https://i.chao-fan.com/' + this.image,
-                    id: this.image,
-                    position: [0, 0],
-                    links: [],
-                    panoData: {poseHeading: this.heading}
-                  }])
-                }
+                this.viewer.setPanorama(
+                 this.imgOrigin + this.image, {
+                    poseHeading: this.heading, // 0 to 360
+                  }
+                );
 
                 this.viewer.animate({
                   zoom: 0,

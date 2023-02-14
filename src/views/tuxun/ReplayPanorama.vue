@@ -75,9 +75,16 @@ export default {
             // preload: true,
           }]);
 
+          if (this.canUseWebP() && round.contentSpeedUp) {
+            this.image = round.contentSpeedUp;
+          } else {
+            this.image = round.content;
+          }
+
           this.viewer = new Viewer({
             loadingImg: this.imgOrigin + 'biz/1659528755270_550cd22e10c84073a12e6f83840320bc.gif',
             navbar: null,
+            panorama: this.imgOrigin + this.image,
             container: document.querySelector('#viewer'),
             panoData: {
               poseHeading: this.heading, // 0 to 360
@@ -86,19 +93,6 @@ export default {
             plugins: plugins
           });
         }
-        var virtualTour = this.viewer.getPlugin(VirtualTourPlugin);
-        if (this.canUseWebP() && round.contentSpeedUp) {
-          this.image = round.contentSpeedUp;
-        } else {
-          this.image = round.content;
-        }
-        virtualTour.setNodes([{
-          panorama: 'https://i.chao-fan.com/' + this.image,
-          id: round.round,
-          position: [0, 0],
-          links: [],
-          panoData: {poseHeading: round.heading}
-        }])
 
         this.viewer.animate({
           zoom: 0,
