@@ -850,7 +850,9 @@ export default {
 
                 this.viewer.setPanorama(
                  this.imgOrigin + this.image, {
-                    poseHeading: this.heading, // 0 to 360
+                      panoData: {
+                        poseHeading: this.heading, // 0 to 360
+                      },
                   }
                 );
 
