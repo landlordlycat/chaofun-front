@@ -24,6 +24,9 @@
             <div class="players">
               玩家人次: {{item.players}}
             </div>
+            <div v-if="item.difficulty" class="players">
+              难度: {{item.difficulty}}
+            </div>
             <div>
               <el-button style="background-color: unset; color: white" @click.stop="toMaps(item, 'noMove')" type="primary"  round>固定</el-button>
               <el-button style="background-color: unset; color: white" @click.stop="toMaps(item, 'move')" type="primary" v-if="item.canMove" round>移动</el-button>
@@ -44,6 +47,9 @@
             <div class="players">
               玩家人次: {{item.players}}
             </div>
+            <div v-if="item.difficulty" class="players">
+              难度: {{item.difficulty}}
+            </div>
             <div>
               <el-button style="background-color: unset; color: white" @click.stop="toMaps(item, 'noMove')" type="primary"  round>固定</el-button>
               <el-button style="background-color: unset; color: white" @click.stop="toMaps(item, 'move')" type="primary" v-if="item.canMove" round>移动</el-button>
@@ -63,6 +69,9 @@
 <!--            </div>-->
             <div class="players">
               玩家人次: {{item.players}}
+            </div>
+            <div v-if="item.difficulty" class="players">
+              难度: {{item.difficulty}}
             </div>
             <div>
               <el-button style="background-color: unset; color: white" @click.stop="toMaps(item, 'noMove')" type="primary"  round>固定</el-button>
@@ -116,17 +125,43 @@ export default {
     getHotMaps(){
       api.getByPath('/api/v0/tuxun/maps/list').then(res=>{
         this.pagedata = res.data
+        this.pagedata.forEach(function (item) {
+          this.addDifficulty(item)
+        }.bind(this));
       })
     },
     getNewMaps(){
       api.getByPath('/api/v0/tuxun/maps/listNew', {count: 9}).then(res=>{
         this.newPagedata = res.data
+        this.newPagedata.forEach(function (item) {
+          this.addDifficulty(item)
+        }.bind(this));
       })
     },
     getRecentPageData(){
       api.getByPath('/api/v0/tuxun/maps/listRecent').then(res=>{
         this.recentPagedata = res.data
+        this.recentPagedata.forEach(function (item) {
+          this.addDifficulty(item)
+        }.bind(this));
       })
+    },
+    addDifficulty(item){
+      console.log(item.avgScore)
+      if (item.avgScore === null) {
+        item.difficulty = '中等';
+      } else if (item.avgScore <= 5000) {
+        item.difficulty = '非常难';
+      } else if (item.avgScore <= 10000) {
+        item.difficulty = '难';
+      } else if (item.avgScore <= 15000) {
+        item.difficulty = '中等';
+      } else if (item.avgScore <= 20000) {
+        item.difficulty = '简单';
+      } else {
+        item.difficulty = '非常简单';
+      }
+      console.log(item.difficulty)
     },
     searchFocus() {
       document.getElementById('input').blur();
