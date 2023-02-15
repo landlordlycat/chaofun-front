@@ -16,6 +16,9 @@
     <div v-if="mapsData" class="players">
       玩家人次: {{mapsData.players}}
     </div>
+    <div v-if="mapsData && mapsData.difficulty" class="players">
+      难度: {{mapsData.difficulty}}
+    </div>
 
     <div v-if="mapsData" style="margin-top: 1rem">
       <el-button style="background-color: unset; color: white" @click.stop="toMaps(mapsData, 'noMove')" type="primary"  round>固定</el-button>
@@ -74,8 +77,24 @@ export default {
       api.getByPath('/api/v0/tuxun/maps/get', {mapsId: this.mapsId}).then(res=>{
         this.name = res.data.name;
         this.mapsData = res.data;
+        this.addDifficulty(this.mapsData);
         this.getUserInfo(res.data.userId);
       })
+    },
+    addDifficulty(item){
+      if (item.avgScore === null) {
+        item.difficulty = '中等';
+      } else if (item.avgScore <= 5000) {
+        item.difficulty = '非常难';
+      } else if (item.avgScore <= 10000) {
+        item.difficulty = '难';
+      } else if (item.avgScore <= 15000) {
+        item.difficulty = '中等';
+      } else if (item.avgScore <= 20000) {
+        item.difficulty = '简单';
+      } else {
+        item.difficulty = '非常简单';
+      }
     },
     goHome() {
       tuxunJump('/tuxun/')
