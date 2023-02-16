@@ -203,9 +203,9 @@ export default {
     }
   },
   created() {
-    // if (!this.canUseWebP()) {
-    //   this.backgroundImage = 'biz/1665370526912_495e8dbd52364a83b6f5235ce2ddafa8_0.jpeg';
-    // }
+      if (!location.host.includes('tuxun.fun')) {
+        window.location.href = 'https://tuxun.fun';
+      }
   },
 
   mounted() {
