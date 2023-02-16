@@ -41,6 +41,7 @@
       <div style="margin-top: 1rem; font-size: 20px; color: white">
         街景列表
       </div>
+      <div v-if="status" style="font-size: 12px; color: white; padding-bottom: 6px"> (总数: {{status.total ? stauts.total : 0 }}, 已发布: {{status.publish ? stauts.publish : 0 }}, 待发布: {{status.crawler_success ? stauts.crawler_success : 0 }}, 准备中: {{status.crawling ? stauts.crawling : 0 }}, 准备失败: {{status.crawler_fail ? stauts.crawler_fail : 0 }})</div>
       <div v-for="(item, index) in panos" class="list_item" style="display: flex;justify-content: space-between ">
         <div style="display: flex; color: white">
           <div @click="toPano(item)">{{item.panoId}}</div>
@@ -66,6 +67,7 @@ export default {
       name: '',
       panos: [],
       mapsId: null,
+      status: null,
       submitPanoramaShow: false,
       mapsData: null,
       form: {
@@ -81,12 +83,21 @@ export default {
     this.mapsId = this.$route.query.mapsId;
     this.getMapsName();
     this.getPanos();
+    this.getStauts();
 
     setInterval(() => {
       this.getPanos();
     }, 10000 );
   },
   methods: {
+    checkVip() {
+      api.getByPath('/api/v0/tuxun/vip/check').then(res=>{
+        if (res.data) {
+        } else {
+          this.$vip();
+        }
+      })
+    },
     goHome() {
       tuxunJump('/tuxun/');
     },
@@ -94,6 +105,11 @@ export default {
       api.getByPath('/api/v0/tuxun/maps/get', {mapsId: this.mapsId}).then(res=>{
         this.name = res.data.name;
         this.mapsData = res.data;
+      })
+    },
+    getStauts() {
+      api.getByPath('/api/v0/tuxun/maps/status', {mapsId: this.mapsId}).then(res=>{
+        this.status = res.data;
       })
     },
     getPanos() {

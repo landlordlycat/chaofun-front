@@ -203,7 +203,7 @@ export default {
     }
   },
   created() {
-      if (!location.host.includes('tuxun.fun')) {
+      if (!location.host.includes('tuxun.fun') && !location.host.includes('localhost') && !localtion.host.includes('127.0.0.1')) {
         window.location.href = 'https://tuxun.fun';
       }
   },
