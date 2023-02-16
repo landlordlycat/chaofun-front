@@ -77,6 +77,7 @@ export default {
     }
   },
   mounted() {
+    this.checkVip();
     this.mapsId = this.$route.query.mapsId;
     this.getMapsName();
     this.getPanos();
