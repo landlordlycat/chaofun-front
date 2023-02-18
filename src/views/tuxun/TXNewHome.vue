@@ -172,7 +172,7 @@
             QQ群：943507031
           </p>
           <p>
-            微信公众号：炒饭社区 产品微博：@炒饭社区 开发者微博：@此间ZY
+            微信公众号：炒饭社区 产品微博： <a target="_blank" href="https://weibo.com/wwwchaofun">@炒饭社区</a> 开发者微博：<a target="_blank" href="https://weibo.com/u/3050203537">@此间ZY</a>
           </p>
           <p>
             地图审图号：GS（2022）2885号
