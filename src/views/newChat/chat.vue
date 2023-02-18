@@ -165,11 +165,13 @@
         <div class="selectDisable" style="height: 150px;position: relative;">
 
           <!--  发送图片  -->
-          <div style="height: 30px;">
+          <div style="height: 30px; display: flex">
             <emoji-select ref="emojiSelect" :callback="emojiSelectCallback">
-              <img
-                :src="imgOrigin+'biz/bf4754f99db4f735f42f3dd29e7cafd1.png?x-oss-process=image/resize,h_40/format,webp/quality,q_75'"
-                alt="" class="button-bar" style="width: 26px;height: 26px;margin: 2px 5px;padding: 3px;">
+              <div class="button-bar" style="height: 26px;margin: 2px 8px;padding: 3px;">
+                发送表情</div>
+<!--              <img-->
+<!--                :src="imgOrigin+'biz/bf4754f99db4f735f42f3dd29e7cafd1.png?x-oss-process=image/resize,h_40/format,webp/quality,q_75'"-->
+<!--                alt="" class="button-bar" style="width: 26px;height: 26px;margin: 2px 5px;padding: 3px;">-->
             </emoji-select>
             <el-upload
               ref="imageUpload"
@@ -186,10 +188,9 @@
               name="file"
               style="display: inline-block;height: 100%;"
             >
-              <img
-                :src="imgOrigin+'biz/f175d230978ba6393a53c8919afb8a09.png?x-oss-process=image/resize,h_40/format,webp/quality,q_75'"
-                alt="" class="button-bar" style="width: 26px;height: 26px;margin: 2px 5px;padding: 3px;"
-                title="可直接粘贴图片（Ctrl+V）并发送">
+            <div class="button-bar" style="height: 26px;margin: 2px 8px;padding: 3px;">
+              发送图片
+            </div>
             </el-upload>
           </div>
 
