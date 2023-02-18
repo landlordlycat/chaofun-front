@@ -64,7 +64,7 @@
         <el-button type="primary" style="margin: auto; text-align: center;" @click="startGuess">开始</el-button>
       </div>
       <div v-if="start && guessInfo" style="margin: auto; text-align: center; padding-top: 1rem">
-        <el-button type="warning" style="margin: auto; text-align: center;" @click="giveUpGuess">放弃</el-button>
+        <el-button type="warning" style="margin: auto; text-align: center;" @click="endGame">放弃</el-button>
       </div>
     </div>
     <div v-else class="result">
@@ -125,7 +125,7 @@ export default {
       moment: moment,
       right: 0,
       start: false,
-      giveUp: false,
+      end: false,
       countdownTimer: null,
       timeLeftStr: '00:00',
       rating: null,
@@ -143,10 +143,6 @@ export default {
     modify() {
       window.location.href = '/scratch/modify?id=' + this.id
     },
-    giveUpGuess() {
-      this.endGame()
-      this.start = false;
-    },
     endGame() {
       if (!this.giveUp) {
         api.getByPath('/api/v0/scratch/game/end', {'id': this.id, 'score': this.right}).then(res => {
@@ -154,6 +150,7 @@ export default {
         })
       }
 
+      this.start = false;
       this.giveUp = true;
     },
     startGuess() {
