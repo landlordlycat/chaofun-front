@@ -169,7 +169,7 @@
             特别鸣谢：猫，南山大王cf，网络迷踪版主, GeoGuessr，百度街景，Google街景
           </p>
           <p>
-            QQ群：943507031
+            QQ群：<a target="_blank" href="https://jq.qq.com/?_wv=1027&k=1Woq40Au">943507031</a>
           </p>
           <p>
             微信公众号：炒饭社区 产品微博： <a target="_blank" href="https://weibo.com/wwwchaofun">@炒饭社区</a> 开发者微博：<a target="_blank" href="https://weibo.com/u/3050203537">@此间ZY</a>
