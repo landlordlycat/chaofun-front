@@ -70,10 +70,15 @@
     <div v-else class="result">
       恭喜你，已经全部答对
     </div>
+    <div v-if="endStatus" class="end-container">
+      <div> 你的得分 {{endStatus.score }} / {{guessInfo.data.answers.length}} = {{ Number(endStatus.rightPercentage * 100).toFixed(2) }} % </div>
+      <div> 超过/等于了 {{Number((endStatus.abovePercentage ? 1 : 0) * 100).toFixed(2) }} % 人</div>
+      <div> 该题的平均分是 {{Math.round(endStatus.avgScore)}}</div>
+      <div> 你的最高分是 {{endStatus.yourHighestScore}}</div>
+    </div>
     <div v-if="!start && guessInfo && giveUp" style="margin: auto; text-align: center; padding-top: 1rem">
       <el-button type="primary" style="margin: auto; text-align: center; margin-bottom: 10px" @click="startGuess" round>再来一次</el-button>
     </div>
-
     <section style="width: 100%">
       <div class="table">
         <table v-if="guessInfo" style="width: 100%">
@@ -139,14 +144,17 @@ export default {
       window.location.href = '/scratch/modify?id=' + this.id
     },
     giveUpGuess() {
-      this.giveUp = true;
+      this.endGame()
       this.start = false;
     },
     endGame() {
+      if (!this.giveUp) {
+        api.getByPath('/api/v0/scratch/game/end', {'id': this.id, 'score': this.right}).then(res => {
+          this.endStatus = res.data;
+        })
+      }
+
       this.giveUp = true;
-      api.getByPath('/api/v0/scratch/game/end', {'id': this.id, 'score': this.right }).then(res=>{
-        this.endStatus = res.data;
-      })
     },
     startGuess() {
       this.giveUp = false;
@@ -269,6 +277,12 @@ export default {
       //margin: auto;
     }
   }
+  .end-container {
+    background-color: #F3EAE1;
+    position: relative;
+    margin: auto;
+    width: 30%;
+  }
   .table {
     margin-top: 2rem;
     width: 30%;
@@ -302,6 +316,9 @@ table, th, td {
         //max-width: 40%;
         //margin: auto;
       }
+    }
+    .end-container {
+      width: 80%;
     }
 
     .table {
