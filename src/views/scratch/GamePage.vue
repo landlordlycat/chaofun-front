@@ -125,6 +125,7 @@ export default {
       timeLeftStr: '00:00',
       rating: null,
       timeLeft: null,
+      endStatus: null
     }
   },
   mounted() {
@@ -141,11 +142,18 @@ export default {
       this.giveUp = true;
       this.start = false;
     },
+    endGame() {
+      this.giveUp = true;
+      api.getByPath('/api/v0/scratch/game/end', {'id': this.id, 'score': this.right }).then(res=>{
+        this.endStatus = res.data;
+      })
+    },
     startGuess() {
       this.giveUp = false;
       this.start = true;
       this.showResult = false;
       this.right = 0;
+      this.endStatus = null;
       this.matched = new Set();
       this.timeLeft = this.guessInfo.countdown;
       this.inputResult = '';
@@ -159,8 +167,8 @@ export default {
           this.timeLeft = this.timeLeft - 1;
           this.timeLeftStr = Math.floor(this.timeLeft / 60).toString().padStart(2, '0') + ':' + (this.timeLeft % 60).toString().padStart(2, '0');
           if (this.giveUp || this.timeLeft <= 0 || this.showResult) {
-            this.giveUpGuess();
             clearInterval(this.countdownTimer);
+            this.endGame();
           }
          }, 1000);
       }
