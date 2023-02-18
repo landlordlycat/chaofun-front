@@ -72,7 +72,7 @@
     </div>
     <div v-if="endStatus" class="end-container">
       <div> 你的得分 {{endStatus.score }} / {{guessInfo.data.answers.length}} = {{ Number(endStatus.rightPercentage * 100).toFixed(2) }} % </div>
-      <div> 超过/等于了 {{Number((endStatus.abovePercentage ? 1 : 0) * 100).toFixed(2) }} % 人</div>
+      <div> 超过/等于了 {{Number((endStatus.abovePercentage) * 100).toFixed(2) }} % 人</div>
       <div> 该题的平均分是 {{Math.round(endStatus.avgScore)}}</div>
       <div> 你的最高分是 {{endStatus.yourHighestScore}}</div>
     </div>
