@@ -119,7 +119,7 @@ export default {
     toCreate() {
       this.doLoginStatus().then((res) => {
         if (res) {
-          window.location.href = '/scratch/create'
+          window.location.href = '/scratch/choose-create'
         }
       });
     },

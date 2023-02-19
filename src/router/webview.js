@@ -428,6 +428,13 @@ routes = [
     hidden: true
   },
   {
+    path: '/scratch/choose-create',
+    component: () => import('@/views/scratch/choose-create'),
+    name: 'choose-create',
+    meta: { title: '小测验创建-炒饭'},
+    hidden: true
+  },
+  {
     path: '/scratch/modify',
     component: () => import('@/views/scratch/Create'),
     name: 'scratch_modify',
