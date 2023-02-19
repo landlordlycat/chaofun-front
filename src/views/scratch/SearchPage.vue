@@ -44,13 +44,13 @@ export default {
       })
     },
     goHome() {
-      window.location.href = '/scratch/home';
+      window.location.href = '/scratch';
     },
     goBack() {
       try {
         this.$router.go(-1);
       } catch (e) {
-        window.location.href = '/scratch/home'
+        window.location.href = '/scratch'
       }
     },
     gotoGuess(item) {

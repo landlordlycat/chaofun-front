@@ -83,17 +83,23 @@
       <div class="table">
         <table v-if="guessInfo" style="width: 100%">
           <tr style="width: 100px;">
-            <th>答案</th>
+            <th v-if="guessInfo.data.hasHint" style="background-color: #eee">提示</th>
+            <th style="background-color: #eee">答案</th>
           </tr>
-          <tr v-for="(item, index) in guessInfo.data.answers" style="border: 1px solid black;">
-            <td style="width: 100%; border: 1px solid black;">
-              <div v-if="matched.has(item)" style="text-align: center; color: green">
-                {{item}}
+          <tr v-for="(item, index) in guessInfo.data.data">
+            <td v-if="guessInfo.data.hasHint" style="width: 50%">
+              <div style="text-align: center;">
+                123
               </div>
-              <div v-if="!matched.has(item) && giveUp" style="text-align: center; color: red">
-                {{item}}
+            </td>
+            <td style="width: 50%; border: 1px solid black;">
+              <div v-if="matched.has(item.answer)" style="text-align: center; color: green">
+                {{item.answer}}
               </div>
-              <div v-if="!matched.has(item) && !giveUp" style="text-align: center">
+              <div v-if="!matched.has(item.answer) && giveUp" style="text-align: center; color: red">
+                {{item.answer}}
+              </div>
+              <div v-if="!matched.has(item.answer) && !giveUp" style="text-align: center">
                 {{'-'}}
               </div>
             </td>
@@ -120,6 +126,7 @@ export default {
       showResult: false,
       inputResult: '',
       guessInfo: null,
+      giveUp: false,
       matched: new Set(),
       id: null,
       moment: moment,
@@ -194,7 +201,7 @@ export default {
       })
     },
     goHome() {
-      window.location.href = '/scratch/home'
+      window.location.href = '/scratch'
     },
     goTag(item) {
       window.location.href = '/scratch/tag?tagName=' + item;
@@ -237,7 +244,7 @@ export default {
       try {
         this.$router.go(-1);
       } catch (e) {
-        window.location.href = '/scratch/home'
+        window.location.href = '/scratch'
       }
     },
     setRating(rating) {

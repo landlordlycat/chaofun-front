@@ -102,7 +102,7 @@ export default {
     },
 
     goHome() {
-      window.location.href = '/scratch/home'
+      window.location.href = '/scratch'
     },
 
     changeSort(tab, event) {
@@ -114,7 +114,7 @@ export default {
       try {
         this.$router.go(-1);
       } catch (e) {
-        window.location.href = '/scratch/home'
+        window.location.href = '/scratch'
       }
     },
     handleCurrentChange(current) {
