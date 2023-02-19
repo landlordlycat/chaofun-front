@@ -89,7 +89,7 @@
           <tr v-for="(item, index) in guessInfo.data.data">
             <td v-if="guessInfo.data.hasHint" style="width: 50%">
               <div style="text-align: center;">
-                123
+                {{item.hint}}
               </div>
             </td>
             <td style="width: 50%; border: 1px solid black;">
