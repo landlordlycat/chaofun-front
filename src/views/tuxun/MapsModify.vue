@@ -45,10 +45,10 @@
       <div v-for="(item, index) in panos" class="list_item" style="display: flex;justify-content: space-between ">
         <div style="display: flex; color: white">
           <div @click="toPano(item)">{{item.panoId}}</div>
-          <div v-if="item.status === 'crawling'" class="status">准备中</div>
-          <div v-if="item.status === 'publish'" class="status">已发布</div>
-          <div v-if="item.status === 'crawler_success'" class="status">待发布</div>
-          <div v-if="item.status === 'crawler_fail'" class="status">准备失败</div>
+          <div v-if="item.status === 'crawling'" class="status" style="color: yellow">准备中</div>
+          <div v-if="item.status === 'publish'" class="status" style="color: green">已发布</div>
+          <div v-if="item.status === 'crawler_success'" class="status" style="color: white">待发布</div>
+          <div v-if="item.status === 'crawler_fail'" class="status" style="color: red">准备失败</div>
         </div>
         <div style="color: white" @click="deletePano(item.id)">删除</div>
       </div>
