@@ -39,8 +39,11 @@
 
 
       <div style="display: flex; padding-bottom: 8px" v-for="(item, index) in list" @click="gotoGuess(item)">
-        <img class="cover" :src="imgOrigin + item.cover + '?x-oss-process=image/resize,h_300/quality,q_75'" style="">
-        </img>
+        <div style="width: 100px; height: 100px">
+          <img class="cover" :src="imgOrigin + item.cover + '?x-oss-process=image/resize,h_300/quality,q_75'" style="">
+          </img>
+        </div>
+
         <div style="padding-left: 8px">
           <div style="font-size: 24px; font-weight: bold;">
             {{item.name}}
@@ -151,9 +154,9 @@ export default {
     margin: auto;
   }
   .cover {
-    width: 100px; height: 100px;
+    width: 100%; height: 100%;
     //background-color: grey;
-    object-fit: cover;
+    object-fit: fill;
   }
 }
 
