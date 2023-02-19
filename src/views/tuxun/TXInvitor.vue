@@ -1413,7 +1413,13 @@ export default {
       });
     },
     goDailyChallenge() {
-      tuxunJump(  '/tuxun/daily_challenge');
+      if (this.gameData.move) {
+        tuxunJump('/tuxun/daily_challenge?type=move');
+      } else if (this.gameData.mapsId === 9) {
+        tuxunJump('/tuxun/daily_challenge?type=china');
+      } else {
+        tuxunJump('/tuxun/daily_challenge?type=noMove');
+      }
     },
 
     goHome() {
