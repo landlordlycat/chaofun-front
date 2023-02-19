@@ -38,13 +38,13 @@
 
 
 
-      <div style="display: flex; padding-bottom: 8px" v-for="(item, index) in list" @click="gotoGuess(item)">
-        <div style="width: 100px; height: 100px">
+      <div style="display: flex; padding-bottom: 8px" v-for="(item, index) in list" @click="gotoGuess(item)" class="item">
+        <div  class="item-img">
           <img class="cover" :src="imgOrigin + item.cover + '?x-oss-process=image/resize,h_300/quality,q_75'" style="">
           </img>
         </div>
 
-        <div style="padding-left: 8px">
+        <div  class="item-contain">
           <div style="font-size: 24px; font-weight: bold;">
             {{item.name}}
           </div>
@@ -153,11 +153,23 @@ export default {
     max-width: 40%;
     margin: auto;
   }
-  .cover {
-    width: 100%; height: 100%;
-    //background-color: grey;
-    object-fit: fill;
+  .item {
+    .item-img {
+      flex-shrink: 0;
+      height: 100px;
+      width: 100px;
+    }
+    .item-contain {
+      padding-left: 8px;
+      flex-shrink: 1;
+    }
+    .cover {
+      width: 100%; height: 100%;
+      //background-color: grey;
+      object-fit: fill;
+    }
   }
+
 }
 
 @media only screen and (max-width: 679px) {
