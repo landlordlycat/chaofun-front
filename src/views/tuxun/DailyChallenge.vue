@@ -83,6 +83,11 @@ export default {
   },
 
   created() {
+    this.type = this.$route.query.type;
+    if (!this.type) {
+      this.type = 'china'
+    }
+
     this.init();
   },
 
@@ -102,6 +107,9 @@ export default {
       })
     },
     init() {
+      setTimeout(() => {
+        this.$router.push({query: {type: this.type}});
+      }, 100);
       this.gameData = null;
       this.showBegin = false;
       this.challengeId = null;
