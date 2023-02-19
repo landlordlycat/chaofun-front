@@ -19,13 +19,13 @@
         </div>
         <div class="tab_container">
           <div class="tab">
-            <div @click="type='china';init();" :class="{'normal': type!=='china', 'choose': type==='china'}">
+            <div @click="type='china';reload();" :class="{'normal': type!=='china', 'choose': type==='china'}">
               中国固定
             </div>
-            <div @click="type='noMove';init();" :class="{'normal': type!=='noMove', 'choose': type==='noMove'}">
+            <div @click="type='noMove';reload();" :class="{'normal': type!=='noMove', 'choose': type==='noMove'}">
               全球固定
             </div>
-            <div @click="type='move';init()" :class="{'normal': type!=='move', 'choose': type==='move'}">
+            <div @click="type='move';reload()" :class="{'normal': type!=='move', 'choose': type==='move'}">
               全球移动
             </div>
           </div>
@@ -87,7 +87,6 @@ export default {
     if (!this.type) {
       this.type = 'china'
     }
-
     this.init();
   },
 
@@ -106,9 +105,15 @@ export default {
         }
       })
     },
+    reload() {
+      // tuxunJump('/tuxun/daily_challenge?type=' + this.type);
+      this.init();
+    },
     init() {
       setTimeout(() => {
-        this.$router.push({query: {type: this.type}});
+        if ( this.$route.query.type !== this.type) {
+          this.$router.replace({query: {type: this.type}});
+        }
       }, 100);
       this.gameData = null;
       this.showBegin = false;
