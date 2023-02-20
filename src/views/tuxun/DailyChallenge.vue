@@ -264,6 +264,7 @@ export default {
           width: 100%;
           display: flex;
           .choose {
+            cursor: pointer;
             display: flex;
             text-align: center;
             justify-content: center;
@@ -280,6 +281,7 @@ export default {
             user-select: none;
           }
           .normal {
+            cursor: pointer;
             color: black ;
             display: flex;
             text-align: center;

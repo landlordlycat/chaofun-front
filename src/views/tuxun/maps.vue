@@ -267,6 +267,7 @@ export default {
       grid-template-columns: repeat(3, 1fr);
 
       .card {
+        cursor: pointer;
         position: relative;
         border-radius: 1rem;
         background-color: rgb(25,26,46, 0.9);
