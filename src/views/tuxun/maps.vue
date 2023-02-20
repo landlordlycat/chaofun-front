@@ -311,6 +311,9 @@ export default {
           padding-right: 5px;
           background-color: #3590FF;
         }
+        &:hover {
+          transform: scale(1.03);
+        }
       }
     }
   }
