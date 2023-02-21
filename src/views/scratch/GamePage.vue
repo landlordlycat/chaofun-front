@@ -79,7 +79,7 @@
     <div v-if="!start && guessInfo && giveUp" style="margin: auto; text-align: center; padding-top: 1rem">
       <el-button type="primary" style="margin: auto; text-align: center; margin-bottom: 10px" @click="startGuess" round>再来一次</el-button>
     </div>
-    <section v-if="guessInfo" style="width: 100%">
+    <section v-if="guessInfo" style="width: 100%; margin-bottom: 2rem">
       <div v-if="guessInfo.type === 'text'" class="table">
         <table v-if="guessInfo" style="width: 100%">
           <tr style="width: 100px;">
