@@ -373,6 +373,8 @@ table, th, td {
         //max-width: 40%;
         //margin: auto;
       }
+
+
     }
     .end-container {
       width: 80%;
@@ -382,9 +384,13 @@ table, th, td {
       width: 80%;
     }
 
-    grid-main {
+    .grid-main {
+      width: 80%;
       grid-template-columns: repeat(2, 1fr);
     }
+
   }
+
+
 }
 </style>
