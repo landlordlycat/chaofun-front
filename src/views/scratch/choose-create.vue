@@ -3,17 +3,16 @@
     <div class="back_home">
       <el-button @click="goBack" size="small" round>←返回</el-button>
 <!--      <el-button @click="goHome" size="small" round>首页</el-button>-->
-      <el-button size="small"  v-if="guessInfo &&  this.$store.state.user && this.$store.state.user.userInfo  && this.$store.state.user.userInfo.userId === this.guessInfo.userId" @click="modify" round>修改</el-button>
     </div>
     <div class="choose-container">
       <div style="width: 100%; text-align: center; font-size: 22px;padding-top: 3em">选择创建类型</div>
-      <div @click="createText" style="width: 100%; padding:2rem;margin-top: 2rem; background-color: #DEF5D5">
+      <div @click="createText" class="text-create" style="width: 100%; padding:2rem;margin-top: 2rem; background-color: #DEF5D5">
         <div style="text-align: center; font-size: 24px; font-weight: bold">
           文本
         </div>
       </div>
       <div></div>
-      <div @click="createImage" style="width: 100%; padding:2rem;margin-top: 2rem; background-color: #027BFF">
+      <div @click="createImage" class="img-create" style="width: 100%; padding:2rem;margin-top: 2rem; background-color: #027BFF">
         <div style="text-align: center; font-size: 24px; font-weight: bold">
           图片
         </div>
@@ -27,13 +26,12 @@ import {tuxunJump} from "../tuxun/common";
 
 export default {
   name: "choose-create",
-
   methods:{
     createText() {
-      window.location.href = '/scratch/create';
+      window.location.href = '/scratch/create?type=text';
     },
     createImage() {
-      this.$toast('即将支持');
+      window.location.href = '/scratch/create?type=image';
     },
     goHome() {
       tuxunJump('/scratch/')
@@ -68,6 +66,14 @@ export default {
     padding-top: 1rem;
     padding-left: 1rem;
   }
+
+  .text-create, .img-create {
+    cursor: pointer;
+    &:hover {
+      transform: scale(1.03);
+    }
+  }
+
 
 }
 

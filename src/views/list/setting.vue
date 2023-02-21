@@ -372,7 +372,7 @@ export default {
   border-radius: 6px;
   cursor: pointer;
   position: relative;
-  overflow: hidden;
+  //overflow: hidden;
 }
 
 .avatar-uploader .el-upload:hover {

@@ -30,7 +30,7 @@
       </div>
       <el-input v-model="name"></el-input>
       <div>
-        描述:
+        描述(非必填):
       </div>
       <el-input v-model="desc"></el-input>
       <div>
@@ -41,41 +41,19 @@
         限时（秒）：
       </div>
       <el-input-number :min=5 v-model="countdown"></el-input-number>
-      <div style="padding-top: 10px">是否有提示
-        <el-switch
-            v-model="hasHint"
-            active-color="#13ce66"
-            inactive-color="#ff4949">
-        </el-switch>
-      </div>
-      <div>
-        提示/答案:
-      </div>
-<!--      <el-input v-model="answers" type="textarea"-->
-<!--                :autosize="{ minRows: 10, maxRows: 10}"-->
-<!--      ></el-input>-->
 
-      <table style="width: 100%">
-        <tbody>
-        <tr style="width: 100px;">
-          <th v-if="hasHint" style="background-color: #eee">提示</th>
-          <th style="background-color: #eee">答案</th>
-        </tr>
-        <tr v-for="(item, index) in dataForm">
-          <td  v-if="hasHint" style=" width: 50%; border: 1px solid black; ">
-<!--            <div>123</div>-->
-            <input @focus="columnChoose(index)" @blur="cleanChoose" v-model="item.hint" style="width: 100%" ></input>
-          </td>
-          <td style=" width: 50%; border: 1px solid black;">
-            <input @focus="columnChoose(index)" @blur="cleanChoose" v-model="item.answer" style="width: 100%" ></input>
-          </td>
-        </tr>
-        </tbody>
-      </table>
-      <el-button  size="mini" @click="addColumn">加一行</el-button>
-      <el-button  size="mini" @click="deleteColumn">删除最后一行</el-button>
-      <el-button  v-if="chooseIndex != null" size="mini" @click="deleteChooseColumn">删除选中行</el-button>
-      <div></div>
+      <img-create
+          v-if="type === 'image'"
+          :data-form.sync="dataForm"
+          :has-hint.sync="hasHint"
+          ></img-create>
+
+      <text-create
+          v-if="type === 'text'"
+          :data-form.sync="dataForm"
+          :has-hint.sync="hasHint"
+          ></text-create>
+
       <el-button type="primary" style="margin-top: 20px" @click="submit">提交测验</el-button>
     </div>
 
@@ -84,9 +62,11 @@
 
 <script>
 import * as api from '../../api/api'
-
+import ImgCreate from './img-create'
+import TextCreate from './text-create'
 export default {
   name: "Create",
+  components: {ImgCreate, TextCreate},
   data() {
     return {
       name: '',
@@ -103,7 +83,8 @@ export default {
       tags: '',
       hasHint: false,
       coverOssName: 'biz/1667921710402_beb8f2eaccb1482d87deb7816fd3baef_0.jpeg',
-      id: null
+      id: null,
+      type: 'image',
     }
   },
   mounted() {
@@ -111,32 +92,12 @@ export default {
     if (this.id && this.id !== '') {
       this.modify = true;
       this.getGuess();
+    } else if (this.$route.query.type) {
+      this.type=this.$route.query.type;
     }
   },
   methods: {
-    columnChoose(index) {
-      if (this.cleanTimer) {
-        clearTimeout(this.cleanTimer);
-      }
-      this.chooseIndex = index
-    },
-    cleanChoose() {
-      this.cleanTimer = setTimeout(()=> {
-        this.chooseIndex = null;
-      }, 200)
-    },
-    deleteChooseColumn() {
-      if (this.chooseIndex !== null) {
-        this.dataForm.splice(this.chooseIndex, 1);
-        this.chooseIndex = null;
-      }
-    },
-    deleteColumn() {
-      this.dataForm.pop();
-    },
-    addColumn() {
-      this.dataForm.push({});
-    },
+
     handleAvatarSuccess(res, file) {
       console.log(this.filedata);
       console.log(res);
@@ -164,6 +125,7 @@ export default {
         this.name = res.data.name;
         this.desc = res.data.desc;
         this.countdown = res.data.countdown;
+        this.type = res.data.type;
         this.answers = res.data.data.answers.join("\n");
         this.dataForm = res.data.data.data;
         this.hasHint = res.data.data.hasHint;
@@ -187,18 +149,13 @@ export default {
         return;
       }
 
-      if (this.desc === '') {
-        this.$toast('测验描述不能为空')
-        return;
-      }
-
       // if (this.answers === '') {
       //   this.$toast('测验的答案不能为空')
       //   return;
       // }
 
       var data = {'version': 1.0,'hasHint': this.hasHint, data: this.dataForm};
-      api.postByPath('/api/v0/scratch/game/create', {id: this.id, countdown: this.countdown, name: this.name, tags: this.tags, desc: this.desc, cover: this.coverOssName, hasHint: this.hasHint, data: JSON.stringify(data)}).then((res) => {
+      api.postByPath('/api/v0/scratch/game/create', {id: this.id, type: this.type, countdown: this.countdown, name: this.name, tags: this.tags, desc: this.desc, cover: this.coverOssName, hasHint: this.hasHint, data: JSON.stringify(data)}).then((res) => {
         window.location.href = '/scratch/guess?id=' + res.data.id;
       })
     },
@@ -256,15 +213,12 @@ export default {
   }
 
   .avatar {
-    width: 178px;
-    height: 178px;
+    width: 90px;
+    height: 90px;
     display: block;
     margin-bottom: 0;
   }
-  table, th, td {
-    border-collapse:collapse;
-    border: 1px solid black;
-  }
+
 }
 
 @media only screen and (max-width: 679px) {

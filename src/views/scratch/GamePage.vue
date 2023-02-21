@@ -79,8 +79,8 @@
     <div v-if="!start && guessInfo && giveUp" style="margin: auto; text-align: center; padding-top: 1rem">
       <el-button type="primary" style="margin: auto; text-align: center; margin-bottom: 10px" @click="startGuess" round>再来一次</el-button>
     </div>
-    <section style="width: 100%">
-      <div class="table">
+    <section v-if="guessInfo" style="width: 100%">
+      <div v-if="guessInfo.type === 'text'" class="table">
         <table v-if="guessInfo" style="width: 100%">
           <tr style="width: 100px;">
             <th v-if="guessInfo.data.hasHint" style="background-color: #eee">提示</th>
@@ -105,6 +105,24 @@
             </td>
           </tr>
         </table>
+      </div>
+      <div v-else class="grid-main">
+        <div v-for="(item,index) in guessInfo.data.data" class="card">
+          <div class="card-image-contain">
+            <img :src="imgOrigin + item.image + '?x-oss-process=image/resize,h_300/format,webp/quality,q_75'" class="test-image" ></img>
+          </div>
+          <div style="width: 100%; border: 1px solid black;">
+            <div v-if="matched.has(item.answer)" style="text-align: center; color: green">
+              {{item.answer}}
+            </div>
+            <div v-if="!matched.has(item.answer) && giveUp" style="text-align: center; color: red">
+              {{item.answer}}
+            </div>
+            <div v-if="!matched.has(item.answer) && !giveUp" style="text-align: center">
+              {{'-'}}
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </div>
@@ -269,6 +287,7 @@ export default {
 .container {
   height: 100%;
   width: 100%;
+  position: relative;
   .input_container {
     display: flex;
     position: relative;
@@ -303,6 +322,40 @@ export default {
     text-align: center;
     padding-top: 1rem;
   }
+  .grid-main {
+    margin-top: 2rem;
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    display: grid;
+    grid-row-gap: 0rem;
+    grid-column-gap: 0rem;
+    grid-template-columns: repeat(4, 1fr);
+    position: relative;
+
+    .card {
+      margin: auto;
+      justify-content: center;
+      align-items: center;
+      align-content: center;
+      text-align: center;
+      padding: 2px;
+      position: relative;
+      justify-items: center;
+      .card-image-contain {
+        width: 100%;
+        height: 0;
+        padding-bottom: 100%;
+        position: relative;
+        .test-image {
+          width: 100%;
+          //height: 0;
+          aspect-ratio: 1 / 1;
+          object-fit: fill;
+        }
+      }
+    }
+  }
 }
 
 table, th, td {
@@ -327,6 +380,10 @@ table, th, td {
 
     .table {
       width: 80%;
+    }
+
+    grid-main {
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 }
