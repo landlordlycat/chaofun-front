@@ -112,6 +112,7 @@ export default {
         display: flex;
         width: 100%;
         aspect-ratio: 1 / 1;
+        object-fit: contain;
         //max-height: 100%;
         //height: 0;
         //padding-bottom: 100%;

@@ -351,7 +351,7 @@ export default {
           width: 100%;
           //height: 0;
           aspect-ratio: 1 / 1;
-          object-fit: fill;
+          object-fit: contain;
         }
       }
     }
