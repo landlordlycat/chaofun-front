@@ -22,7 +22,7 @@
 
     </div>
     <el-button  size="mini" @click="addColumn">加一张</el-button>
-    <el-button  size="mini" @click="deleteColumn">删除最后一行</el-button>
+    <el-button  size="mini" @click="deleteColumn">删除最后张</el-button>
   </div>
 </template>
 

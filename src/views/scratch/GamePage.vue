@@ -106,10 +106,10 @@
           </tr>
         </table>
       </div>
-      <div v-else class="grid-main">
-        <div v-for="(item,index) in guessInfo.data.data" class="card">
+      <viewer v-else class="grid-main">
+          <div v-for="(item,index) in guessInfo.data.data" class="card">
           <div class="card-image-contain">
-            <img :src="imgOrigin + item.image + '?x-oss-process=image/resize,h_300/format,jpeg/quality,q_75'" class="test-image" ></img>
+              <img :data-source="imgOrigin + item.image" :src="imgOrigin + item.image + '?x-oss-process=image/resize,h_300/format,jpeg/quality,q_75'" class="test-image" ></img>
           </div>
           <div style="width: 100%; border: 1px solid black;">
             <div v-if="matched.has(item.answer)" style="text-align: center; color: green">
@@ -123,7 +123,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </viewer>
     </section>
   </div>
 </template>
@@ -342,6 +342,7 @@ export default {
       padding: 2px;
       position: relative;
       justify-items: center;
+      width: 100%;
       .card-image-contain {
         width: 100%;
         height: 0;
