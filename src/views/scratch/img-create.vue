@@ -66,7 +66,11 @@ export default {
       this.dataForm.pop();
     },
     addColumn() {
-      this.dataForm.push({});
+      if (this.dataForm.length >= 16) {
+        this.$toast('图片小测验最多支持16个题')
+      } else {
+        this.dataForm.push({});
+      }
     },
   }
 }
