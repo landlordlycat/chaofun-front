@@ -109,7 +109,7 @@
       <div v-else class="grid-main">
         <div v-for="(item,index) in guessInfo.data.data" class="card">
           <div class="card-image-contain">
-            <img :src="imgOrigin + item.image + '?x-oss-process=image/resize,h_300/quality,q_75'" class="test-image" ></img>
+            <img :src="imgOrigin + item.image + '?x-oss-process=image/resize,h_300/format,jpeg/quality,q_75'" class="test-image" ></img>
           </div>
           <div style="width: 100%; border: 1px solid black;">
             <div v-if="matched.has(item.answer)" style="text-align: center; color: green">

@@ -40,7 +40,7 @@
 
       <div style="display: flex; padding-bottom: 8px" v-for="(item, index) in list" @click="gotoGuess(item)" class="item">
         <div  class="item-img">
-          <img class="cover" :src="imgOrigin + item.cover + '?x-oss-process=image/resize,h_300/quality,q_75'" style="">
+          <img class="cover" :src="imgOrigin + item.cover + '?x-oss-process=image/resize,h_300/format,jpeg/quality,q_75'" style="">
           </img>
         </div>
 
