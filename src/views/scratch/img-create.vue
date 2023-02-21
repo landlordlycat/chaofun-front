@@ -10,7 +10,7 @@
                   action="/api/upload_image"
                   class="avatar-uploader"
                   name="file">
-                <img v-if="item.image" :src="imgOrigin + item.image + '?x-oss-process=image/resize,h_300/format,webp/quality,q_75'" class="test-image">
+                <img v-if="item.image" :src="imgOrigin + item.image + '?x-oss-process=image/resize,h_300/quality,q_75'" class="test-image">
                 <div v-else class="upload-click">
                   <div>
                     点击上传
