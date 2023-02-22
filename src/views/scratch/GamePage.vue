@@ -7,7 +7,7 @@
       <el-button @click="random" size="small"  round>随机下一个</el-button>
       <el-button size="small"  v-if="guessInfo &&  this.$store.state.user && this.$store.state.user.userInfo  && this.$store.state.user.userInfo.userId === this.guessInfo.userId" @click="modify" round>修改</el-button>
     </div>
-    <div v-if="guessInfo" style="padding-top: 3rem; margin: auto; text-align: center; font-size: 32px">
+    <div v-if="guessInfo" style="padding-top: 4rem; margin: auto; text-align: center; font-size: 32px">
       {{this.guessInfo.name}}
     </div>
     <div v-if="guessInfo" style="margin: auto; text-align: center; font-size: 16px">
