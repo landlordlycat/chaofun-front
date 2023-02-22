@@ -324,7 +324,7 @@ export default {
   }
   .grid-main {
     margin-top: 2rem;
-    width: 30%;
+    width: 30vw;
     margin-left: auto;
     margin-right: auto;
     display: grid;
@@ -342,16 +342,14 @@ export default {
       padding: 2px;
       position: relative;
       justify-items: center;
-      width: 100%;
       .card-image-contain {
-        width: 100%;
-        height: 0;
-        padding-bottom: 100%;
+        height: 7.5vw;
+        width: 7.5vw;
         position: relative;
         .test-image {
+          height: 100%;
           width: 100%;
-          //height: 0;
-          aspect-ratio: 1 / 1;
+          //position: relative;
           object-fit: contain;
         }
       }
@@ -388,6 +386,12 @@ table, th, td {
     .grid-main {
       width: 80%;
       grid-template-columns: repeat(2, 1fr);
+      .card {
+        .card-image-contain {
+          height: 40vw;
+          width: 40vw;
+        }
+      };
     }
 
   }
