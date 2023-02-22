@@ -5,7 +5,7 @@
       <el-button @click="goHome" size="small" round>首页</el-button>
     </div>
     <div class="search_container">
-        <div style="width: 100%; font-size: 20px; text-align: center; align-items: center; justify-content: center; display: flex">搜索小测验</div>
+      <div style="width: 100%; font-size: 20px; text-align: center; align-items: center; justify-content: center; display: flex">搜索小测验</div>
       <el-input v-model="keyword" id="input" @input="input" autofocus placeholder="搜索练习赛" style="margin-top: 2rem;" round></el-input>
       <div style="display: flex; padding-bottom: 8px" v-for="(item, index) in list" @click="gotoGuess(item)">
         <img class="cover" :src="imgOrigin + item.cover + '?x-oss-process=image/resize,h_300/quality,q_75'" style="">
@@ -68,6 +68,11 @@ export default {
   .search_container {
     max-width: 40%;
     margin: auto;
+  }
+  .back_home {
+    position: absolute;
+    padding-top: 1rem;
+    padding-left: 1rem;
   }
   .cover {
     width: 100px; height: 100px;
