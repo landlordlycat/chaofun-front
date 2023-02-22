@@ -547,6 +547,13 @@ routes = [
     hidden: true
   },
   {
+    path: '/scratch/user/:id',
+    component: () => import('@/views/scratch/profile'),
+    name: 'scratch-profile',
+    meta: { title: '用户首页',keepAlive: true,},
+    hidden: true
+  },
+  {
     path: '/tuxunAdmin',
     component: () => import('@/views/tuxun/TXAdmin'),
     name: 'tuxunAdmin',

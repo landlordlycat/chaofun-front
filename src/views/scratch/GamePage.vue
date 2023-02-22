@@ -14,7 +14,7 @@
       {{this.guessInfo.desc}}
     </div>
     <div v-if="guessInfo && guessInfo.user" style="margin: auto; text-align: center; font-size: 16px">
-      作者: {{guessInfo.user.userName}}
+      作者: <span @click="goUser(guessInfo.user.userId)" style="color: #333fff; text-decoration:underline;cursor: pointer;font-weight: bold">{{guessInfo.user.userName}}</span>
     </div>
     <div v-if="guessInfo && guessInfo.gmtCreate" style="margin: auto; text-align: center; font-size: 16px">
       创建时间: {{moment(guessInfo.gmtCreate).format('YYYY年MM月DD日 HH:mm')}}
@@ -165,6 +165,9 @@ export default {
     this.getRate();
   },
   methods: {
+    goUser(userId) {
+      window.location.href = '/scratch/user/' + userId
+    },
     modify() {
       window.location.href = '/scratch/modify?id=' + this.id
     },
