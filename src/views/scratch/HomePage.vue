@@ -69,6 +69,7 @@
 
 <script>
 import * as api from '../../api/api'
+import page from "../permission/page";
 
 export default {
   name: "HomePage",
@@ -78,21 +79,32 @@ export default {
       totalTimes: null,
       sort: 'hot',
       showHotTags: false,
-      total: 0,
+      total: 100000,
       current: 1,
+      page: 1,
       tags: [],
       list: [],
     }
   },
   mounted() {
-    this.getList(1, 50);
+    if (this.$route.query.sort) {
+      this.sort = this.$route.query.sort;
+    }
+
+    console.log(this.$route.query.page)
+    if (this.$route.query.page) {
+      // console.log()
+      this.current = parseInt(this.$route.query.page);
+    }
+
+    this.getList();
     this.listTag();
     this.getTotalGuessTimes();
   },
 
   methods: {
-    getList(pageNum, pageSize) {
-      api.getByPath('/api/v0/scratch/game/listV1', {order: this.sort, pageSize: pageSize, pageNum: pageNum}).then(res=>{
+    getList() {
+      api.getByPath('/api/v0/scratch/game/listV1', {order: this.sort, pageSize: 50, pageNum: this.current}).then(res=>{
         this.list = res.data.games;
         this.total = res.data.total;
       })
@@ -132,11 +144,14 @@ export default {
 
     changeSort(tab, event) {
       this.list = [];
-      this.getList(1, 50);
+      this.current = 1;
+      this.$router.replace({query: {sort: this.sort, page: this.current  }})
+      this.getList();
     },
 
     handleCurrentChange(current) {
-      this.getList(current, 50)
+      this.$router.replace({query: {sort: this.sort, page: this.current}})
+      this.getList()
     },
     gotoSearch() {
       window.location.href = '/scratch/search'
