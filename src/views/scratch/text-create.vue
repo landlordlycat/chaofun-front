@@ -2,7 +2,8 @@
   <div>
     <div style="padding-top: 10px">是否有提示
       <el-switch
-          v-model="hasHint"
+          v-model="hint"
+          @change="changeHasHint"
           active-color="#13ce66"
           inactive-color="#ff4949">
       </el-switch>
@@ -40,11 +41,15 @@ export default {
   data() {
     return {
       chooseIndex: null,
+      hint: false,
     }
   },
   props: {
     hasHint: Boolean,
     dataForm: Array,
+  },
+  create() {
+    this.hint = this.hasHint;
   },
   methods: {
     deleteChooseColumn() {
@@ -70,6 +75,9 @@ export default {
     addColumn() {
       this.dataForm.push({});
     },
+    changeHasHint(e) {
+      this.$emit('update:hasHint', e);
+    }
   }
 }
 </script>
