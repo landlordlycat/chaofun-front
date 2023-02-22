@@ -78,6 +78,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.back_home {
+  position: absolute;
+  padding-top: 1rem;
+  padding-left: 1rem;
+}
+
 .container {
 
   .profile-container {
