@@ -48,7 +48,7 @@ export default {
     hasHint: Boolean,
     dataForm: Array,
   },
-  create() {
+  created() {
     this.hint = this.hasHint;
   },
   methods: {
