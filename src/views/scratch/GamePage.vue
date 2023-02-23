@@ -31,9 +31,9 @@
     <div v-if="guessInfo" style="margin: auto; text-align: center; font-size: 16px;">
       <div style="display: flex; align-items: center;justify-content: center">
         评分( {{guessInfo.rateCount}} 人评价)：
-              <div>
-                <StarRating :read-only="true" :increment="0.01" :rating="guessInfo.rate" :star-size="25"></StarRating>
-              </div>
+        <div>
+          <StarRating :read-only="true" :increment="0.01" :rating="guessInfo.rate" :star-size="25"></StarRating>
+        </div>
       </div>
     </div>
     <div v-if="guessInfo" style="margin: auto; text-align: center; font-size: 16px;">
@@ -45,31 +45,36 @@
       </div>
     </div>
 
-    <div class="input_container" style="">
-      <div v-if="start || this.giveUp"  style="font-size: 36px; color: #52B323; padding-right: 20px; display: block; height: 100%; text-align: center; align-items: center">
-        {{timeLeftStr}}
-      </div>
-
-      <div v-if="start" class="input" style="height: 100%">
-        <div v-if="guessInfo">
-          猜对：{{this.right}} / {{this.guessInfo.data.answers.length}}
+    <div :class="inputClass">
+      <div style="display: flex">
+        <div v-if="start || this.giveUp">
+          <div class="tiktok" style="color: #52B323;  padding-right: 20px; text-align: center; align-items: center">
+            {{timeLeftStr}}
+          </div>
+          <el-button v-if="ISPHONE && start" size="mini" type="warning" style="margin: auto; text-align: center;" @click="endGame">放弃</el-button>
         </div>
-        <el-input ref="input" autofocus @input="match" v-model="inputResult">
-        </el-input>
-      </div>
-    </div>
-    <div v-if="!showResult">
 
-      <div v-if="!start && guessInfo && !giveUp" style="margin: auto; text-align: center; padding-top: 1rem">
-        <el-button type="primary" style="margin: auto; text-align: center;" @click="startGuess">开始</el-button>
+        <div v-if="start" class="input" style="height: 100%">
+          <div v-if="guessInfo">
+            猜对：{{this.right}} / {{this.guessInfo.data.answers.length}}
+          </div>
+          <el-input ref="input" autofocus @input="match" v-model="inputResult">
+          </el-input>
+        </div>
       </div>
-      <div v-if="start && guessInfo" style="margin: auto; text-align: center; padding-top: 1rem">
-        <el-button type="warning" style="margin: auto; text-align: center;" @click="endGame">放弃</el-button>
+      <div v-if="!showResult">
+        <div v-if="!start && guessInfo && !giveUp" style="margin: auto; text-align: center; padding-top: 1rem">
+          <el-button type="primary" style="margin: auto; text-align: center;" @click="startGuess">开始</el-button>
+        </div>
+        <div v-if="start && guessInfo && !ISPHONE" style="margin: auto; text-align: center; padding-top: 1rem">
+          <el-button type="warning" style="margin: auto; text-align: center;" @click="endGame">放弃</el-button>
+        </div>
+      </div>
+      <div v-else class="result">
+        恭喜你，已经全部答对
       </div>
     </div>
-    <div v-else class="result">
-      恭喜你，已经全部答对
-    </div>
+
     <div v-if="endStatus" class="end-container">
       <div> 你的得分 {{endStatus.score }} / {{guessInfo.data.answers.length}} = {{ Number(endStatus.rightPercentage * 100).toFixed(2) }} % </div>
       <div> 超过/等于了 {{Number((endStatus.abovePercentage) * 100).toFixed(2) }} % 人</div>
@@ -107,9 +112,9 @@
         </table>
       </div>
       <viewer v-else class="grid-main">
-          <div v-for="(item,index) in guessInfo.data.data" class="card">
+        <div v-for="(item,index) in guessInfo.data.data" class="card">
           <div class="card-image-contain">
-              <img :data-source="imgOrigin + item.image" :src="imgOrigin + item.image + '?x-oss-process=image/resize,h_300/format,jpeg/quality,q_75'" class="test-image" ></img>
+            <img :data-source="imgOrigin + item.image" :src="imgOrigin + item.image + '?x-oss-process=image/resize,h_300/format,jpeg/quality,q_75'" class="test-image" ></img>
           </div>
           <div style="width: 100%; border: 1px solid black;">
             <div v-if="matched.has(item.answer)" style="text-align: center; color: green">
@@ -155,7 +160,8 @@ export default {
       timeLeftStr: '00:00',
       rating: null,
       timeLeft: null,
-      endStatus: null
+      endStatus: null,
+      inputClass: 'input-container',
     }
   },
   mounted() {
@@ -178,12 +184,16 @@ export default {
         })
       }
 
+      this.inputClass='input-container'
       this.start = false;
       this.giveUp = true;
     },
     startGuess() {
       this.giveUp = false;
       this.start = true;
+      if (this.ISPHONE) {
+        this.inputClass = "input-container-phone"
+      }
       this.showResult = false;
       this.right = 0;
       this.endStatus = null;
@@ -196,14 +206,14 @@ export default {
       })
 
       if (this.guessInfo.countdown) {
-         this.countdownTimer =  setInterval(() => {
+        this.countdownTimer =  setInterval(() => {
           this.timeLeft = this.timeLeft - 1;
           this.timeLeftStr = Math.floor(this.timeLeft / 60).toString().padStart(2, '0') + ':' + (this.timeLeft % 60).toString().padStart(2, '0');
           if (this.giveUp || this.timeLeft <= 0 || this.showResult) {
             clearInterval(this.countdownTimer);
             this.endGame();
           }
-         }, 1000);
+        }, 1000);
       }
 
       setTimeout(() => {
@@ -291,16 +301,41 @@ export default {
   height: 100%;
   width: 100%;
   position: relative;
-  .input_container {
-    display: flex;
+  .input-container {
     position: relative;
     margin: auto;
     width: 30%;
+    .tiktok {
+      font-size: 36px;
+    }
     .input {
       width: 50%;
       //padding-top: 1rem;
       //max-width: 40%;
       //margin: auto;
+    }
+  }
+  .input-container-phone {
+    //position: relative;
+    //margin: auto;
+    //width: 30%;
+    //.input {
+    //  width: 50%;
+    //  //padding-top: 1rem;
+    //  //max-width: 40%;
+    //  //margin: auto;
+    //}
+    position: fixed;
+    top: 0;
+    vertical-align: top;
+    width: 100%;
+    background-color: white;
+    border: 1px dashed black;
+    .input {
+      width: 50%;
+    }
+    .tiktok {
+      font-size: 24px;
     }
   }
   .end-container {
@@ -367,7 +402,7 @@ table, th, td {
 
 @media only screen and (max-width: 679px) {
   .container {
-    .input_container {
+    .input-container {
       width: 80%;
       .input {
         width: 50%;
@@ -375,8 +410,15 @@ table, th, td {
         //max-width: 40%;
         //margin: auto;
       }
-
-
+    }
+    .input-container-phone  {
+      width: 100%;
+      .input {
+        width: 50%;
+        //padding-top: 1rem;
+        //max-width: 40%;
+        //margin: auto;
+      }
     }
     .end-container {
       width: 80%;
