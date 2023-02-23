@@ -192,7 +192,7 @@ export default {
       this.giveUp = false;
       this.start = true;
       if (this.ISPHONE) {
-        this.inputClass = "input-container-phone"
+        // this.inputClass = "input-container-phone"
       }
       this.showResult = false;
       this.right = 0;
@@ -323,15 +323,6 @@ export default {
     }
   }
   .input-container-phone {
-    //position: relative;
-    //margin: auto;
-    //width: 30%;
-    //.input {
-    //  width: 50%;
-    //  //padding-top: 1rem;
-    //  //max-width: 40%;
-    //  //margin: auto;
-    //}
     position: fixed;
     top: 0;
     vertical-align: top;
