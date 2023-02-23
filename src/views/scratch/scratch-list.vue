@@ -3,7 +3,7 @@
     <el-radio-group v-model="sort" style="margin-bottom: 20px;margin-top: 20px;" @change="changeSort">
       <el-radio-button label="hot">最热</el-radio-button>
       <el-radio-button label="new">最新</el-radio-button>
-      <el-radio-button label="mine">我创建的</el-radio-button>
+      <el-radio-button  v-if="hasCreate" label="mine">我创建的</el-radio-button>
     </el-radio-group>
 
     <el-pagination
@@ -55,6 +55,7 @@ export default {
       list: [],
       // sort: 'new',
       // current: 1;
+      hasCreate: true
     }
   },
   props: {
@@ -62,6 +63,7 @@ export default {
     current: Number,
     tag: String,
     userId: Number,
+    hasCreate: Boolean,
   },
   created() {
     this.getList();
