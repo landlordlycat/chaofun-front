@@ -59,6 +59,7 @@
             猜对：{{this.right}} / {{this.guessInfo.data.answers.length}}
           </div>
           <el-input ref="input" autofocus @input="match" v-model="inputResult">
+            点击输入答案
           </el-input>
         </div>
       </div>
