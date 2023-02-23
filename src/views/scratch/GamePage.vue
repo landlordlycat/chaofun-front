@@ -403,7 +403,7 @@ table, th, td {
 @media only screen and (max-width: 768px) {
   .container {
     .input-container {
-      width: 80%;
+      width: 90%;
       .input {
         width: 50%;
         //padding-top: 1rem;
@@ -421,15 +421,15 @@ table, th, td {
       }
     }
     .end-container {
-      width: 80%;
+      width: 90%;
     }
 
     .table {
-      width: 80%;
+      width: 90%;
     }
 
     .grid-main {
-      width: 80%;
+      width: 90%;
       grid-template-columns: repeat(2, 1fr);
       .card {
         .card-image-contain {
