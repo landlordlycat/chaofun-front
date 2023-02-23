@@ -32,7 +32,7 @@
       <div class="header">
         发布的题目
       </div>
-      <scratch-list :has-create="false" :user-id="this.userId"></scratch-list>
+      <scratch-list :has-create="false" :has1-day="false" :user-id="this.userId"></scratch-list>
     </div>
   </div>
 
