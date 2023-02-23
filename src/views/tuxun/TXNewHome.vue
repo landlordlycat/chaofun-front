@@ -423,7 +423,7 @@ export default {
   }
 }
 
-@media only screen and (max-width: 679px) {
+@media only screen and (max-width: 768px) {
   .container {
     .grid_main {
       grid-template-columns: repeat(1, 1fr);

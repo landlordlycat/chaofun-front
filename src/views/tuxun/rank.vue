@@ -151,7 +151,7 @@ div {
   height: 10rem;
 }
 
-@media only screen and (max-width: 679px) {
+@media only screen and (max-width: 768px) {
   .container {
     .top-left {
       padding-left: 1rem;

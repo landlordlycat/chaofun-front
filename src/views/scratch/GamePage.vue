@@ -399,7 +399,7 @@ table, th, td {
   border: 1px solid black;
 }
 
-@media only screen and (max-width: 679px) {
+@media only screen and (max-width: 768px) {
   .container {
     .input-container {
       width: 80%;

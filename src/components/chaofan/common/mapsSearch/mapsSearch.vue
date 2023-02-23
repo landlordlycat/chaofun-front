@@ -110,7 +110,7 @@ export default {
 
 }
 
-@media only screen and (max-width: 679px) {
+@media only screen and (max-width: 768px) {
   .cover{
     .section {
       width: 90%;
