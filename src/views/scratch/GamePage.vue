@@ -363,7 +363,7 @@ export default {
   }
   .grid-main {
     margin-top: 2rem;
-    width: 30vw;
+    width: 40vw;
     margin-left: auto;
     margin-right: auto;
     display: grid;
@@ -382,8 +382,8 @@ export default {
       position: relative;
       justify-items: center;
       .card-image-contain {
-        height: 7.5vw;
-        width: 7.5vw;
+        height: 10vw;
+        width: 10vw;
         position: relative;
         .test-image {
           height: 100%;
@@ -430,12 +430,12 @@ table, th, td {
     }
 
     .grid-main {
-      width: 90%;
+      width: 90vw;
       grid-template-columns: repeat(2, 1fr);
       .card {
         .card-image-contain {
-          height: 40vw;
-          width: 40vw;
+          height: 45vw;
+          width: 45vw;
         }
       };
     }
