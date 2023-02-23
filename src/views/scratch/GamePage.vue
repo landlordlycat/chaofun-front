@@ -130,7 +130,7 @@
         </div>
       </viewer>
     </section>
-    <div style="height: 20rem"></div>
+    <div v-if="ISPHONE" style="height: 30rem"></div>
   </div>
 </template>
 
