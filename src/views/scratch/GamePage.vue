@@ -79,7 +79,7 @@
       <div> 你的得分 {{endStatus.score }} / {{guessInfo.data.answers.length}} = {{ Number(endStatus.rightPercentage * 100).toFixed(2) }} % </div>
       <div> 超过/等于了 {{Number((endStatus.abovePercentage) * 100).toFixed(2) }} % 人</div>
       <div> 该题的平均分是 {{Math.round(endStatus.avgScore)}}</div>
-      <div> 你的最高分是 {{endStatus.yourHighestScore}}</div>
+      <div> 你的最高分是 <span v-if="endStatus.yourHighestScore !== null">{{endStatus.yourHighestScore}}</span><span v-else style="color: #333fff;cursor: pointer;" @click="login()">需要登录记录</span> </div>
     </div>
     <div v-if="!start && guessInfo && giveUp" style="margin: auto; text-align: center; padding-top: 1rem">
       <el-button type="primary" style="margin: auto; text-align: center; margin-bottom: 10px" @click="startGuess" round>再来一次</el-button>
@@ -236,6 +236,13 @@ export default {
     },
     goTag(item) {
       window.location.href = '/scratch/tag?tagName=' + item;
+    },
+    login() {
+      this.$login({
+        callBack: () => {
+          this.$store.dispatch("user/getInfo");
+        },
+      });
     },
     match(e) {
       var matchValue = null;
