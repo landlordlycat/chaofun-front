@@ -289,7 +289,7 @@ export default {
       tuxunOpen('https://search.bilibili.com/all?keyword=%E5%9B%BE%E5%AF%BB')
     },
     toScratch() {
-      tuxunOpen('https://choa.fun/scratch/home')
+      tuxunOpen('https://choa.fun/scratch')
     },
     toUpdate() {
       tuxunOpen('https://www.yuque.com/ucun5p/kfw26e/dp7hvxnm7tes88g7')
