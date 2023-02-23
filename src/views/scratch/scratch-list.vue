@@ -104,7 +104,7 @@ export default {
 
     changeSort(tab, event) {
       this.list = [];
-      this.current = 1;
+      this.innerCurrent = 1;
       this.$router.replace({query: {sort: this.innerSort, page: this.innerCurrent  }})
       this.getList();
     },
