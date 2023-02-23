@@ -192,7 +192,7 @@ export default {
       this.giveUp = false;
       this.start = true;
       if (this.ISPHONE) {
-        // this.inputClass = "input-container-phone"
+        this.inputClass = "input-container-phone"
       }
       this.showResult = false;
       this.right = 0;
@@ -329,6 +329,7 @@ export default {
     width: 100%;
     background-color: white;
     border: 1px dashed black;
+    z-index: 100;
     .input {
       width: 50%;
     }
