@@ -3,6 +3,7 @@
     <div style="text-align: center; width: 100%; font-size: 32px;font-weight: bold; padding-top: 1rem; padding-bottom: 2rem"> 炒饭小测验
       <div v-if="totalTimes" style="font-size: 16px">「炒饭社区」出品</div>
       <div v-if="totalTimes" style="font-size: 16px">交流QQ群号: <a target="_blank" href="https://jq.qq.com/?_wv=1027&k=IuAqwN27">594837569</a></div>
+      <div v-if="totalTimes" style="font-size: 16px">小测验文档: <a target="_blank" href="https://www.yuque.com/chaofun/scratch">文档地址</a> </div>
       <div v-if="totalTimes" style="font-size: 16px">总测验次数: {{totalTimes}}</div>
       <div class="top-right">
 <!--        <el-button type="primary" @click="toUserHome" round>个人首页</el-button>-->
