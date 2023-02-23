@@ -55,7 +55,6 @@ export default {
       list: [],
       // sort: 'new',
       // current: 1;
-      hasCreate: true
     }
   },
   props: {
@@ -63,7 +62,10 @@ export default {
     current: Number,
     tag: String,
     userId: Number,
-    hasCreate: Boolean,
+    hasCreate: {
+      tyep: Boolean,
+      default: true
+    }
   },
   created() {
     this.getList();
