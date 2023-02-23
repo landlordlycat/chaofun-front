@@ -32,24 +32,14 @@ export default {
       totalTimes: null,
       sort: 'hot',
       tagName: null,
-      current: 1,
-      total: 0,
       list: [],
     }
   },
   mounted() {
     this.tagName = this.$route.query.tagName;
-    this.getList(1, 50);
   },
 
   methods: {
-    getList(pageNum, pageSize) {
-      api.getByPath('/api/v0/scratch/game/listV1', {order: this.sort, tag: this.tagName, pageNum: pageNum, pageSize: pageSize}).then(res=>{
-        this.list = res.data.games;
-        this.total = res.data.total;
-      })
-    },
-
     gotoGuess(item) {
       window.location.href = '/scratch/guess?id=' + item.id;
     },
@@ -71,10 +61,6 @@ export default {
       window.location.href = '/scratch'
     },
 
-    changeSort(tab, event) {
-      this.list = [];
-      this.getList(1, 50);
-    },
 
     goBack() {
       try {
@@ -83,9 +69,7 @@ export default {
         window.location.href = '/scratch'
       }
     },
-    handleCurrentChange(current) {
-      this.getList(current, 50)
-    },
+
   },
 }
 </script>

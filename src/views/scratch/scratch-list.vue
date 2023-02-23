@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-radio-group v-model="sort" style="margin-bottom: 20px;margin-top: 20px;" @change="changeSort">
+    <el-radio-group v-model="innerSort" style="margin-bottom: 20px;margin-top: 20px;" @change="changeSort">
       <el-radio-button v-if="has1Day" label="1day">本日最热</el-radio-button>
       <el-radio-button label="hot">最热</el-radio-button>
       <el-radio-button label="new">最新</el-radio-button>
@@ -11,7 +11,7 @@
         background
         layout="prev, pager, next"
         style="padding-bottom: 20px"
-        :current-page.sync="current"
+        :current-page.sync="innerCurrent"
         :page-size="50"
         @current-change="handleCurrentChange"
         :total="total">
@@ -47,6 +47,7 @@
 
 <script>
 import * as api from "../../api/api";
+import {some} from "lodash";
 
 export default {
   name: "scratch-list",
@@ -54,6 +55,8 @@ export default {
     return {
       total: 10000,
       list: [],
+      innerSort: null,
+      innerCurrent: 1,
       // sort: 'new',
       // current: 1;
     }
@@ -61,29 +64,36 @@ export default {
   props: {
     sort: {
       type: String,
-      default: 'hot'
+      default: '1day'
     },
-    current: Number,
+    current: {
+      type: Number,
+      default: 1,
+    },
     tag: String,
     userId: Number,
     hasCreate: {
-      tyep: Boolean,
+      type: Boolean,
       default: true
     },
     has1Day: {
-      tyep: Boolean,
+      type: Boolean,
       default: true
     }
   },
   created() {
+    console.log(this.has1Day);
+    console.log(this.sort);
+    this.innerSort = this.sort;
     if (!this.has1Day) {
-      this.sort = 'hot'
+      this.innerSort = 'hot'
     }
+    this.innerCurrent = this.current
     this.getList();
   },
   methods: {
     getList() {
-      api.getByPath('/api/v0/scratch/game/listV1', {order: this.sort, pageSize: 50, pageNum: this.current, userId: this.userId, tag: this.tag}).then(res=>{
+      api.getByPath('/api/v0/scratch/game/listV1', {order: this.innerSort, pageSize: 50, pageNum: this.innerCurrent, userId: this.userId, tag: this.tag}).then(res=>{
         this.list = res.data.games;
         this.total = res.data.total;
       })
@@ -95,12 +105,12 @@ export default {
     changeSort(tab, event) {
       this.list = [];
       this.current = 1;
-      this.$router.replace({query: {sort: this.sort, page: this.current  }})
+      this.$router.replace({query: {sort: this.innerSort, page: this.innerCurrent  }})
       this.getList();
     },
 
     handleCurrentChange(current) {
-      this.$router.replace({query: {sort: this.sort, page: this.current}})
+      this.$router.replace({query: {sort: this.innerSort, page: this.innerCurrent}})
       this.getList()
     },
     gotoSearch() {

@@ -40,7 +40,7 @@ export default {
   data() {
     return {
       totalTimes: null,
-      sort: 'hot',
+      sort: '1day',
       showHotTags: false,
       total: 100000,
       current: 1,
