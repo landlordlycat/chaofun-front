@@ -26,7 +26,7 @@
           创建题测验次数：{{userStats.createScratchTaken}}
         </div>
         <div>
-          创建题次数：{{userStats.scratchTaken}}
+          测验题数：{{userStats.scratchTaken}}
         </div>
       </div>
       <div class="header">
