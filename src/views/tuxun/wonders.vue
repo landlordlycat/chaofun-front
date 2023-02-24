@@ -3,7 +3,7 @@
     <div class="back_home" >
       <el-button type="primary" @click="goHome" round>←返回首页</el-button>
       <el-button type="warning" @click="change"  round>换一个</el-button>
-<!--      <el-button @click="shareLink" round>分享街景</el-button>-->
+      <el-button @click="shareLink" round>分享街景</el-button>
     </div>
     <div v-if="this.location" class="location" >
       {{this.location}}
@@ -103,7 +103,7 @@ export default {
           tuxunJump('/tuxun/wonders');
           return;
         }
-        api.getByPath("/api/v0/tuxun/wonders/random", ).then(res => {
+        api.getByPath("/api/v0/tuxun/wonders/random").then(res => {
           if (res.success) {
             this.setPano(res.data.panoId);
           } else if (res.errorCode === 'need_vip') {
