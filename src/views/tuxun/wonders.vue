@@ -120,7 +120,11 @@ export default {
     },
     shareLink() {
       var input = document.createElement('input');
-      input.setAttribute('value', '炒饭-街景奇观 「' + this.location + '」https://tuxun.fun/wonders?id='+ this.currentPanoId  + '&source=g');
+      if (this.location) {
+        input.setAttribute('value', '炒饭-街景奇观 「' + this.location + '」https://tuxun.fun/wonders?id=' + this.currentPanoId + '&source=g');
+      } else {
+        input.setAttribute('value', '炒饭-街景奇观 https://tuxun.fun/wonders?id=' + this.currentPanoId + '&source=g');
+      }
       document.body.appendChild(input);
       input.select();
       var result = document.execCommand('copy');
