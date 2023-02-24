@@ -251,8 +251,15 @@ routes = [
   {
     path: '/tuxun/random',
     component: () => import('@/views/tuxun/RandomStreetView'),
-    name: '图寻首页',
-    meta: { title: '图寻首页'},
+    name: 'tuxun-random',
+    meta: { title: '图寻-随机街景'},
+    hidden: true
+  },
+  {
+    path: '/tuxun/wonders',
+    component: () => import('@/views/tuxun/wonders'),
+    name: 'tuxun-wonders',
+    meta: { title: '图寻-街景奇观'},
     hidden: true
   },
   {

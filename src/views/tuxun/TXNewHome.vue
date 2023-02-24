@@ -102,6 +102,16 @@
         <div class="line"></div>
           <div class="grid_main">
 
+          <div class="card" @click="redirectPage( '/tuxun/wonders')">
+            <div class="title">
+              街景奇观
+            </div>
+            <div class="describe">
+              光怪陆离,怪奇物语
+            </div>
+            <div class="card-top-right">可移动</div>
+          </div>
+
           <div class="card" @click="redirectPage( '/tuxun/random')">
             <div class="title">
               随机街景
@@ -111,6 +121,9 @@
             </div>
             <div class="card-top-right">可移动</div>
           </div>
+
+
+
 <!--          <div class="card" @click="redirectPage( '/tuxun/')">-->
 <!--            <div class="title">-->
 <!--              随机百度街景-->

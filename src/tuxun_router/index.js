@@ -92,6 +92,12 @@ export const constantRoutes = [
     hidden: true
   },
   {
+    path: '/wonders',
+    component: () => import('@/views/tuxun/wonders'),
+    meta: { title: '图寻-街景奇观'},
+    hidden: true
+  },
+  {
     path: '/maps_detail',
     component: () => import('@/views/tuxun/MapsDetail'),
     name: 'maps',
