@@ -15,7 +15,7 @@
     </div>
 
     <section class="list_container">
-      <scratch-list :tag="this.tagName"></scratch-list>
+      <scratch-list :tag.sync="this.tagName"></scratch-list>
     </section>
   </div>
 </template>
@@ -35,7 +35,7 @@ export default {
       list: [],
     }
   },
-  mounted() {
+  created() {
     this.tagName = this.$route.query.tagName;
   },
 
