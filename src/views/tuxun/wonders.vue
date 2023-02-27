@@ -30,7 +30,7 @@ export default {
   mounted() {
     document.head.insertAdjacentHTML("beforeend", `<style>a[href^="http://maps.google.com/maps"]{display:none !important}a[href^="https://maps.google.com/maps"]{display:none !important}.gmnoprint a, .gmnoprint span, .gm-style-cc {display:none;}</style>`)
     this.sharePanoId = this.$route.query.pano;
-    loadScript('https://chaofun-test.oss-cn-hangzhou.aliyuncs.com/google/js-1.js').then(() => {
+    loadScript('https://chaofun-test.oss-cn-hangzhou.aliyuncs.com/google/js-test.js').then(() => {
       this.test();
     })
 
@@ -50,29 +50,17 @@ export default {
       this.panorama = new google.maps.StreetViewPanorama(
           document.getElementById("map"), {
             fullscreenControl:false,
-            panControl:true,
+            panControl: false,
             addressControl: false,
-            imageDateControl: true,
+            imageDateControl: false,
             motionTrackingControl:false,
-            streetViewControl:true
+            streetViewControl: false,
+            scaleControl: false,
+            zoomControl: false,
           }
       );
 
-      // // document.getElementsByTagName("a[href^=\"http://maps.google.com/maps\"]").style.display="none";
-      // console.log('123')
-      // // console.log(document.querySelectorAll('a[href^="https://maps.google.com/maps"]'))
-      // console.log( document.getElementsByClassName('gmnoprint'))
-      // console.log('234')
-      // setTimeout(() => {
-      //   document.querySelectorAll('a').forEach(v => {
-      //     v.style.display="none";
-      //   })
-      //   var els = document.getElementsByClassName('gmnoprint');
-      //   Array.prototype.forEach.call(els, function(el) {
-      //       el.style.display="none";
-      //   });
-      // }, 3000)
-
+      // this.panorama.registerPanoProvider(this.getCustomPanorama)
 
       if (this.sharePanoId) {
         this.setPano(this.sharePanoId)
@@ -80,16 +68,37 @@ export default {
         this.change()
       }
     },
+    getCustomPanoramaTileUrl(pano, zoom, tileX, tileY) {
+      return (
+          'https://streetviewpixels-pa.googleapis.com/v1/tile?cb_client=maps_sv.tactile&panoid='+ pano + '&zoom=' + zoom + '&x=' + tileX + '&y=' + tileY
+      );
+    },
+    getCustomPanorama(pano) {
+      console.log(pano)
+      return {
+        location: {
+          pano: pano,
+        },
+        links: [],
+        // The text for the copyright control.
+        copyright: "Imagery (c) 2010 Google",
+        // The definition of the tiles for this panorama.
+        tiles: {
+          tileSize: new google.maps.Size(512, 512),
+          worldSize: new google.maps.Size(2048, 1024),
+          // The heading in degrees at the origin of the panorama
+          // tile set.
+          centerHeading: 0,
+          getTileUrl: this.getCustomPanoramaTileUrl,
+        },
+      };
+    },
     goHome() {
       tuxunJump('/tuxun/');
     },
     setPano(panoId) {
       this.currentPanoId = panoId;
       this.panorama.setPano(panoId);
-      // this.panorama.setPov({
-      //   // heading: 90,
-      //   // pitch: 0,
-      // });
       this.panorama.setVisible(true);
       this.getLocation(panoId)
       // 调整视角大小的
