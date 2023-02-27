@@ -132,6 +132,7 @@
       </viewer>
     </section>
     <div v-if="ISPHONE" style="height: 30rem"></div>
+    <div v-if="!ISPHONE" style="height: 10rem"></div>
   </div>
 </template>
 
