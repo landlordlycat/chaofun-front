@@ -1,11 +1,11 @@
 <template>
   <div style="width: 100vw; height: 100vh;display: flex;flex-direction: column; ">
     <div class="back_home">
+      <div v-if="!ISPHONE" class="middle-title">街景奇观</div>
       <div @click="goHome" class="left-title">
         <div >图寻</div>
         <div v-if="ISPHONE" class="desc">随机街景</div>
       </div>
-      <div v-if="!ISPHONE" class="middle-title">随机街景</div>
       <div class="button">
         <el-button type="primary" @click="change" size="large" round>换一个</el-button>
         <el-button  @click="shareLink" size="large" round>分享街景</el-button>
@@ -168,6 +168,13 @@ export default {
     font-size: 28px;
     font-weight: bold;
     margin: 1rem;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    justify-items: center;
+    pointer-events: none;
   }
   .button {
     align-items: center;
