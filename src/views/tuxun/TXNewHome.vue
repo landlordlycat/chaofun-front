@@ -216,7 +216,7 @@ export default {
     }
   },
   created() {
-      if (!location.host.includes('tuxun.fun') && !location.host.includes('localhost') && !location.host.includes('127.0.0.1')) {
+      if (!location.host.includes('tuxun.fun') && !location.host.includes('8099')) {
         window.location.href = 'https://tuxun.fun';
       }
   },

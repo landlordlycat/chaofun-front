@@ -1,5 +1,5 @@
 <template>
-  <div style="width: 100vw; height: 100vh;display: flex;flex-direction: column; ">
+  <div class="container"  style="width: 100%; height: 100%; display: flex;flex-direction: column; ">
     <div class="back_home">
       <div v-if="!ISPHONE" class="middle-title">街景奇观</div>
       <div @click="goHome" class="left-title">
