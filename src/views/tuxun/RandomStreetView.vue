@@ -164,6 +164,9 @@ export default {
       font-weight: normal;
       font-size: 16px;
     }
+    &:hover {
+      transform: scale(1.03);
+    }
   }
   .middle-title {
     font-size: 28px;
