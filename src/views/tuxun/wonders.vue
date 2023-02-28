@@ -102,7 +102,7 @@ export default {
       })
     },
     setPano(tuxunPid, panoId) {
-      this.tuxunPid= tuxunPid;
+      this.tuxunPid = tuxunPid;
       this.panorama.setPano(panoId);
       this.panorama.setVisible(true);
       this.getLocation(panoId)
@@ -113,7 +113,7 @@ export default {
       this.location = null;
       this.doLoginStatus().then((res) => {
       if (res) {
-        if (this.sharePanoId) {
+        if (this.$route.query.id) {
           tuxunJump('/tuxun/wonders');
           return;
         }

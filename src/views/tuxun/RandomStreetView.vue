@@ -104,7 +104,7 @@ export default {
       this.location = null;
       this.doLoginStatus().then((res) => {
       if (res) {
-        if (this.sharePanoId) {
+        if (this.$route.query.id) {
           tuxunJump('/tuxun/random');
           return;
         }
