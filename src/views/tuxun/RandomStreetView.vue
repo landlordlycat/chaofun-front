@@ -153,6 +153,7 @@ export default {
   color: white;
   display: flex;
   justify-content: space-between;
+  position: relative;
 
   .left-title {
     font-size: 28px;
