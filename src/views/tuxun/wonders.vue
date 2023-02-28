@@ -21,10 +21,22 @@
 <!--      <div class="more-item">-->
 <!--        反馈问题-->
 <!--      </div>-->
-      <div class="more-item">
+      <div @click="toSubmitPanorama" class="more-item">
         提交街景
       </div>
     </div>
+    <el-dialog title="提交街景" :visible.sync="submitPanoramaShow" :append-to-body="true">
+      <el-form :model="form">
+        <el-form-item label="街景链接:一行一条，目前只支持谷歌街景, 审核通过会加入到街景奇观中">
+          <el-input type="textarea" :autosize="{ minRows: 4}"
+                    v-model="panoramaSubmitForm.links" autocomplete="off"> </el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="hideSubmitPanorama()">取 消</el-button>
+        <el-button type="primary" @click="submitPanorama()">确 定</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
@@ -40,6 +52,13 @@ export default {
       panorama: null,
       tuxunPid: null,
       location: null,
+      submitPanoramaShow: false,
+      form: {
+        applyModReason: '',
+      },
+      panoramaSubmitForm: {
+        links: '',
+      },
     }
   },
   mounted() {
@@ -72,6 +91,7 @@ export default {
             streetViewControl: false,
             scaleControl: false,
             zoomControl: false,
+
           }
       );
 
@@ -160,6 +180,25 @@ export default {
       var result = document.execCommand('copy');
       document.body.removeChild(input);
       this.$toast("复制街景地址成功");
+    },
+    submitPanorama() {
+      api.postByPath('/api/v0/tuxun/wonders/submit',
+          {links: this.panoramaSubmitForm.links}).then(res=>{
+        this.panoramaSubmitForm.links = '';
+        this.$toast('提交成功, 谢谢你！');
+        this.submitPanoramaShow = false;
+      })
+    },
+
+    toSubmitPanorama() {
+      this.submitPanoramaShow = true;
+      setTimeout(function () {
+        document.getElementById("input").focus();
+      }, 500);
+    },
+
+    hideSubmitPanorama() {
+      this.submitPanoramaShow = false;
     },
   }
 }
