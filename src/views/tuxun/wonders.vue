@@ -17,6 +17,14 @@
       {{this.location}}
     </div>
     <div id="map" class="container" style=""></div>
+    <div v-if="!ISPHONE" class="more">
+<!--      <div class="more-item">-->
+<!--        反馈问题-->
+<!--      </div>-->
+      <div class="more-item">
+        提交街景
+      </div>
+    </div>
   </div>
 </template>
 
@@ -214,6 +222,25 @@ export default {
   -moz-user-select:none;
   -ms-user-select:none;
   user-select:none;
+}
+.more {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  display: flex;
+
+  background-color: #D8DADB;
+  z-index: 500;
+  .more-item {
+    padding-right: 1rem;
+    padding-left: 1rem;
+    font-size: 10px;
+    cursor: pointer;
+    &:hover {
+      color: -webkit-link;
+      text-decoration: underline;
+    }
+  }
 }
 
 @media only screen and (max-width: 768px) {
