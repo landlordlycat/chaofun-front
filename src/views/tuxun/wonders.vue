@@ -170,7 +170,7 @@ export default {
   .left-title {
     font-size: 28px;
     font-weight: bold;
-    margin: 1rem;
+    margin: 0.5rem;
     cursor: pointer;
     .desc {
       font-weight: normal;
@@ -183,7 +183,7 @@ export default {
   .middle-title {
     font-size: 28px;
     font-weight: bold;
-    margin: 1rem;
+    margin: 0.5rem;
     position: absolute;
     height: 100%;
     width: 100%;
