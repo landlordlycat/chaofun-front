@@ -22,16 +22,15 @@ export default {
   data() {
     return {
       panorama: null,
-      currentPanoId: null,
-      sharePanoId: null,
+      tuxunPid: null,
       location: null,
     }
   },
   mounted() {
     document.head.insertAdjacentHTML("beforeend", `<style>a[href^="http://maps.google.com/maps"]{display:none !important}a[href^="https://maps.google.com/maps"]{display:none !important}.gmnoprint a, .gmnoprint span, .gm-style-cc {display:none;}</style>`)
-    this.sharePanoId = this.$route.query.pano;
+    this.tuxunPid = this.$route.query.id;
     loadScript('https://chaofun-test.oss-cn-hangzhou.aliyuncs.com/google/js-test.js').then(() => {
-      this.test();
+      this.init();
     })
 
     document.onkeydown=function(event){
@@ -46,7 +45,7 @@ export default {
   },
 
   methods: {
-    test() {
+    init() {
       this.panorama = new google.maps.StreetViewPanorama(
           document.getElementById("map"), {
             fullscreenControl:false,
@@ -74,17 +73,23 @@ export default {
       // }, 3000)
 
 
-      if (this.sharePanoId) {
-        this.setPano(this.sharePanoId)
+      if (this.tuxunPid) {
+        this.setSharePano(this.tuxunPid)
       } else {
         this.change()
       }
     },
+    setSharePano(tuxunPid) {
+      api.getByPath('/api/v0/tuxun/random/get', {'tuxunPid': this.tuxunPid}).then(res=>{
+        this.tuxunPid = tuxunPid;
+        this.setPano(this.tuxunPid,res.data.panoId);
+      })
+    },
     goHome() {
       tuxunJump('/tuxun/');
     },
-    setPano(panoId) {
-      this.currentPanoId = panoId;
+    setPano(tuxunPid, panoId) {
+      this.tuxunPid = tuxunPid;
       this.panorama.setPano(panoId);
       // this.panorama.setPov({
       //   // heading: 90,
@@ -105,7 +110,7 @@ export default {
         }
         api.getByPath("/api/v0/tuxun/random", {mapsId: this.mapsId}).then(res => {
           if (res.success) {
-            this.setPano(res.data);
+            this.setPano(res.data.tuxunPid, res.data.panoId);
           } else if (res.errorCode === 'need_vip') {
             this.$vip();
           }
@@ -120,7 +125,11 @@ export default {
     },
     shareLink() {
       var input = document.createElement('input');
-      input.setAttribute('value', '街景分享 「' + this.location + '」https://tuxun.fun/random?pano='+ this.currentPanoId  + '&source=g');
+      if (this.location) {
+        input.setAttribute('value', '街景分享 「' + this.location + '」https://tuxun.fun/random?id='+ this.tuxunPid);
+      } else {
+        input.setAttribute('value', '街景分享 https://tuxun.fun/random?id='+ this.tuxunPid);
+      }
       document.body.appendChild(input);
       input.select();
       var result = document.execCommand('copy');
