@@ -135,9 +135,9 @@ export default {
     shareLink() {
       var input = document.createElement('input');
       if (this.location) {
-        input.setAttribute('value', '炒饭-街景奇观 「' + this.location + '」https://tuxun.fun/wonders?id=' + this.tuxunPid);
+        input.setAttribute('value', '图寻-街景奇观 「' + this.location + '」https://tuxun.fun/wonders?id=' + this.tuxunPid);
       } else {
-        input.setAttribute('value', '炒饭-街景奇观 https://tuxun.fun/wonders?id=' + this.tuxunPid);
+        input.setAttribute('value', '图寻-街景奇观 https://tuxun.fun/wonders?id=' + this.tuxunPid);
       }
       document.body.appendChild(input);
       input.select();
