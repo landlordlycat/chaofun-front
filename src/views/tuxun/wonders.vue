@@ -176,7 +176,6 @@ export default {
       font-size: 16px;
     }
   }
-
   .middle-title {
     font-size: 28px;
     font-weight: bold;

@@ -1,9 +1,15 @@
 <template>
-  <div>
-    <div class="back_home" >
-      <el-button type="primary" @click="goHome" round>←返回首页</el-button>
-      <el-button type="warning" @click="change"  round>换一个</el-button>
-<!--      <el-button @click="shareLink" round>分享街景</el-button>-->
+  <div style="width: 100vw; height: 100vh;display: flex;flex-direction: column; ">
+    <div class="back_home">
+      <div @click="goHome" class="left-title">
+        <div >图寻</div>
+        <div v-if="ISPHONE" class="desc">随机街景</div>
+      </div>
+      <div v-if="!ISPHONE" class="middle-title">随机街景</div>
+      <div class="button">
+        <el-button type="primary" @click="change" size="large" round>换一个</el-button>
+        <el-button  @click="shareLink" size="large" round>分享街景</el-button>
+      </div>
     </div>
     <div v-if="this.location" class="location" >
       {{this.location}}
@@ -126,9 +132,9 @@ export default {
     shareLink() {
       var input = document.createElement('input');
       if (this.location) {
-        input.setAttribute('value', '街景分享 「' + this.location + '」https://tuxun.fun/random?id='+ this.tuxunPid);
+        input.setAttribute('value', '图寻-街景分享 「' + this.location + '」https://tuxun.fun/random?id='+ this.tuxunPid);
       } else {
-        input.setAttribute('value', '街景分享 https://tuxun.fun/random?id='+ this.tuxunPid);
+        input.setAttribute('value', '图寻-街景分享 https://tuxun.fun/random?id='+ this.tuxunPid);
       }
       document.body.appendChild(input);
       input.select();
@@ -142,15 +148,37 @@ export default {
 
 <style lang="scss" scoped>
 .back_home {
-  position: absolute;
-  padding-top: 1rem;
-  padding-left: 1rem;
-  z-index: 500;
+  background-color: #1C1C2E;
+  width: 100%;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+
+  .left-title {
+    font-size: 28px;
+    font-weight: bold;
+    margin: 1rem;
+    cursor: pointer;
+    .desc {
+      font-weight: normal;
+      font-size: 16px;
+    }
+  }
+  .middle-title {
+    font-size: 28px;
+    font-weight: bold;
+    margin: 1rem;
+  }
+  .button {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    float: right;
+  }
 }
 .container {
-  position: absolute;
-  width: 100%;
-  height: 100%;
+  align-items: stretch;
+  flex-grow: 1;
 }
 .location {
   font-size: 24px;
