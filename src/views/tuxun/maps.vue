@@ -198,7 +198,12 @@ export default {
       tuxunJump('/tuxun/');
     },
     goMapMakeHome() {
-      tuxunJump('/tuxun/my_maps');
+      this.doLoginStatus().then(res => {
+        console.log(res)
+        if (res) {
+          tuxunJump('/tuxun/my_maps');
+        }
+      });
     }
   },
 }
