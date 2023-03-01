@@ -391,7 +391,7 @@
         </div>
       </div>
 
-      <div v-if="showMap && ISPHONE" style="position: absolute; left: 20px; bottom: 20px;z-index: 1000">
+      <div v-if="showMap && ISPHONE" style="position: absolute; left: 20px; bottom: 20px;z-index: 5000">
         <el-button @click="showMap = false" round>隐藏地图</el-button>
       </div>
 
@@ -1532,7 +1532,7 @@ export default {
   position: absolute;
   padding-top: 1rem;
   padding-left: 1rem;
-  z-index: 500;
+  z-index: 5000;
 }
 .leaflet-clickable {
   cursor: crosshair !important;
@@ -1548,7 +1548,7 @@ export default {
   text-align: center;
   background-color: #18182A;
   .home_button {
-    z-index: 1000;
+    z-index: 10000;
     margin-top: 2rem;
     font-size: 16px;
   }
@@ -1697,7 +1697,7 @@ export default {
 
     }
     .count-down {
-      z-index: 500;
+      z-index: 5000;
       display: inline-block;
       margin: 0 auto;
       background-color: rgb(255, 255, 255, 0.7);
@@ -1815,7 +1815,7 @@ export default {
       background: #090723;
       display: flex;
       justify-content: center;
-      z-index: 500;
+      z-index: 5000;
       .info {
         padding-top: 20px;
         font-size: 16px;
@@ -1844,7 +1844,7 @@ export default {
       width: 25%;
       height: 35%;
       opacity: 0.7;
-      z-index: 500;
+      z-index: 5000;
       display:flex;
       flex-flow:column nowrap;
       overflow:hidden;
@@ -1864,7 +1864,7 @@ export default {
       height: 40%;
       bottom: 0;
       right: 0;
-      z-index: 500;
+      z-index: 5000;
       -webkit-user-select: none;
       -moz-user-select: none;
       -ms-user-select: none;
@@ -1893,7 +1893,7 @@ export default {
       bottom: 30px;
       right: 30px;
       width: 300px;
-      z-index: 1000;
+      z-index: 10000;
     }
 
     .confirm-phone {
@@ -1901,14 +1901,14 @@ export default {
       bottom: 20px;
       right: 20px;
       margin:auto;
-      z-index: 1000;
+      z-index: 10000;
     }
 
     .home {
       position: absolute;
       top: 5px;
       left: 20px;
-      z-index: 1000;
+      z-index: 10000;
     }
 
     .game_hud {
@@ -1920,7 +1920,7 @@ export default {
       //height: 2.5rem;
       width: 100%;
       //background-color: blue;
-      z-index: 1000;
+      z-index: 10000;
       touch-action: pan-x pan-y;
       padding-left: 20px;
       padding-right: 20px;
