@@ -2,8 +2,8 @@
   <div class="container" style="height: 100%; width: 100%; display: flex;flex-direction: column; ">
     <div class="back_home">
       <div v-if="!ISPHONE" class="middle-title">街景奇观审核</div>
-      <div class="left-title">
-        <div>图寻</div>
+      <div class="button">
+        <el-button @click="goBack" size="large" round>←返回</el-button>
       </div>
       <div class="button">
         <el-button type="primary" @click="accept" size="large" round>通过</el-button>
@@ -95,6 +95,13 @@ export default {
       api.getByPath("/api/v0/tuxun/getLocation", {panoId: panoId}).then(res => {
         this.location = res.data;
       })
+    },
+    goBack() {
+      try {
+        window.history.back();
+      } catch (e) {
+        tuxunJump('/tuxun/')
+      }
     },
   }
 }
