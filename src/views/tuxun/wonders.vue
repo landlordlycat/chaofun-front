@@ -21,6 +21,9 @@
 <!--      <div class="more-item">-->
 <!--        反馈问题-->
 <!--      </div>-->
+      <div v-if="this.$store.state.user.userInfo.userId === 1" @click="deleteWonders()" class="more-item">
+        删除街景
+      </div>
       <div @click="toSubmitPanorama" class="more-item">
         提交街景
       </div>
@@ -107,6 +110,12 @@ export default {
       return (
           'https://streetviewpixels-pa.googleapis.com/v1/tile?cb_client=maps_sv.tactile&panoid='+ pano + '&zoom=' + zoom + '&x=' + tileX + '&y=' + tileY
       );
+    },
+    deleteWonders() {
+      api.getByPath('/api/v0/tuxun/wonders/remove', {tuxunPid: this.tuxunPid}).then(res => {
+        this.$message.success('删除成功')
+        this.change()
+      })
     },
     getCustomPanorama(pano) {
       console.log(pano)
