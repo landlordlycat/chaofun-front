@@ -49,6 +49,9 @@ export default {
 
   },
   mounted() {
+    if (!location.host.includes('tuxun.fun') && !location.host.includes('8099')) {
+      window.location.href = 'https://tuxun.fun/admin';
+    }
     this.queryId = this.$route.query.id;
     this.mapsid = this.$route.query.mapsid;
 

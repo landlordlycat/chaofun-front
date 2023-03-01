@@ -98,6 +98,20 @@ export const constantRoutes = [
     hidden: true
   },
   {
+    path: '/wonders-filter',
+    component: () => import('@/views/tuxun/wonders-filter'),
+    name: 'tuxun-wonders-filter',
+    meta: { title: '图寻-街景奇观审核'},
+    hidden: true
+  },
+  {
+    path: '/wonders-admin',
+    component: () => import('@/views/tuxun/wonders-filter'),
+    name: 'tuxun-wonders-filter',
+    meta: { title: '图寻-街景奇观审核'},
+    hidden: true
+  },
+  {
     path: '/maps_detail',
     component: () => import('@/views/tuxun/MapsDetail'),
     name: 'maps',
@@ -169,9 +183,23 @@ export const constantRoutes = [
   },
   {
     path: '/tuxunAdmin',
+    component: () => import('@/views/tuxun/admin-console'),
+    name: 'tuxun-admin-console',
+    meta: { title: '图寻-管理'},
+    hidden: true
+  },
+  {
+    path: '/admin',
+    component: () => import('@/views/tuxun/admin-console'),
+    name: 'tuxun-admin-console',
+    meta: { title: '图寻-管理'},
+    hidden: true
+  },
+  {
+    path: '/pano-filter',
     component: () => import('@/views/tuxun/TXAdmin'),
-    name: 'tuxunAdmin',
-    meta: { title: 'tuxunAdmin'},
+    name: 'tuxun-pano-filter',
+    meta: { title: '图寻-街景审核'},
     hidden: true
   },
   {

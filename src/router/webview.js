@@ -262,6 +262,14 @@ routes = [
     meta: { title: '图寻-街景奇观'},
     hidden: true
   },
+
+  {
+    path: '/tuxun/wonders-filter',
+    component: () => import('@/views/tuxun/wonders-filter'),
+    name: 'tuxun-wonders-filter',
+    meta: { title: '图寻-街景奇观审核'},
+    hidden: true
+  },
   {
     path: '/tuxun/my_maps',
     component: () => import('@/views/tuxun/MyMaps'),
@@ -561,10 +569,24 @@ routes = [
     hidden: true
   },
   {
+    path: '/tuxun/admin',
+    component: () => import('@/views/tuxun/admin-console'),
+    name: 'tuxun-admin-console',
+    meta: { title: '图寻-管理'},
+    hidden: true
+  },
+  {
     path: '/tuxunAdmin',
+    component: () => import('@/views/tuxun/admin-console'),
+    name: 'tuxun-admin-console',
+    meta: { title: '图寻-管理'},
+    hidden: true
+  },
+  {
+    path: '/tuxun/pano-filter',
     component: () => import('@/views/tuxun/TXAdmin'),
-    name: 'tuxunAdmin',
-    meta: { title: 'tuxunAdmin'},
+    name: 'tuxun-pano-filter',
+    meta: { title: '图寻-街景审核'},
     hidden: true
   },
   {
