@@ -212,7 +212,7 @@ export default {
   data() {
     return {
       times: null,
-      backgroundImage: 'biz/1665370526912_495e8dbd52364a83b6f5235ce2ddafa8_0.jpeg?x-oss-process=image/quality,q_80'
+      backgroundImage: 'front/IMG_3101.jpg?x-oss-process=image/quality,q_80'
     }
   },
   created() {
