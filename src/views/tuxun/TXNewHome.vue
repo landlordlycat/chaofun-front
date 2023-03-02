@@ -8,10 +8,10 @@
           <div style=" color: white">「炒饭社区」出品</div>
         </div>
         <div class="top-right">
-          <el-button type="primary" @click="toUserHome" round>个人首页</el-button>
+          <el-button  style="" @click="toUserHome">个人首页</el-button>
           <div style="height: 10px">
           </div>
-          <el-button type="primary" @click="toRank" round>积分排行</el-button>
+          <el-button  @click="toRank" >积分排行</el-button>
         </div>
       </div>
       <div class="info" @click="toFirstTournament">  图寻大师赛（玩家第一届个人赛）圆满结束！</div>
@@ -318,6 +318,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.el-button {
+  background: rgb(0,0,0,0.3);
+  border: 0px;
+  color: white;
+}
 .container {
   height: 100%;
   width: 100%;
@@ -391,7 +396,6 @@ export default {
     .card {
       cursor: pointer;
       position: relative;
-      //font-family: tuxun;
       border-radius: 1rem;
       background-color: rgb(25,26,46, 0.9);
       background-position: 50%;
