@@ -81,7 +81,7 @@
     </div>
     <div class="fixed_bottom">
       <div @click="toIndex" class="left_b">讨论区</div>
-      <div v-clipboard:copy="'https://chao.fan/webview/buttonGame'" v-clipboard:success="onCopy" class="left_b">复制游戏链接</div>
+      <div v-clipboard:copy="'https://choa.fun/webview/buttonGame'" v-clipboard:success="onCopy" class="left_b">复制游戏链接</div>
     </div>
     <van-dialog v-model="showR" confirmButtonText="我知道了">
       <div class="rtitle">游戏规则</div>
