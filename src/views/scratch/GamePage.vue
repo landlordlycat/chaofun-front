@@ -78,7 +78,7 @@
 
     <div v-if="endStatus" class="end-container">
       <div> 你的得分 {{endStatus.score }} / {{guessInfo.data.answers.length}} = {{ Number(endStatus.rightPercentage * 100).toFixed(2) }} % </div>
-      <div> 超过/等于了 {{Number((endStatus.abovePercentage) * 100).toFixed(2) }} % 人</div>
+      <div> 超过/等于 了 {{Number((endStatus.abovePercentage) * 100).toFixed(2) }} % 人</div>
       <div> 该题的平均分是 {{Math.round(endStatus.avgScore)}}</div>
       <div> 你的最高分是 <span v-if="endStatus.yourHighestScore !== null">{{endStatus.yourHighestScore}}</span><span v-else style="color: #333fff;cursor: pointer;" @click="login()">需要登录记录</span> </div>
     </div>
