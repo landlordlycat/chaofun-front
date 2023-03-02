@@ -1,20 +1,19 @@
 <template>
   <div class="container" :style="{'background-image':'linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.6)),url('+imgOrigin+ this.backgroundImage +')','background-size':'cover','background-position': 'center'}">
-    <div class="top">
-      <div>
-        <img style="margin-top: 25px; margin-left: 25px; width: 5rem; height: 3rem" :src="imgOrigin + 'biz/1658657631523_45db8dd090dc49af99f2a8a4ace01122.svg'"></img>
-        <div style="margin-left: 25px; color: white">探索真实世界，收集线索，找出自己的位置</div>
-        <div style="margin-left: 20px; color: white">「炒饭社区」出品</div>
-      </div>
-      <div class="top-right">
-        <el-button type="primary" @click="toUserHome" round>个人首页</el-button>
-        <div style="height: 10px">
-        </div>
-        <el-button type="primary" @click="toRank" round>积分排行</el-button>
-      </div>
-    </div>
-
     <div class="game">
+      <div class="top">
+        <div class="top-left">
+          <img style=" width: 5rem; height: 3rem" :src="imgOrigin + 'biz/1658657631523_45db8dd090dc49af99f2a8a4ace01122.svg'"></img>
+          <div style=" color: white">探索真实世界，收集线索，找出自己的位置</div>
+          <div style=" color: white">「炒饭社区」出品</div>
+        </div>
+        <div class="top-right">
+          <el-button type="primary" @click="toUserHome" round>个人首页</el-button>
+          <div style="height: 10px">
+          </div>
+          <el-button type="primary" @click="toRank" round>积分排行</el-button>
+        </div>
+      </div>
       <div class="info" @click="toFirstTournament">  图寻大师赛（玩家第一届个人赛）圆满结束！</div>
       <div v-if="times" class="times">图寻总轮次数：<span style="font-size: 18px">{{times}}</span></div>
       <section class="game_entrance">
@@ -327,9 +326,11 @@ export default {
   .top {
     display: flex;
     justify-content: space-between;
+    .top-left {
+      padding-top: 2rem;
+    }
     .top-right {
       padding-top: 2rem;
-      padding-right: 2rem;
     }
   }
 
@@ -389,6 +390,7 @@ export default {
     .card {
       cursor: pointer;
       position: relative;
+      //font-family: tuxun;
       border-radius: 1rem;
       background-color: rgb(25,26,46, 0.9);
       background-position: 50%;
