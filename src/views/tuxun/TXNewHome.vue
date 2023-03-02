@@ -158,10 +158,10 @@
           </div>
         </div>
         <div style="display: flex;">
-          <div @click="toDocument" style="color: white;font-size: medium; padding-top: 1rem; padding-right: 1rem; text-decoration:underline;">
+          <div @click="toDocument" style="cursor: pointer; color: white;font-size: medium; padding-top: 1rem; padding-right: 1rem; text-decoration:underline;">
             图寻文档
           </div>
-          <div @click="toUpdate" style="color: white;font-size: medium; padding-top: 1rem; padding-right: 1rem; text-decoration:underline;">
+          <div @click="toUpdate" style="cursor: pointer; color: white;font-size: medium; padding-top: 1rem; padding-right: 1rem; text-decoration:underline;">
             更新日志
           </div>
 <!--          <div @click="window.location.href = '/tuxun/change_log'" style="color: white;font-size: medium; padding-top: 1rem; text-decoration:underline;">-->
@@ -342,6 +342,7 @@ export default {
     margin: 0 auto;
     max-width: 80rem;
     .info {
+      cursor: pointer;
       color: white;
       font-size: medium;
       padding-top: 1rem;
