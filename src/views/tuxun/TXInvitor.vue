@@ -1880,6 +1880,7 @@ export default {
       height: 40%;
       bottom: 0;
       right: 0;
+      z-index: 5000;
       visibility: hidden;
 
       .bm-view-phone{
