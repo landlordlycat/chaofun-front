@@ -37,7 +37,7 @@
         background
         layout="prev, pager, next"
         style="padding-top: 20px"
-        :current-page.sync="current"
+        :current-page.sync="innerCurrent"
         :page-size="50"
         @current-change="handleCurrentChange"
         :total="total">
