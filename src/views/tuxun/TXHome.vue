@@ -838,6 +838,9 @@ export default {
 //.not_stop_hover {
 //  pointer-events:none
 //}
+.el-button {
+  touch-action: manipulation;
+}
 
 .danmaku {
   -webkit-user-select:none;
