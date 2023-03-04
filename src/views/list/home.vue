@@ -337,9 +337,6 @@ export default {
 
   },
   mounted() {
-    if (!location.host.includes('choa.fun') && !location.host.includes('8099')) {
-      window.location.href = 'https://choa.fun';
-    }
     if (this.$store.state.user.listMode == "normal" && this.params.pageSize != 20) {
       this.params.pageSize = 20;
     } else {

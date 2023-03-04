@@ -7,7 +7,7 @@
       <div style="height: 50px"></div>
       <div class="main_content">
         <div v-if="!ISPHONE" class="main_left">
-          
+
         </div>
         <div class="main_center">
           <div
@@ -30,7 +30,7 @@
           </div>
           <div
             class="grid-content"
-            
+
             :style="{left: ISPHONE?'0':'0px'}"
           >
             <ListItem
@@ -207,7 +207,7 @@ export default {
     // 更新数据
     if(localStorage.getItem('simple')){
       let data = JSON.parse(localStorage.getItem('simple'));
-      
+
       this.lists.forEach((its,index)=>{
         if(data.postId==its.postId){
           this.lists.splice(index,1,data)
@@ -217,6 +217,9 @@ export default {
     }
   },
   mounted() {
+    if (!location.host.includes('choa.fun') && !location.host.includes('8099')) {
+      window.location.href = 'https://choa.fun';
+    }
     if (document.body.clientWidth < 700) {
       this.isPhone = true;
     }
