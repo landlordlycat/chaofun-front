@@ -1528,6 +1528,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.el-button {
+  touch-action: manipulation;
+}
 .back_home {
   position: absolute;
   padding-top: 1rem;
