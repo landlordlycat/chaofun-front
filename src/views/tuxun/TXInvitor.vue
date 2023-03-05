@@ -140,7 +140,7 @@
     <div class="game" v-if="status === 'ongoing' || status === 'finish'">
       <div class="im-view">
         <div id="viewer"  style="width: 100%; height: 100%"></div>
-
+        <img v-if="lastRound && lastRound.source === 'baidu_pano'" style="position: absolute; bottom: 10px; left: 10px; width: 100px" src="https://webmap0.bdimg.com/wolfman/static/pano/images/pano-logo_7969e0c.png">
         <div v-if="showRoundResult" class="round_result">
           <div class="round_result_top">
             <span v-if="gameData.type === 'daily_challenge'">每日挑战<span v-if="gameData.move && gameData.mapsId !== 9">(全球移动)</span><span v-if="!gameData.move && gameData.mapsId !== 9">(全球固定)</span><span v-if="!gameData.move && gameData.mapsId === 9">(中国固定)</span> - </span>
@@ -359,8 +359,6 @@
           </div>
         </div>
       </div>
-
-      <img v-if="lastRound && lastRound.source === 'baidu_pano'" style="position: absolute; bottom: 10px; left: 10px; width: 100px" src="https://webmap0.bdimg.com/wolfman/static/pano/images/pano-logo_7969e0c.png">
 
       <div id="map-container" :class="[{'bm-view-container': !ISPHONE}, {'bm-view-container-phone': ISPHONE && showMap}, {'bm-view-container-phone-hidden': ISPHONE && !showMap}]"@mouseover="mapMouseOver" @mouseout="mapMouseOut">
         <div v-if="!this.isMapSmall && !ISPHONE" style="text-align: left">
