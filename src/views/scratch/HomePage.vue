@@ -51,7 +51,7 @@ export default {
   },
   created() {
     if (!location.host.includes('choa.fun') && !location.host.includes('8099')) {
-      window.location.href = 'https://choa.fun';
+      window.location.href = window.location.href.replace(location.host, 'choa.fun')
     }
     if (this.$route.query.sort) {
       this.sort = this.$route.query.sort;
