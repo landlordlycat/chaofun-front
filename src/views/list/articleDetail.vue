@@ -303,6 +303,9 @@ export default {
     ...mapState(['var'])
   },
   mounted(){
+    if (!location.host.includes('choa.fun') && !location.host.includes('8099')) {
+      window.location.href = window.location.href.replace(location.host, 'choa.fun')
+    }
 
     if("true" == localStorage.getItem("chao.fun.localSetting.isStoragePostOwnerCommentHighlight")){
         this.isPostOwnerCommentHighlight = ("true" == localStorage.getItem("chao.fun.localSetting.isPostOwnerCommentHighlight"));
