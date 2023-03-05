@@ -58,6 +58,8 @@
       </vue-danmaku>
     </div>
 
+<!--    TODO: 这里有个问题，不能在中间加 v-if 的DIV，一加在 v-if 条件触发的时候（特别是 hide）就会影响 map 的布局，原理未知，-->
+
     <div id="map-container" :class="[{'bm-view-container': !ISPHONE}, {'bm-view-container-phone': ISPHONE && showMap}, {'bm-view-container-phone-hidden': ISPHONE && !showMap}]"@mouseover="mapMouseOver" @mouseout="mapMouseOut">
       <div v-if="!this.isMapSmall && !ISPHONE">
         <el-button size="small" @click="mapBig" round>放大</el-button>
