@@ -167,6 +167,8 @@ export default {
       }
       // very old browser like IE 8, not support
       return false;
+
+      return true;
     },
 
     doLoginStatus() { // 判断是否登录
