@@ -98,7 +98,7 @@ export default {
           }
       );
 
-      // this.panorama.registerPanoProvider(this.getCustomPanorama)
+      this.panorama.registerPanoProvider(this.getCustomPanorama)
 
       if (this.tuxunPid) {
         this.setSharePano(this.tuxunPid)
@@ -107,9 +107,17 @@ export default {
       }
     },
     getCustomPanoramaTileUrl(pano, zoom, tileX, tileY) {
+      zoom = zoom +=1;
+
+      if (zoom === 1) {
+        return (
+            'https://tuxun.fun/api/v0/tuxun/mapProxy/bd?pano=' + pano
+        );
+      }
       return (
-          'https://streetviewpixels-pa.googleapis.com/v1/tile?cb_client=maps_sv.tactile&panoid='+ pano + '&zoom=' + zoom + '&x=' + tileX + '&y=' + tileY
+          'https://mapsv1.bdimg.com/?qt=pdata&sid=' + pano + '&pos=' + tileY + '_' + tileX + '&z=' + zoom
       );
+
     },
     deleteWonders() {
       api.getByPath('/api/v0/tuxun/wonders/remove', {tuxunPid: this.tuxunPid}).then(res => {
@@ -118,24 +126,25 @@ export default {
       })
     },
     getCustomPanorama(pano) {
-      console.log(pano)
-      return {
-        location: {
-          pano: pano,
-        },
-        links: [],
-        // The text for the copyright control.
-        copyright: "Imagery (c) 2010 Google",
-        // The definition of the tiles for this panorama.
-        tiles: {
-          tileSize: new google.maps.Size(512, 512),
-          worldSize: new google.maps.Size(2048, 1024),
-          // The heading in degrees at the origin of the panorama
-          // tile set.
-          centerHeading: 0,
-          getTileUrl: this.getCustomPanoramaTileUrl,
-        },
-      };
+      if (pano.indexOf('09') === 0 || pano.indexOf('01') === 0) {
+        return {
+          location: {
+            pano: pano,
+          },
+          links: [],
+          // The text for the copyright control.
+          copyright: "Imagery (c) 2010 Google",
+          // The definition of the tiles for this panorama.
+          tiles: {
+            tileSize: new google.maps.Size(512, 512),
+            worldSize: new google.maps.Size(8192, 4096),
+            // The heading in degrees at the origin of the panorama
+            // tile set.
+            centerHeading: 0,
+            getTileUrl: this.getCustomPanoramaTileUrl,
+          },
+        };
+      }
     },
     goHome() {
       tuxunJump('/tuxun/');
