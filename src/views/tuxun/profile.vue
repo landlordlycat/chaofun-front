@@ -5,7 +5,7 @@
     </div>
     <div style="width: 100%; text-align: center; align-items: center; padding-top: 20px">
         <div @click="toUser(userProfile)" v-if="this.userProfile" class="left">
-          <img :src="imgOrigin+this.userProfile.userAO.icon + '?x-oss-process=image/resize,h_80/format,webp/quality,q_75'" alt="">
+          <img :src="imgOrigin+this.userProfile.userAO.icon + '?x-oss-process=image/resize,h_80/quality,q_75'" alt="">
           <div class="info">
             <div class="title">{{this.userProfile.userAO.userName}} (uid: {{this.userProfile.userAO.userId}})</div>
           </div>
