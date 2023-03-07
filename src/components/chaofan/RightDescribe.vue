@@ -51,7 +51,7 @@
       <!--        <div class="game">-->
       <!--          <div @click="toUrl({url: '/webview/buttonGame', routeType: 1})" class="title">The Button<span class="tab">第二届春节有奖活动</span></div>-->
       <!--          <div @click="toUrl({url: '/webview/buttonGame', routeType: 1})" class="advertise">-->
-      <!--            <img src="https://i.chao-fan.com/biz/84c0bae9c0f3a4b828a9847b736eb4b8.png?x-oss-process=image/resize,h_512/format,webp/quality,q_75" alt="">-->
+      <!--            <img src="https://i.chao-fan.com/biz/84c0bae9c0f3a4b828a9847b736eb4b8.png?x-oss-process=image/resize,h_512/quality,q_75" alt="">-->
       <!--          </div>-->
       <!--        </div>-->
 

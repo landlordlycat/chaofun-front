@@ -1,8 +1,8 @@
 <template>
- <div>  
+ <div>
     <div v-if="ISPHONE&&show" class="fixed_bottom">
         <div class="logo">
-            <img src="https://i.chao-fan.com/biz/08a2d3a676f4f520cb99910496e48b4e.png?x-oss-process=image/resize,h_80/format,webp/quality,q_75" alt="">
+            <img src="https://i.chao-fan.com/biz/08a2d3a676f4f520cb99910496e48b4e.png?x-oss-process=image/resize,h_80/quality,q_75" alt="">
         </div>
         <div class="center">
             <div class="title">炒饭超Fun</div>
@@ -13,7 +13,7 @@
             <img @click="cancelDown()" src="../../assets/images/icon/cancel1.png" alt="">
         </div>
     </div>
-        
+
  </div>
 </template>
 
@@ -22,7 +22,7 @@
    name: '',
    data(){
      return {
-         
+
      }
    },
    computed:{
@@ -38,7 +38,7 @@
    created() {
    },
    mounted() {
-    
+
    },
    methods: {
     cancelDown(){

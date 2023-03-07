@@ -534,11 +534,11 @@ export default {
             if (item.imageName) {
              return this.imgOrigin +
               item.imageName +
-              "?x-oss-process=image/resize,h_150/format,webp/quality,q_75"
+              "?x-oss-process=image/resize,h_150/quality,q_75"
             } else {
               return (
                   this.imgOrigin +
-                  "biz/b64193b7beca6ae243341273adddf494.png?x-oss-process=image/resize,h_150/format,webp/quality,q_75"
+                  "biz/b64193b7beca6ae243341273adddf494.png?x-oss-process=image/resize,h_150/quality,q_75"
               );
             }
           break;
@@ -551,7 +551,7 @@ export default {
           return (
             this.imgOrigin +
             item.imageName +
-            "?x-oss-process=image/resize,h_150/format,webp/quality,q_75"
+            "?x-oss-process=image/resize,h_150/quality,q_75"
           );
           break;
         case "forward":
@@ -565,13 +565,13 @@ export default {
           return this.imgOrigin + item.cover;
         } else {
           return (
-            this.imgOrigin + item.cover + "?x-oss-process=image/resize,h_150/format,webp/quality,q_75"
+            this.imgOrigin + item.cover + "?x-oss-process=image/resize,h_150/quality,q_75"
           );
         }
       } else {
         return (
           this.imgOrigin +
-          "biz/b06148ccba2c8b527d979942131a9fd9.png?x-oss-process=image/resize,h_150/format,webp/quality,q_75"
+          "biz/b06148ccba2c8b527d979942131a9fd9.png?x-oss-process=image/resize,h_150/quality,q_75"
         );
       }
     },

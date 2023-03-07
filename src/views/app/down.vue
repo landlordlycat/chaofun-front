@@ -1,12 +1,12 @@
 <template>
  <div class="container">
     <div class="logo_con">
-        <img src="https://i.chao-fan.com/biz/08a2d3a676f4f520cb99910496e48b4e.png?x-oss-process=image/resize,h_80/format,webp/quality,q_75" alt="">
+        <img src="https://i.chao-fan.com/biz/08a2d3a676f4f520cb99910496e48b4e.png?x-oss-process=image/resize,h_80/quality,q_75" alt="">
         <div>Andorid版下载</div>
     </div>
     <div class="a">
         <input v-model="value" maxlength="6" placeholder="请输入下载口令" type="text">
-        
+
         <div @click="sure" class="btn">确定</div>
     </div>
     <div v-if="showCover" class="covers" @click="showCover=false">
@@ -43,7 +43,7 @@ import Vue from 'vue';
    created() {
    },
    mounted() {
-     
+
    },
    methods: {
     isWeiXin(){
@@ -67,7 +67,7 @@ import Vue from 'vue';
         }else{
             this.showCover = true;
         }
-        
+
     },
     onInput(value) {
       Toast(value);
@@ -146,6 +146,6 @@ import Vue from 'vue';
          top: 30px;
          right: 40px;
          width: 100px;
-     }  
+     }
  }
 </style>

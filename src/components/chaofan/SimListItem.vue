@@ -537,13 +537,13 @@ export default {
           return (
             this.imgOrigin +
             item.imageName +
-            "?x-oss-process=image/resize,h_120/format,webp/quality,q_75"
+            "?x-oss-process=image/resize,h_120/quality,q_75"
           );
           break;
         case "vote":
         case "prediction":
           return (
-            this.imgOrigin + "biz/fea4efce4437040479d1a0452160f2fd.png?x-oss-process=image/resize,h_120/format,webp/quality,q_75"
+            this.imgOrigin + "biz/fea4efce4437040479d1a0452160f2fd.png?x-oss-process=image/resize,h_120/quality,q_75"
           );
           break;
         case "forward":
@@ -557,13 +557,13 @@ export default {
           return this.imgOrigin + item.cover;
         } else {
           return (
-            this.imgOrigin + item.cover + "?x-oss-process=image/resize,h_120/format,webp/quality,q_75"
+            this.imgOrigin + item.cover + "?x-oss-process=image/resize,h_120/quality,q_75"
           );
         }
       } else {
         return (
           this.imgOrigin +
-          "biz/b06148ccba2c8b527d979942131a9fd9.png?x-oss-process=image/resize,h_120/format,webp/quality,q_75"
+          "biz/b06148ccba2c8b527d979942131a9fd9.png?x-oss-process=image/resize,h_120/quality,q_75"
         );
       }
     },

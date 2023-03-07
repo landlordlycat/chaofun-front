@@ -239,7 +239,7 @@ export default {
                 image = "biz/32b3f8bba180e2256489ec4ecd9c1dc9.png";
               }
               if (image) {
-                row.rankImg = this.imgOrigin + image + "?x-oss-process=image/resize,h_40/format,webp/quality,q_75";
+                row.rankImg = this.imgOrigin + image + "?x-oss-process=image/resize,h_40/quality,q_75";
               }
             }
 

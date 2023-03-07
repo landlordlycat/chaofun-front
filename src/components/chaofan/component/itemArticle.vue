@@ -1,5 +1,5 @@
 <template>
- <div>  
+ <div>
     <div v-if="!isDetail" class="item_article">
       <!-- <div class="title">
         {{item.title}}
@@ -12,7 +12,7 @@
         <div class="show_more">查看全文</div>
       </div>
     </div>
-    
+
     <div v-else class="item_article">
       <!-- <div class="title">
         {{item.title}}
@@ -67,7 +67,7 @@ export default {
 
   },
   created() {
-    
+
   },
   mounted() {
     var el = document.getElementById('detail_line');
@@ -87,7 +87,7 @@ export default {
     //   setTimeout(()=>{
     //     el.getElementsByTagName("img").forEach((item,index)=>{
     //       item.addEventListener('click',function(e){
-            
+
     //         let src = e.target.currentSrc;
     //         document.getElementById('k'+index).click();
     //         console.log(src)
@@ -98,7 +98,7 @@ export default {
     //     console.log(this.imgsArr)
     //   },50)
     // }
-    
+
   },
   methods: {
     toUrls(item,params){
@@ -111,7 +111,7 @@ export default {
       try {
         if (content.indexOf('data:image') === -1 && content.indexOf('.gif') === -1 ) {
           content = content.replace(/<img src="([^"]*?)">/g,
-            '<img class="lazyload" data-src="$1?x-oss-process=image/resize,h_512/format,webp/quality,q_75" alt="">'
+            '<img class="lazyload" data-src="$1?x-oss-process=image/resize,h_512/quality,q_75" alt="">'
           );
         }
       } catch (error) {
@@ -222,7 +222,7 @@ export default {
     text-decoration: line-through;
   }
 
-  
+
   li {
     min-height: 22px;
   }
@@ -311,7 +311,7 @@ export default {
       counter-increment: li;
     }
   }
-  
+
   ol > li:before,
   ul > li:before {
     display: inline-block;
