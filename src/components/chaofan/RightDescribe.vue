@@ -5,7 +5,7 @@
       <div v-if="forumInfo" class="asa">
         <div class="forum_con">
           <div class="fir">
-            <img :src="imgOrigin+forumInfo.imageName+'?x-oss-process=image/resize,h_80/format,webp/quality,q_75'" />
+            <img :src="imgOrigin+forumInfo.imageName+'?x-oss-process=image/resize,h_80/quality,q_75'" />
             <div>{{forumInfo.name}}</div>
           </div>
           <div class="forum_desc">{{forumInfo.desc}}</div>

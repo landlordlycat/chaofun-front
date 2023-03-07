@@ -51,7 +51,7 @@
                 <span v-if="message.hasNewMessage" class="tip_notice_circle"></span>
               </span>
             </div>
-            <img class="userAvatar" :src="imgOrigin+userinfo.icon + '?x-oss-process=image/resize,h_80/format,webp/quality,q_75'"/>
+            <img class="userAvatar" :src="imgOrigin+userinfo.icon + '?x-oss-process=image/resize,h_80/quality,q_75'"/>
               <div>
                 <p> <span class="asd">{{userinfo.userName}}</span>
                   <span v-if="ISPHONE&&message.hasNewMessage" class="tip_notice_circle2">
@@ -64,7 +64,7 @@
           <i class="el-icon-caret-bottom" />
         </div>
         <div v-else class="avatar-wrapper" @click="showLogin">
-            <img class="userAvatar" :src="imgOrigin + defaultUserIcon + '?x-oss-process=image/resize,h_80/format,webp/quality,q_75'"/>
+            <img class="userAvatar" :src="imgOrigin + defaultUserIcon + '?x-oss-process=image/resize,h_80/quality,q_75'"/>
               <div style="min-width: 50px;">
                 <p>未登录</p>
               </div>

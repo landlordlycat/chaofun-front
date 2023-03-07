@@ -5,7 +5,7 @@
        <div style="padding-top: 80px;"></div>
        <div class="main_content">
         <div v-if="!ISPHONE" class="main_left">
-          
+
         </div>
         <div class="main_center">
           <div>
@@ -68,7 +68,7 @@
                 <el-progress v-if="progressFlag" :percentage="loadProgress"></el-progress>
                 <div class="imgList">
                   <div v-for="(item,index) in fileLists" :key="index" class="li">
-                    <img v-if="!item.endsWith('.mp4') && !item.endsWith('.mkv')" :src="imgOrigin+item + '?x-oss-process=image/resize,h_150/format,webp/quality,q_75'" alt="">
+                    <img v-if="!item.endsWith('.mp4') && !item.endsWith('.mkv')" :src="imgOrigin+item + '?x-oss-process=image/resize,h_150/quality,q_75'" alt="">
                     <img v-if="item.endsWith('.mp4') || item.endsWith('.mkv')" :src="imgOrigin+item + '?x-oss-process=video/snapshot,t_1,h_150'" alt="">
                     <span class="del" @click="deleteImg(index)">删除</span>
                   </div>
@@ -216,8 +216,8 @@
   <!-- <div :class="[{'containersRight': opened}]">
     <div style="height:50px;"></div>
     <div :class="['container', 'containers',{'phone_container':ISPHONE}]">
-      
-      
+
+
   </div> -->
 </template>
 
@@ -258,7 +258,7 @@
       if (fileInput === null) {
         fileInput = document.createElement('input');
         fileInput.setAttribute('type', 'file');
-        fileInput.setAttribute('multiple', 'multiple') 
+        fileInput.setAttribute('multiple', 'multiple')
         // 设置图片参数名
         if (uploadConfig.name) {
           fileInput.setAttribute('name', uploadConfig.name);
@@ -333,12 +333,12 @@
         baseFormName: '',
         fileList: [],
         fileLists: [
-          // 'biz/563a9785150700000c41340852d39afa.jpg?x-oss-process=image/resize,h_512/format,webp/quality,q_75',
-          // 'biz/563a9785150700000c41340852d39afa.jpg?x-oss-process=image/resize,h_512/format,webp/quality,q_75',
-          // 'https://i.chao-fan.com/biz/563a9785150700000c41340852d39afa.jpg?x-oss-process=image/resize,h_512/format,webp/quality,q_75',
-          // 'https://i.chao-fan.com/biz/563a9785150700000c41340852d39afa.jpg?x-oss-process=image/resize,h_512/format,webp/quality,q_75',
-          // 'https://i.chao-fan.com/biz/563a9785150700000c41340852d39afa.jpg?x-oss-process=image/resize,h_512/format,webp/quality,q_75',
-          // 'https://i.chao-fan.com/biz/563a9785150700000c41340852d39afa.jpg?x-oss-process=image/resize,h_512/format,webp/quality,q_75'
+          // 'biz/563a9785150700000c41340852d39afa.jpg?x-oss-process=image/resize,h_512/quality,q_75',
+          // 'biz/563a9785150700000c41340852d39afa.jpg?x-oss-process=image/resize,h_512/quality,q_75',
+          // 'https://i.chao-fan.com/biz/563a9785150700000c41340852d39afa.jpg?x-oss-process=image/resize,h_512/quality,q_75',
+          // 'https://i.chao-fan.com/biz/563a9785150700000c41340852d39afa.jpg?x-oss-process=image/resize,h_512/quality,q_75',
+          // 'https://i.chao-fan.com/biz/563a9785150700000c41340852d39afa.jpg?x-oss-process=image/resize,h_512/quality,q_75',
+          // 'https://i.chao-fan.com/biz/563a9785150700000c41340852d39afa.jpg?x-oss-process=image/resize,h_512/quality,q_75'
         ],
         filedata: {},
         activeName: 'first',
@@ -372,7 +372,7 @@
         isClear: false,
         detail:"",
         editorOption: {
-         
+
         },
       　loadProgress: 0, // 动态显示进度条
         progressFlag: false, // 关闭进度条
@@ -486,7 +486,7 @@
         // this.$nextTick(()=>{
         //   this.$refs.preview.showViewer = true
         // })
-        
+
         // console.log(src);
       },
       getProgress(event, file, fileList){
@@ -601,7 +601,7 @@
         console.log(this.voteList)
         this.submitTitle = '发布中'
         this.disableSubmit = true;
-        
+
         this.doLoginStatus().then(res=>{
           if(res){
             if(this.activeName == 'first'){
@@ -785,7 +785,7 @@
             }else{
               this.baseFormName = this.$route.query.name;
             }
-            
+
             // if(){
 
             // }

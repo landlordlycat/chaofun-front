@@ -55,7 +55,7 @@
                   class="icon icon2"
                   :src="
                     imgOrigin +
-                    'biz/daa54c993451a77d3e723405afbcd15c.png?x-oss-process=image/resize,h_80/format,webp/quality,q_75'
+                    'biz/daa54c993451a77d3e723405afbcd15c.png?x-oss-process=image/resize,h_80/quality,q_75'
                   "
                   alt=""
                 />
@@ -149,7 +149,7 @@
                     :src="
                       imgOrigin +
                       item.cover +
-                      '?x-oss-process=image/resize,h_256/format,webp/quality,q_75'
+                      '?x-oss-process=image/resize,h_256/quality,q_75'
                     "
                     alt=""
                   />
@@ -525,12 +525,12 @@ export default {
           break;
         case "article":
           return (
-            this.imgOrigin + (item.imageName ? item.imageName : 'biz/b64193b7beca6ae243341273adddf494.png') + '?x-oss-process=image/resize,h_120/format,webp/quality,q_75'
+            this.imgOrigin + (item.imageName ? item.imageName : 'biz/b64193b7beca6ae243341273adddf494.png') + '?x-oss-process=image/resize,h_120/quality,q_75'
           );
           break;
         case "audio":
           return (
-              this.imgOrigin + 'biz/bc5c86c96e84a798930542444ceffcc5.webp?x-oss-process=image/resize,h_125/format,webp/quality,q_75'
+              this.imgOrigin + 'biz/bc5c86c96e84a798930542444ceffcc5.webp?x-oss-process=image/resize,h_125/quality,q_75'
           );
           break;
         case "image":

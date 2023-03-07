@@ -13,7 +13,7 @@
                         (userInfo.icon || '37f1ae45279fac24462a42fd7b849edc.jpg')]">
                   <img :src="imgOrigin +
                         (userInfo.icon || '37f1ae45279fac24462a42fd7b849edc.jpg') +
-                        '?x-oss-process=image/resize,h_80/format,webp/quality,q_75'" :data-source="imgOrigin +
+                        '?x-oss-process=image/resize,h_80/quality,q_75'" :data-source="imgOrigin +
                         (userInfo.icon || '37f1ae45279fac24462a42fd7b849edc.jpg')" alt=""/>
                 </viewer>
               </div>
@@ -46,12 +46,12 @@
             <div v-if="badgeList.length" class="badgeList">
               <div v-for="badgeInfo in badgeList" style="position:relative;margin-left: 20px;margin-right: 20px;">
 <!--                <img-->
-<!--                  :src="imgOrigin +  'biz/f30227f819eda710024f0f6c99fa60eb.png?x-oss-process=image/resize,h_42/format,webp/quality,q_75'"-->
+<!--                  :src="imgOrigin +  'biz/f30227f819eda710024f0f6c99fa60eb.png?x-oss-process=image/resize,h_42/quality,q_75'"-->
 <!--                  style="position:absolute;left: -21px;" />-->
                 <el-popover placement="bottom" trigger="hover" width="300">
                   <badgeDetail :badgeInfo0="badgeInfo.badge" />
                   <img slot="reference"
-                       :src="imgOrigin + badgeInfo.badge.icon +  '?x-oss-process=image/resize,h_24/format,webp/quality,q_75'"
+                       :src="imgOrigin + badgeInfo.badge.icon +  '?x-oss-process=image/resize,h_24/quality,q_75'"
                        alt=""
                        style="position:absolute;top:14px;left:-12px;border-radius:50%;height: 24px;width: 24px;" />
                 </el-popover>

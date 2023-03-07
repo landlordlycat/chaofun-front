@@ -17,7 +17,7 @@
               <viewer :images="images" ref="viewer" style="line-height: 0px" >
                 <div v-for="(i,k) in item.postInfo.images" :key="k">
                       <span class="aaa">
-                        <img  style="opacity:1;width:300px;height:300px;object-fit: contain" :src="imgOrigin+i+'?x-oss-process=image/resize,h_300/format,webp/quality,q_75'" :data-source="imgOrigin+i" >
+                        <img  style="opacity:1;width:300px;height:300px;object-fit: contain" :src="imgOrigin+i+'?x-oss-process=image/resize,h_300/quality,q_75'" :data-source="imgOrigin+i" >
                       </span>
                 </div>
               </viewer>
@@ -26,7 +26,7 @@
               <viewer :images="doImgs(item.postInfo.imageName)" ref="viewer" style="line-height: 0px" >
                 <div v-for="(i,k) in item.postInfo.imageName.split(',')" :key="k">
                             <span class="aaa">
-                              <img  style="opacity:1;width:300px;height:300px;object-fit: contain" :src="imgOrigin+i+'?x-oss-process=image/resize,h_300/format,webp/quality,q_75'" :data-source="imgOrigin+i" >
+                              <img  style="opacity:1;width:300px;height:300px;object-fit: contain" :src="imgOrigin+i+'?x-oss-process=image/resize,h_300/quality,q_75'" :data-source="imgOrigin+i" >
                             </span>
                 </div>
               </viewer>
@@ -108,7 +108,7 @@
                         <div v-for="(i,k) in item.commentInfo.imageNames.split(',')" :key="k">
                             <span class="aaa">
 <!--                                【附图】-->
-                              <img  style="opacity:1;width:300px;height:300px;object-fit: contain" :src="imgOrigin+i+'?x-oss-process=image/resize,h_300/format,webp/quality,q_75'" :data-source="imgOrigin+i" >
+                              <img  style="opacity:1;width:300px;height:300px;object-fit: contain" :src="imgOrigin+i+'?x-oss-process=image/resize,h_300/quality,q_75'" :data-source="imgOrigin+i" >
                             </span>
                         </div>
                     </viewer>
@@ -158,7 +158,7 @@
                         <div v-for="(i,k) in item.userInfo.icon.split(',')" :key="k">
                             <span class="aaa">
 <!--                                【附图】-->
-                              <img  style="opacity:1;width:300px;height:300px;object-fit: contain" :src="imgOrigin+i+'?x-oss-process=image/resize,h_300/format,webp/quality,q_75'" :data-source="imgOrigin+i" >
+                              <img  style="opacity:1;width:300px;height:300px;object-fit: contain" :src="imgOrigin+i+'?x-oss-process=image/resize,h_300/quality,q_75'" :data-source="imgOrigin+i" >
                             </span>
                         </div>
                     </viewer>

@@ -31,12 +31,12 @@
           class="others"
         >
           <div class="ava">
-            <img :src="imgOrigin + (item.sender.icon?item.sender.icon+'?x-oss-process=image/resize,h_80/format,webp/quality,q_75':'biz/f7cce56159ee5705a66f1cf8c03c4bea.png?x-oss-process=image/resize,h_80/format,webp/quality,q_75')" alt="" />
+            <img :src="imgOrigin + (item.sender.icon?item.sender.icon+'?x-oss-process=image/resize,h_80/quality,q_75':'biz/f7cce56159ee5705a66f1cf8c03c4bea.png?x-oss-process=image/resize,h_80/quality,q_75')" alt="" />
           </div>
           <div class="ads">
             <div class="contents">
               <div class="nickname">
-                {{ item.sender ? item.sender.userName : "炒饭用户—_1" }} 
+                {{ item.sender ? item.sender.userName : "炒饭用户—_1" }}
               </div>
               <div
                 v-if="item.type == 'text'"
@@ -44,7 +44,7 @@
                 v-html="item.content"
               ></div>
               <div v-if="item.type == 'image'" class="msg_img">
-                <!-- <img class="item_image" :src="imgOrigin+item.content+'?x-oss-process=image/resize,h_300/format,webp/quality,q_75'" alt=""> -->
+                <!-- <img class="item_image" :src="imgOrigin+item.content+'?x-oss-process=image/resize,h_300/quality,q_75'" alt=""> -->
                 <viewer :images="[imgOrigin + item.content]">
                   <img
                     class="item_image"
@@ -52,7 +52,7 @@
                     :src="
                       imgOrigin +
                       item.content +
-                      '?x-oss-process=image/resize,h_300/format,webp/quality,q_75'
+                      '?x-oss-process=image/resize,h_300/quality,q_75'
                     "
                     alt=""
                   />
@@ -84,7 +84,7 @@
                     :src="
                       imgOrigin +
                       item.content +
-                      '?x-oss-process=image/resize,h_300/format,webp/quality,q_75'
+                      '?x-oss-process=image/resize,h_300/quality,q_75'
                     "
                     alt=""
                   />
@@ -96,7 +96,7 @@
             </div>
           </div>
           <div v-if="item.sender" class="ava">
-            <img :src="imgOrigin + (item.sender.icon?item.sender.icon+'?x-oss-process=image/resize,h_80/format,webp/quality,q_75':'biz/f7cce56159ee5705a66f1cf8c03c4bea.png?x-oss-process=image/resize,h_80/format,webp/quality,q_75')" alt="" />
+            <img :src="imgOrigin + (item.sender.icon?item.sender.icon+'?x-oss-process=image/resize,h_80/quality,q_75':'biz/f7cce56159ee5705a66f1cf8c03c4bea.png?x-oss-process=image/resize,h_80/quality,q_75')" alt="" />
           </div>
         </div>
       </div>
@@ -238,7 +238,7 @@ export default {
     }else{
         console.log("您的浏览器不支持桌面消息");
     }
-    
+
   },
   methods: {
     islink(txtContent){
@@ -298,7 +298,7 @@ export default {
         return;
       }
       this.connectCount += 1;
-      
+
       that.lockReconnect = true;
       //没连接上会一直重连，设置延迟避免请求过多
       that.timeoutnum && clearTimeout(that.timeoutnum);
@@ -367,7 +367,7 @@ export default {
         content: "",
       };
       this.websocketsend(JSON.stringify(params));
-      
+
     },
     //连接失败事件
     websocketonerror(e) {
@@ -382,7 +382,7 @@ export default {
     websocketclose(e) {
       //关闭
       console.log(e)
-      
+
       //提示关闭
       console.log("连接已关闭", 3);
       // this.reconnect();
@@ -393,19 +393,19 @@ export default {
       this.reconnect();
       if(e.code!=1000&&e.type!='close'){
         //&&JSON.parse(localStorage.getItem("wsForum")).id==id
-        
+
         // this.reset()
       }else{
         console.log('链接真正关闭')
       }
-      
+
       // //重连
       // if(e.code!=1000&&e.type!='close'){
       //   this.reconnect();
       // }else{
       //   console.log('链接真正关闭')
       // }
-      
+
     },
     //接收服务器推送的信息
     websocketonmessage(event) {
@@ -440,10 +440,10 @@ export default {
         if(document.hidden){
           this.showDeskTopNotice('chao.fun',this.forumInfo.name,data.data);
         }
-        
+
       }
       if (data.type == "load_result" && data.data && data.data.length) {
-        
+
         data.data.forEach(item=>{
           item.content = that.islink(item.content)
         })
@@ -473,8 +473,8 @@ export default {
       setTimeout(()=>{
         document.getElementById("msg_end").scrollIntoView();
       },10)
-      
-      
+
+
     },
     inputFocus() {
       document.addEventListener("paste", this.toPaste);
@@ -667,7 +667,7 @@ export default {
                                 lang:'zh-CN',
                                 requireInteraction: false,
                                 tag: id,//实例化的notification的id
-                                icon:data.type=='image'?(self.imgOrigin+data.content):('https://i.chao-fan.com/biz/08a2d3a676f4f520cb99910496e48b4e.png?x-oss-process=image/resize,h_80/format,webp/quality,q_75'),//通知的缩略图,//icon 支持ico、png、jpg、jpeg格式
+                                icon:data.type=='image'?(self.imgOrigin+data.content):('https://i.chao-fan.com/biz/08a2d3a676f4f520cb99910496e48b4e.png?x-oss-process=image/resize,h_80/quality,q_75'),//通知的缩略图,//icon 支持ico、png、jpg、jpeg格式
                                 body: data.type=='text'? (data.sender.userName+'说：'+data.content):(data.type=='image'?data.sender.userName+'【发来一张图片】':data.sender.userName+'-发来未知类型消息') //通知的具体内容
                         });
                         notify.onclick=function(val){
@@ -675,10 +675,10 @@ export default {
                             console.log(val);
                             window.focus();
                             notify.close();
-                            
+
                         },
-                        notify.onshow = function () { 
-                            setTimeout(notify.close.bind(notify), 5000); 
+                        notify.onshow = function () {
+                            setTimeout(notify.close.bind(notify), 5000);
                         }
                         notify.onerror = function () {
                             console.log("HTML5桌面消息出错！！！");

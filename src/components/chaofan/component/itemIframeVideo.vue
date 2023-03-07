@@ -1,16 +1,16 @@
 <template>
- <div>  
+ <div>
     <div  class="item_video">
         <!-- <div class="title">
             {{item.title}}
         </div> -->
         <div  @click.stop="" class="video">
-            <img v-if="!item.play&&item.cover" class="coverss" @click="playVideo(index,item,0)" :src="imgOrigin+item.cover + '?x-oss-process=image/resize,h_256/format,webp/quality,q_75'" alt="">
+            <img v-if="!item.play&&item.cover" class="coverss" @click="playVideo(index,item,0)" :src="imgOrigin+item.cover + '?x-oss-process=image/resize,h_256/quality,q_75'" alt="">
             <img v-if="!item.play&&!item.cover" class="coverss" @click="playVideo(index,item,0)" src="../../../assets/images/bg/videocover.jpg" alt="">
             <img v-if="!item.play" class="btn_play" @click="playVideo(index,item,0)" src="../../../assets/images/bg/play.png" alt="">
             <iframe v-if="!ISPHONE&&item.play" style="width: 100%;min-height: 370px"   :src="item.video+(item.link.includes('www.acfun.cn')?'?':'')+'&autoplay=true'" allow="autoplay" id="ACPlayer-re"  scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
             <iframe v-if="ISPHONE&&item.play" style="width: 100%;height: 230px"   :src="item.video+(item.link.includes('www.acfun.cn')?'?':'')+'&autoplay=true'" allow="autoplay" id="ACPlayer-re"  scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
-       
+
         </div>
     </div>
     <!-- <div v-if="item.type == 'video'&&item.videoType == 'ifram'&&(!ISPHONE||!item.link.includes('www.acfun.cn'))" class="item_video">
@@ -31,7 +31,7 @@ import * as api from '@/api/api'
    name: '',
    data(){
      return {
-         
+
      }
    },
    props: {
@@ -62,7 +62,7 @@ import * as api from '@/api/api'
    created() {
    },
    mounted() {
-    
+
    },
    methods: {
     toUrls(item,params){

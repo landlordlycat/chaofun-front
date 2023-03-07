@@ -8,7 +8,7 @@
             <div  v-touch:start="startHandler" v-touch:end="endHandler" class="content">
                 <div v-if="secret.imageUrl" class="img">
                     <div v-viewer=""  v-if="!secret.imageUrl.includes('.mp4')">
-                    <img class="ims" v-if="!secret.imageUrl.includes('.mp4')" :src="secret.imageUrl + '?x-oss-process=image/resize,h_768/format,webp/quality,q_75'" :data-source="secret.imageUrl">
+                    <img class="ims" v-if="!secret.imageUrl.includes('.mp4')" :src="secret.imageUrl + '?x-oss-process=image/resize,h_768/quality,q_75'" :data-source="secret.imageUrl">
                     </div>
                     <video class="ims video" v-if="secret.imageUrl.includes('.mp4')" controls autoplay loop :src="secret.imageUrl" alt="">
                     </video>
@@ -27,7 +27,7 @@
                 v-model="show"
                 duration="0.1"
                 closeable
-                
+
                 close-icon="close"
                 position="bottom"
                 :style="{ height: '80%',zIndex: 55555 }"
@@ -37,14 +37,14 @@
                     <div>
                         <div @click="clearsss" class="btnt">重新填写</div>
                     </div>
-                        
-                    
-                    
+
+
+
                     <div class="forums">
                         <h1>我要分享到</h1>
                         <div class="forum_items">
                             <div @click="choose(item)" v-for="(item,index) in tags" :key="index" :class="['forum_item',{'forum_item_active':chooseId==item.id}]">
-                                <img class="f_img" :src="imgOrigin+item.imageName+'?x-oss-process=image/resize,h_80/format,webp/quality,q_75'" alt="">
+                                <img class="f_img" :src="imgOrigin+item.imageName+'?x-oss-process=image/resize,h_80/quality,q_75'" alt="">
                                 <span>{{item.name}}</span>
                             </div>
                         </div>
@@ -73,7 +73,7 @@ import {delete_secret_image} from "../../../api/api";
 export default {
   name: 'Home',
   components: {
-    
+
   },
 
   data(){
@@ -91,7 +91,7 @@ export default {
       }
   },
   created(){
-    
+
   },
   mounted(){
     this.init()
@@ -112,7 +112,7 @@ export default {
                 console.log(_sys);
                 self.version = _sys
             }
-            
+
         }else{
             this.getData();
         }
@@ -132,7 +132,7 @@ export default {
         //   window.flutter_inappwebview.callHandler('toUpgradePage');
       },
       submit() {
-        
+
         console.log(this.secret)
         api.submit_secret_image({'imageUrl': this.secret.imageUrl, 'title': this.title, 'forumId': this.chooseId*1}).then(res=>{
           this.show = false;
@@ -144,7 +144,7 @@ export default {
           }else{
               this.$toast(res.errorMessage);
           }
-          
+
         })
       },
     choose(item){
@@ -158,7 +158,7 @@ export default {
         var obj = res.data[res.data.findIndex((value)=>value.id==this.secret.submitForum)]
         res.data.unshift(obj);
         this.tags = this.unique(res.data);
-        
+
       })
     },
     unique(arr) {
@@ -173,7 +173,7 @@ export default {
     toPost(){
         this.show = true;
     },
-    
+
     getData(){
       api.delete_secret_image(this.secret.imageUrl?{'imageUrl': this.secret.imageUrl}:{}).then(res=>{
         this.secret = res.data;

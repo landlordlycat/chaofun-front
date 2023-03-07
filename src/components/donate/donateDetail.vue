@@ -49,14 +49,14 @@
             <span style="cursor: pointer;" @click="toUser(item.row.userInfo.userId)">
                <span v-if="item.row.rankImg" style="display: flex;">
                   <img
-                    :src="imgOrigin + item.row.userInfo.icon+ '?x-oss-process=image/resize,h_40/format,webp/quality,q_75'"
+                    :src="imgOrigin + item.row.userInfo.icon+ '?x-oss-process=image/resize,h_40/quality,q_75'"
                     alt="" style="width: 40px;height: 40px;border-radius: 100%;" />
                   <span
                     style="margin:auto 0 auto 10px;font-weight: bold;">{{ item.row.userInfo.userName }}</span>
                </span>
                <span v-else style="display: flex;">
                   <img
-                    :src="imgOrigin + item.row.userInfo.icon+ '?x-oss-process=image/resize,h_24/format,webp/quality,q_75'"
+                    :src="imgOrigin + item.row.userInfo.icon+ '?x-oss-process=image/resize,h_24/quality,q_75'"
                     alt="" style="width: 24px;height: 24px;border-radius: 100%;" />
                   <span
                     style="margin:auto 0 auto 10px;">{{ item.row.userInfo.userName }}</span>

@@ -43,7 +43,7 @@
           <div style="width: 300px;height: 100px;background: #b64340; border-radius:50% / 0 0 100% 100%; "/>
           <div style="width: 300px;height: 150px; position: relative;top:0px;">
             <div style="width: 40px;height: 40px; border-radius: 60px; margin: 20px auto 10px auto; background: #fff; ">
-              <img :src="imgOrigin +redPacket.sendUser.icon +'?x-oss-process=image/resize,h_40/format,webp/quality,q_75'" alt="" style="width: 40px;height: 40px; border-radius: 60px;"/>
+              <img :src="imgOrigin +redPacket.sendUser.icon +'?x-oss-process=image/resize,h_40/quality,q_75'" alt="" style="width: 40px;height: 40px; border-radius: 60px;"/>
             </div>
             <div style="font-size: 20px;color: #fce5b9;cursor: pointer; " @click.stop="toUser(redPacket.sendUser.userId)">{{ redPacket.sendUser.userName }}</div>
             <div style="font-size: 30px;color: #fff; margin-top: 30px;margin-left: 10px;margin-right: 10px;"> {{ redPacket.blessing }}</div>

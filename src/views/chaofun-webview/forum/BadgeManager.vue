@@ -87,7 +87,7 @@
         <badgeDetail :badgeInfo0="item" />
         <div slot="reference" style="display: inline-flex;">
           <img
-            :src="imgOrigin + item.icon +  '?x-oss-process=image/resize,h_30/format,webp/quality,q_75'"
+            :src="imgOrigin + item.icon +  '?x-oss-process=image/resize,h_30/quality,q_75'"
             alt=""
             style="border-radius:100%;height: 30px;width: 30px;" />
           <span style="margin: auto 5px;min-width: 150px;">

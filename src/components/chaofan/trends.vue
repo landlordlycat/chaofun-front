@@ -71,7 +71,7 @@
                             {{item.postInfo.title}}
                         </div>
                         <div  @click.stop="" class="video">
-                            <img v-if="!item.postInfo.play&&item.postInfo.cover" class="coverss" @click="playVideo(index,item.postInfo,0)" :src="imgOrigin+item.postInfo.cover + '?x-oss-process=image/resize,h_256/format,webp/quality,q_75'" alt="">
+                            <img v-if="!item.postInfo.play&&item.postInfo.cover" class="coverss" @click="playVideo(index,item.postInfo,0)" :src="imgOrigin+item.postInfo.cover + '?x-oss-process=image/resize,h_256/quality,q_75'" alt="">
                             <img v-if="!item.postInfo.play&&!item.postInfo.cover" class="coverss" @click="playVideo(index,item.postInfo,0)" src="../../assets/images/bg/videocover.jpg" alt="">
                             <img v-if="!item.postInfo.play" class="btn_play" @click="playVideo(index,item.postInfo,0)" src="../../assets/images/bg/play.png" alt="">
                             <iframe v-if="!ISPHONE&&item.postInfo.play" style="width: 100%;min-height: 370px"   :src="item.postInfo.video+(item.postInfo.link.includes('www.acfun.cn')?'?':'')+'&autoplay=true'" allow="autoplay" id="ACPlayer-re"  scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
@@ -113,7 +113,7 @@
                                 {{item.postInfo.sourcePost.title}}
                             </div>
                             <div  @click.stop="" class="video">
-                                <img v-if="!item.postInfo.sourcePost.play&&item.postInfo.sourcePost.cover" class="coverss" @click="playVideo(index,item.postInfo.sourcePost,0)" :src="imgOrigin+item.postInfo.sourcePost.cover + '?x-oss-process=image/resize,h_256/format,webp/quality,q_75'" alt="">
+                                <img v-if="!item.postInfo.sourcePost.play&&item.postInfo.sourcePost.cover" class="coverss" @click="playVideo(index,item.postInfo.sourcePost,0)" :src="imgOrigin+item.postInfo.sourcePost.cover + '?x-oss-process=image/resize,h_256/quality,q_75'" alt="">
                                 <img v-if="!item.postInfo.sourcePost.play&&!item.postInfo.sourcePost.cover" class="coverss" @click="playVideo(index,item.postInfo.sourcePost,0)" src="../../assets/images/bg/videocover.jpg" alt="">
                                 <img v-if="!item.postInfo.sourcePost.play" class="btn_play" @click="playVideo(index,item.postInfo.sourcePost,0)" src="../../assets/images/bg/play.png" alt="">
                                 <iframe v-if="!ISPHONE&&item.postInfo.sourcePost.play" style="width: 100%;min-height: 370px"   :src="item.postInfo.sourcePost.video+(item.postInfo.sourcePost.link.includes('www.acfun.cn')?'?':'')+'&autoplay=true'" allow="autoplay" id="ACPlayer-re"  scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
@@ -399,7 +399,7 @@ import forwardH5 from '../h5/forward'
   //   count:'', /**是否显示分享数，1显示(可选)*/
   //   // appkey:'4026630105', /**您申请的应用appkey,显示分享来源(可选)*/
   //   title:'资深人士质疑央视专家观点 到底谁是鳕鱼界的“李鬼”',
-  //   pic:'http://i.chao.fun/1fea044b7e50c07953ce17d509a9336d.jpg?x-oss-process=image/resize,h_512/format,webp/quality,q_75',
+  //   pic:'http://i.chao.fun/1fea044b7e50c07953ce17d509a9336d.jpg?x-oss-process=image/resize,h_512/quality,q_75',
   //   ralateUid:'炒饭社区', /**关联用户的UID，分享微博会@该用户(可选)*/
   //   rnd:new Date().valueOf()
   // }

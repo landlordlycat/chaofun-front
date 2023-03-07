@@ -8,7 +8,7 @@
       <div style="height:50px;"></div>
       <div class="main_content">
         <!-- <div v-if="!ISPHONE" class="main_left">
-          
+
         </div> -->
         <div class="main_center">
           <div class="grid-content"  style="overflow:auto; width: 740px; max-width: 100%;margin:0 auto;">
@@ -21,7 +21,7 @@
                 <div class="right_main">
                     <div v-for="(item,index) in listsData" :key="index"  @click="toUrl({path:'/f/'+item.id})">
                         <div class="item">
-                          <img :src="'https://i.chao-fan.com/'+item.imageName+'?x-oss-process=image/resize,h_80/format,webp/quality,q_75'" alt="">
+                          <img :src="'https://i.chao-fan.com/'+item.imageName+'?x-oss-process=image/resize,h_80/quality,q_75'" alt="">
                           <div class="center">
                             <div class="name">{{item.name}}</div>
 
@@ -41,7 +41,7 @@
                     </div>
                 </div>
             </div>
-            
+
           </div>
         </div>
         <!-- <div v-if="!ISPHONE" class="main_right">
@@ -55,7 +55,7 @@
       </div>
       <!-- <el-row :gutter="24">
         <el-col :span="isPhone?24:doWidth()" :offset="0" >
-          
+
           <div class="grid-content"  style="overflow:auto; width: 740px; max-width: 100%;margin:0 auto;">
             <div class="ccc">
                 <div v-if="!ISPHONE" class="left_navs">
@@ -66,7 +66,7 @@
                 <div class="right_main">
                     <div v-for="(item,index) in listsData" :key="index"  @click="toUrl({path:'/f/'+item.id})">
                         <div class="item">
-                          <img :src="'https://i.chao-fan.com/'+item.imageName+'?x-oss-process=image/resize,h_80/format,webp/quality,q_75'" alt="">
+                          <img :src="'https://i.chao-fan.com/'+item.imageName+'?x-oss-process=image/resize,h_80/quality,q_75'" alt="">
                           <div class="center">
                             <div class="name">{{item.name}}</div>
 
@@ -86,13 +86,13 @@
                     </div>
                 </div>
             </div>
-            
+
           </div>
         </el-col>
       </el-row> -->
     </div>
-    
-    
+
+
 
   </div>
 </template>
@@ -189,7 +189,7 @@ export default {
     this.params.keyword = this.$route.query.q
     this.keyword = this.$route.query.q;
     this.getListTag()
-    
+
     console.log(this.$store.state.settings.leftNav)
   },
   methods:{
@@ -199,11 +199,11 @@ export default {
           if(item.joined){
             // 加入
             api.joinForum({forumId: item.id}).then(res=>{
-              
+
             })
           }else{
             api.leaveForum({forumId: item.id}).then(res=>{
-              
+
             })
           }
         }else{
@@ -219,7 +219,7 @@ export default {
         this.load()
     },
     getListTag(){
-        
+
         api.listTags({}).then(res=>{
             // this.$store.dispatch('settings/SET_leftNav','allForm')
             // this.$store.dispatch('permission/SET_formRoute',res.data)

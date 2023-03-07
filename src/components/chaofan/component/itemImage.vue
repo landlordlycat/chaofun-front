@@ -1,7 +1,7 @@
 <template>
   <div>
     <div  v-if="item.type == 'image'" :class="['item_image',{'item_image_de': isDetail}]">
-      
+
       <div @click.stop="" v-if="item.imageNums==1" class="imgs" style="  position: relative;   overflow: hidden ">
         <viewer :images="[imgOrigin+item.imageName]">
           <img v-if="isDetail" :alt="item.title" :data-source="imgOrigin+item.imageName"
@@ -19,14 +19,14 @@
       </div>
       <div @click.stop="" v-if="item.imageNums!=1" class="imgLists">
         <viewer :images="item.o_imgs">
-          <div v-for="(item2,index2) in item.images" :key="index2" :class="doImgClass(item.images)" :style="doMoreImgStyle(item,item2)" 
-          :alt="item.title.includes('/')?'':item.title" 
+          <div v-for="(item2,index2) in item.images" :key="index2" :class="doImgClass(item.images)" :style="doMoreImgStyle(item,item2)"
+          :alt="item.title.includes('/')?'':item.title"
           :title="item.title.includes('/')?'':item.title">
             <img
               style="opacity:0;width:100%;height:100%;"
               :data-source="imgOrigin+item2"
-              :data-src="imgOrigin+item2+(item2.includes('.gif')? '': '?x-oss-process=image/resize,h_512/format,webp/quality,q_75')"
-              :key="item2" :alt="item.title.includes('/')?'':item.title" 
+              :data-src="imgOrigin+item2+(item2.includes('.gif')? '': '?x-oss-process=image/resize,h_512/quality,q_75')"
+              :key="item2" :alt="item.title.includes('/')?'':item.title"
               :title="item.title.includes('/')?'':item.title"
               class="lazyload"
             />
@@ -70,7 +70,7 @@ export default {
       if(this.item.imageNums>1){
         this.item.images.forEach(item=>{
           if(!item.includes('.gif')){
-            o_imgs.push(this.imgOrigin+item+ '?x-oss-process=image/resize,h_512/format,webp/quality,q_75')
+            o_imgs.push(this.imgOrigin+item+ '?x-oss-process=image/resize,h_512/quality,q_75')
           }
         })
       }
@@ -98,7 +98,7 @@ export default {
         if (this.isLongImage(item.width, item.height)) {
           return url + '?x-oss-process=image/crop,h_' + parseInt(512 * item.width / 568)
         }
-        return url + '?x-oss-process=image/resize,h_512/format,webp/quality,q_75';
+        return url + '?x-oss-process=image/resize,h_512/quality,q_75';
       },
       toUrls(item,params){
         this.postBehavior(item.postId,'jump');
@@ -115,7 +115,7 @@ export default {
         return {
           // 'width':
           'height':parseInt((this.ISPHONE?(231*item.height/(item.width*2)):(231*item.height/item.width)))+'px',
-          'background-image':`url(${this.imgOrigin+item2+(item2.includes('.gif')? '': ('?x-oss-process=image/resize,h_'+(item.imageNums==2?750:400))  + '/format,webp/quality,q_75' )}) `,//parseInt((this.ISPHONE?(231*item.height/(item.width)):(231*item.height/item.width)))
+          'background-image':`url(${this.imgOrigin+item2+(item2.includes('.gif')? '': ('?x-oss-process=image/resize,h_'+(item.imageNums==2?750:400))  + '/quality,q_75' )}) `,//parseInt((this.ISPHONE?(231*item.height/(item.width)):(231*item.height/item.width)))
         }
       },
       getImageHeight(w,h){

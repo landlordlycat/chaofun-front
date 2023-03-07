@@ -6,7 +6,7 @@
           <badgeDetail :badgeInfo0="item.badge" />
           <span slot="reference" style="display: flex;">
             <img
-              :src="imgOrigin + item.badge.icon +  '?x-oss-process=image/resize,h_24/format,webp/quality,q_75'"
+              :src="imgOrigin + item.badge.icon +  '?x-oss-process=image/resize,h_24/quality,q_75'"
               alt=""
               style="border-radius:100%;height: 24px;width: 24px;" />
             <span style="margin: auto 5px;min-width: 100px;">

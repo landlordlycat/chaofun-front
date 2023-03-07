@@ -9,7 +9,7 @@
             <div  class="content" :style="{width: ISPHONE?imgMaxWidth+80+'px':'640px'}">
               <div :style="{height: ISPHONE?'auto':'440px', maxWidth: ISPHONE?imgMaxWidth+80+'px':'640px',marginBottom:'20px',overflow:'hidden'}">
                 <div  v-viewer="" v-if="secret && secret.imageUrl !== null &&!secret.imageUrl.includes('.mp4')" :style="{maxHeight: '100%', maxWidth: '100%', margin: 'auto', display: 'inline'}">
-                  <img v-if="!secret.imageUrl.includes('.gif')" v-bind:src="secret.imageUrl + '?x-oss-process=image/resize,h_768/format,webp/quality,q_75'" :data-source="secret.imageUrl" :style="{maxHeight: '100%', maxWidth: '100%', margin: 'auto', display: 'table-cell'}"   >
+                  <img v-if="!secret.imageUrl.includes('.gif')" v-bind:src="secret.imageUrl + '?x-oss-process=image/resize,h_768/quality,q_75'" :data-source="secret.imageUrl" :style="{maxHeight: '100%', maxWidth: '100%', margin: 'auto', display: 'table-cell'}"   >
                   <img v-if="secret.imageUrl.includes('.gif')" v-bind:src="secret.imageUrl" :data-source="secret.imageUrl" :style="{maxHeight: '100%', maxWidth: '100%', margin: 'auto', display: 'table-cell'}"   >
                 </div>
                 <video  v-if="secret && secret.imageUrl !== null && secret.imageUrl.includes('.mp4')" controls autoplay loop :src="secret.imageUrl" alt="" :style="{maxHeight: '100%', maxWidth: '100%', margin: 'auto'}">
@@ -35,8 +35,8 @@
                   <div class="items">
                     <span @click="chooseItem(item)" :class="['item',{'item_active':activeId==item.id}]" v-for="(item,index) in forums" :key="index"><img :src="imgOrigin+item.imageName" alt="">{{item.name}}</span>
                   </div>
-                  
-                  
+
+
                 </div>
               </div>
               <!-- <el-select v-model="secret.submitForum" style="width:120px;">
@@ -50,7 +50,7 @@
               <div class="subs">
                 <el-button type="primary" v-on:click="submit" :disabled="isSend" :style="{marginLeft: '20px'}">发布</el-button>
                 <el-button type="success" v-on:click="skip" :style="{marginLeft: '20px'}">跳过</el-button>
-              </div> 
+              </div>
             </div>
             <div @keydown.prevent @keypress.prevent @keyup.prevent  v-if="!ISPHONE" class="right_desc">
               <div style="font-size: 20px;  color: black ">
@@ -130,7 +130,7 @@
         }else{
           this.getDefaultForum()
         }
-        
+
       }
     },
     computed: {
@@ -265,7 +265,7 @@
             this.forums = res.data
             console.log(this.forums)
           }
-          
+
         })
       },
       doImgStyle(w,h){
@@ -310,7 +310,7 @@
             this.isSend=false
           })
         }
-        
+
       },
 
       skip() {
@@ -367,7 +367,7 @@
     margin-bottom: 20px;
     // display: flex;
   }
- 
+
  .content{
    padding-bottom: 90px;
    .el-input{

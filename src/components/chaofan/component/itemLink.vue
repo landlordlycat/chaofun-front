@@ -1,5 +1,5 @@
 <template>
- <div>  
+ <div>
     <div @click.stop="openLink(item)" class="item_link">
       <div v-if="item.tags.length" class="tags">
         <div v-for="(it, ins) in item.tags" :key="ins">
@@ -12,7 +12,7 @@
         </div>
         <div :class="['left_img',{'left_img_display': item.cover}]">
           <i v-if="!item.cover" class="el-icon-link"></i>
-          <img v-if="item.cover" :src="imgOrigin+item.cover+(item.cover.includes('.ico')?'':'?x-oss-process=image/resize,h_100/format,webp/quality,q_75')" alt="">
+          <img v-if="item.cover" :src="imgOrigin+item.cover+(item.cover.includes('.ico')?'':'?x-oss-process=image/resize,h_100/quality,q_75')" alt="">
         </div>
     </div>
  </div>
@@ -23,7 +23,7 @@
    name: '',
    data(){
      return {
-         
+
      }
    },
    props: {
@@ -40,11 +40,11 @@
    created() {
    },
    mounted() {
-    
+
    },
    methods: {
      openLink(item){
-       window.open(item.link,"_blank");  
+       window.open(item.link,"_blank");
      },
     toUrls(item,params){
        this.postBehavior(item.postId,'jump');

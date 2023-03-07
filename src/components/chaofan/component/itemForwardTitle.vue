@@ -1,10 +1,10 @@
 <template>
- <div>  
+ <div>
     <div class="title">
-        <div class="title_source"> 
-            <img  class="source_icon" :src="imgOrigin+item.sourcePost.forum.imageName+'?x-oss-process=image/resize,h_80/format,webp/quality,q_75'" alt="">
+        <div class="title_source">
+            <img  class="source_icon" :src="imgOrigin+item.sourcePost.forum.imageName+'?x-oss-process=image/resize,h_80/quality,q_75'" alt="">
             <span class="span_username">{{item.sourcePost.forum.name}}</span>
-            来自 
+            来自
             <span>{{item.sourcePost.userInfo?item.sourcePost.userInfo.userName:'测试账号'}}</span>
         </div>
         <!-- {{item.sourcePost.title}} -->
@@ -18,7 +18,7 @@ import * as api from '@/api/api'
    name: '',
    data(){
      return {
-         
+
      }
    },
    props: {
@@ -35,7 +35,7 @@ import * as api from '@/api/api'
    created() {
    },
    mounted() {
-    
+
    },
    methods: {
     toUrls(item,params){

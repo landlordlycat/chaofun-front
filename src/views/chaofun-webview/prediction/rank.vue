@@ -7,7 +7,7 @@
         </div>
         <div @click="toUser(item)" v-for="(item,index) in pagedata" :key="index" class="item">
             <div class="left">
-                <img :src="imgOrigin+item.userAO.icon + '?x-oss-process=image/resize,h_80/format,webp/quality,q_75'" alt="">
+                <img :src="imgOrigin+item.userAO.icon + '?x-oss-process=image/resize,h_80/quality,q_75'" alt="">
                 <div class="info">
                   <div>
                     <span style="padding-right: 2px">{{item.userAO.userName}}</span>
@@ -21,7 +21,7 @@
             </div>
         </div>
     </div>
-    
+
   </div>
 </template>
 
@@ -32,7 +32,7 @@ import * as api from '@/api/api'
 export default {
   name: 'Home',
   components: {
-    
+
   },
   data(){
       return {
@@ -116,7 +116,7 @@ export default {
                 display: flex;
                 flex-direction: column;
                 justify-content: space-around;
-                
+
             }
         }
         .right{

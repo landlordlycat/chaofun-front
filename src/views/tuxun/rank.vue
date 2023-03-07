@@ -17,7 +17,7 @@
             class="podium" style="position: relative;top: 30px;"
             @click="toUser(pagedata[1])">
           <span style="display: block;color: #C0C0C0;font-weight: bold;font-size: 120%;">{{ pagedata[1].rating }}</span>
-          <img :src="imgOrigin+pagedata[1].userAO.icon + '?x-oss-process=image/resize,h_100/format,webp/quality,q_75'"
+          <img :src="imgOrigin+pagedata[1].userAO.icon + '?x-oss-process=image/resize,h_100/quality,q_75'"
                alt=""
                style="width: 50px; height: 50px; border-radius: 100%;border: 2px solid #C0C0C0;">
           <span
@@ -31,7 +31,7 @@
             class="podium" style="position: relative;"
             @click="toUser(pagedata[0])">
           <span style="display: block;color: #FFD700;font-weight: bold;font-size: 120%;">{{ pagedata[0].rating }}</span>
-          <img :src="imgOrigin+pagedata[0].userAO.icon + '?x-oss-process=image/resize,h_120/format,webp/quality,q_75'"
+          <img :src="imgOrigin+pagedata[0].userAO.icon + '?x-oss-process=image/resize,h_120/quality,q_75'"
                alt=""
                style="width: 60px; height: 60px; border-radius: 100%;border: 2px solid #FFD700;">
           <span
@@ -45,7 +45,7 @@
             class="podium" style="position: relative;top: 30px;"
             @click="toUser(pagedata[2])">
           <span style="display: block;color: #C47222;font-weight: bold;font-size: 120%;">{{ pagedata[2].rating }}</span>
-          <img :src="imgOrigin+pagedata[2].userAO.icon + '?x-oss-process=image/resize,h_100/format,webp/quality,q_75'"
+          <img :src="imgOrigin+pagedata[2].userAO.icon + '?x-oss-process=image/resize,h_100/quality,q_75'"
                alt=""
                style="width: 50px; height: 50px; border-radius: 100%;border: 2px solid #C47222;">
           <span
@@ -61,7 +61,7 @@
 
       <div v-for="(item,index) in pagedata" v-if="index>2" :key="index" class="list" @click="toUser(item)">
         <span style="width: 28px;text-align: center;">{{ item.rank }}</span>
-        <img :src="imgOrigin+item.userAO.icon + '?x-oss-process=image/resize,h_80/format,webp/quality,q_75'" alt=""
+        <img :src="imgOrigin+item.userAO.icon + '?x-oss-process=image/resize,h_80/quality,q_75'" alt=""
              style="width: 40px; height: 40px; border-radius: 100%;margin: 0 5px;">
         <span style="flex: 1;">{{ item.userAO.userName }}</span>
         <span style="width: 60px;text-align: right;">{{ item.rating }}</span>

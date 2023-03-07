@@ -1,7 +1,7 @@
 <template>
  <div class="item">
     <div class="img">
-        <img :src="imgOrigin+item.icon+'?x-oss-process=image/resize,h_80/format,webp/quality,q_75'" alt="">
+        <img :src="imgOrigin+item.icon+'?x-oss-process=image/resize,h_80/quality,q_75'" alt="">
     </div>
     <div class="center">
         <div class="name">
@@ -13,7 +13,7 @@
         <p class="desc">{{item.desc||'Ta有点懒，居然没有签名~'}}</p>
     </div>
     <div class="right">
-        
+
     </div>
  </div>
 </template>
@@ -43,7 +43,7 @@ import moment from 'moment'
    created() {
    },
    mounted() {
-     
+
    },
    methods: {
        toAttention(bool,id){
@@ -62,7 +62,7 @@ import moment from 'moment'
                 }
             })
         }
-        
+
        },
        toDetail(item){
             // this.$router.push({name: 'articleDetail',params:{postId: item.post.postId}})

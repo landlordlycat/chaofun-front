@@ -1447,7 +1447,7 @@ export default {
             lang: 'zh-CN',
             requireInteraction: false,
             // tag: ,//实例化的notification的id
-            icon: 'https://i.chao-fan.com/biz/08a2d3a676f4f520cb99910496e48b4e.png?x-oss-process=image/resize,h_80/format,webp/quality,q_75',//通知的缩略图,//icon 支持ico、png、jpg、jpeg格式
+            icon: 'https://i.chao-fan.com/biz/08a2d3a676f4f520cb99910496e48b4e.png?x-oss-process=image/resize,h_80/quality,q_75',//通知的缩略图,//icon 支持ico、png、jpg、jpeg格式
             body: text
           });
           notify.onclick = function (val) {

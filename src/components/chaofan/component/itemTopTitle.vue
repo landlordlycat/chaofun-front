@@ -7,7 +7,7 @@
             class="icon icon2"
             :src="
               imgOrigin +
-              'biz/daa54c993451a77d3e723405afbcd15c.png?x-oss-process=image/resize,h_80/format,webp/quality,q_75'
+              'biz/daa54c993451a77d3e723405afbcd15c.png?x-oss-process=image/resize,h_80/quality,q_75'
             "
             alt=""
           />
@@ -20,7 +20,7 @@
           :src="
             imgOrigin +
             item.forum.imageName +
-            '?x-oss-process=image/resize,h_80/format,webp/quality,q_75'
+            '?x-oss-process=image/resize,h_80/quality,q_75'
           "
           alt=""
         />
@@ -34,7 +34,7 @@
                 :src="
                   imgOrigin +
                   item.forum.imageName +
-                  '?x-oss-process=image/resize,h_80/format,webp/quality,q_75'
+                  '?x-oss-process=image/resize,h_80/quality,q_75'
                 "
                 alt=""
               />
@@ -81,7 +81,7 @@
                 :src="
                   imgOrigin +
                   item.userInfo.icon +
-                  '?x-oss-process=image/resize,h_80/format,webp/quality,q_75'
+                  '?x-oss-process=image/resize,h_80/quality,q_75'
                 "
                 alt=""
               />
@@ -364,7 +364,7 @@ export default {
       }else{
         this.$toast('还没有选中合集');
       }
-      
+
     },
     addCollection(){
       api.addCollection({name: '测试合集_2'}).then(res=>{
@@ -466,7 +466,7 @@ export default {
       if(this.item.collection){
         this.collectId = JSON.parse(JSON.stringify(this.item)).collection.id;
       }
-      
+
       if (this.hasGetCollect) {
         this.showCollect = !this.showCollect;
       } else {
@@ -563,7 +563,7 @@ export default {
           }
         })
       }
-      
+
     },
     toForum(item) {
       localStorage.removeItem("storedata");
@@ -885,7 +885,7 @@ h1 {
 .el-radio:last-child{
   vertical-align: middle;
   overflow: hidden;
-  text-overflow:ellipsis; 
+  text-overflow:ellipsis;
   white-space: nowrap;
   width: 100%;
 }

@@ -185,7 +185,7 @@
                       item.sourcePost.cover +
                       (item.sourcePost.cover.includes('.ico')
                         ? ''
-                        : '?x-oss-process=image/resize,h_100/format,webp/quality,q_75')
+                        : '?x-oss-process=image/resize,h_100/quality,q_75')
                     "
                     alt=""
                   />

@@ -18,7 +18,7 @@
                @click="switchChannel(channel.id)">
 
             <!-- 头像 -->
-            <img :src="imgOrigin+channel.avatar + '?x-oss-process=image/resize,w_40,h_40/format,webp/quality,q_75'"
+            <img :src="imgOrigin+channel.avatar + '?x-oss-process=image/resize,w_40,h_40/quality,q_75'"
                  alt="" style="float: left;width: 40px;height: 40px;border-radius: 100%;" />
 
             <!-- 信息 -->
@@ -72,7 +72,7 @@
                 style="cursor: pointer;"
                 @click.stop="toForumOrUser(chatHistoryMap.get(currentChannelId))">
             <img
-              :src="imgOrigin+chatHistoryMap.get(currentChannelId).avatar + '?x-oss-process=image/resize,w_40,h_40/format,webp/quality,q_75'"
+              :src="imgOrigin+chatHistoryMap.get(currentChannelId).avatar + '?x-oss-process=image/resize,w_40,h_40/quality,q_75'"
               alt="" style="width: 40px;height: 40px;border-radius: 100%;vertical-align: middle;">
             <span
               style="font-size: 20px;font-weight: bold;margin-left: 5px;vertical-align: middle;">{{ chatHistoryMap.get(currentChannelId).name
@@ -94,7 +94,7 @@
                 <!--  头像、昵称、时间  -->
                 <div style="height:28px;">
                   <img
-                    :src="imgOrigin+chatMessage.sender.icon + '?x-oss-process=image/resize,w_24,h_24/format,webp/quality,q_75'"
+                    :src="imgOrigin+chatMessage.sender.icon + '?x-oss-process=image/resize,w_24,h_24/quality,q_75'"
                     alt="" style="width: 24px;height: 24px;border-radius: 100%;vertical-align: middle;" />
                   <span v-if="'group'===chatHistoryMap.get(currentChannelId).type"
                         style="color: #999;margin-left: 5px;vertical-align: middle;">{{
@@ -114,7 +114,7 @@
 
                   <viewer v-if="'image'===chatMessage.type" :images="[imgOrigin+chatMessage.content]">
                     <img :data-source="imgOrigin +chatMessage.content"
-                         :src="imgOrigin+chatMessage.content+ '?x-oss-process=image/resize,w_190/format,webp/quality,q_75'"
+                         :src="imgOrigin+chatMessage.content+ '?x-oss-process=image/resize,w_190/quality,q_75'"
                          alt=""
                          style="vertical-align: middle;max-height: 200px;" />
                   </viewer>
@@ -133,7 +133,7 @@
                        calcMessageTime(chatMessage.time)
                      }}</span>
                   <img
-                    :src="imgOrigin+chatMessage.sender.icon + '?x-oss-process=image/resize,w_24,h_24/format,webp/quality,q_75'"
+                    :src="imgOrigin+chatMessage.sender.icon + '?x-oss-process=image/resize,w_24,h_24/quality,q_75'"
                     alt="" style="width: 24px;height: 24px;border-radius: 100%;vertical-align: middle;" />
                 </div>
                 <!--  图片/文字  -->
@@ -145,7 +145,7 @@
 
                   <viewer v-if="'image'===chatMessage.type" :images="[imgOrigin+chatMessage.content]">
                     <img :data-source="imgOrigin +chatMessage.content"
-                         :src="imgOrigin+chatMessage.content+ '?x-oss-process=image/resize,w_190/format,webp/quality,q_75'"
+                         :src="imgOrigin+chatMessage.content+ '?x-oss-process=image/resize,w_190/quality,q_75'"
                          alt=""
                          style="vertical-align: middle;max-height: 200px;" />
                   </viewer>
@@ -170,7 +170,7 @@
               <div class="button-bar" style="height: 26px;margin: 2px 8px;padding: 3px;">
                 发送表情</div>
 <!--              <img-->
-<!--                :src="imgOrigin+'biz/bf4754f99db4f735f42f3dd29e7cafd1.png?x-oss-process=image/resize,h_40/format,webp/quality,q_75'"-->
+<!--                :src="imgOrigin+'biz/bf4754f99db4f735f42f3dd29e7cafd1.png?x-oss-process=image/resize,h_40/quality,q_75'"-->
 <!--                alt="" class="button-bar" style="width: 26px;height: 26px;margin: 2px 5px;padding: 3px;">-->
             </emoji-select>
             <el-upload

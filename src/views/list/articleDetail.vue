@@ -138,7 +138,7 @@
                                 管理
                               </div>
                                 <div class="fir">
-                                <img :src="imgOrigin+forumInfo.imageName+'?x-oss-process=image/resize,h_80/format,webp/quality,q_75'" />
+                                <img :src="imgOrigin+forumInfo.imageName+'?x-oss-process=image/resize,h_80/quality,q_75'" />
                                 <div>{{forumInfo.name}}</div>
                                 </div>
                                 <div class="fensi">
@@ -544,7 +544,7 @@ export default {
           break;
         case "audio":
           return (
-              this.imgOrigin + 'biz/bc5c86c96e84a798930542444ceffcc5.webp?x-oss-process=image/resize,h_120/format,webp/quality,q_75'
+              this.imgOrigin + 'biz/bc5c86c96e84a798930542444ceffcc5.webp?x-oss-process=image/resize,h_120/quality,q_75'
           );
           break;
         case "image":

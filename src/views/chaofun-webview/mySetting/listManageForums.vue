@@ -4,7 +4,7 @@
          class="item">
 
       <span style="margin: auto 0; cursor: pointer;" @click="toForum(item.id)">
-        <img :src="imgOrigin + item.imageName+ '?x-oss-process=image/resize,h_40/format,webp/quality,q_75'" alt=""
+        <img :src="imgOrigin + item.imageName+ '?x-oss-process=image/resize,h_40/quality,q_75'" alt=""
              style="width: 40px;height: 40px;border-radius: 100%;" />
       </span>
 

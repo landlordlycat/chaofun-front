@@ -8,7 +8,7 @@
         </div>
         <div @click="toUser(item)" v-for="(item,index) in pagedata" :key="index" class="item">
             <div class="left">
-                <img :src="imgOrigin+item.icon + '?x-oss-process=image/resize,h_80/format,webp/quality,q_75'" alt="">
+                <img :src="imgOrigin+item.icon + '?x-oss-process=image/resize,h_80/quality,q_75'" alt="">
                 <div class="info">
                     <div class="title">{{item.userName}}</div>
                     <p v-if="item.desc" class="desc">{{item.desc}}</p>
@@ -20,7 +20,7 @@
         </div>
     </div>
     <div v-if="!ISPHONE" class="padding"></div>
-    
+
   </div>
 </template>
 
@@ -31,7 +31,7 @@ import * as api from '@/api/api'
 export default {
   name: 'Home',
   components: {
-    
+
   },
   data(){
       return {
@@ -108,7 +108,7 @@ export default {
                 display: flex;
                 flex-direction: column;
                 justify-content: space-around;
-                
+
             }
         }
         .right{

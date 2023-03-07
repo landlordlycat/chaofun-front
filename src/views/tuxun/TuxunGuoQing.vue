@@ -35,7 +35,7 @@
           <p>{{item.time}}</p>
         </div>
         <div class="right">
-          <img style="object-fit: cover;" :src="imgOrigin+ item.user.icon + '?x-oss-process=image/resize,h_80/format,webp/quality,q_75'" alt="">
+          <img style="object-fit: cover;" :src="imgOrigin+ item.user.icon + '?x-oss-process=image/resize,h_80/quality,q_75'" alt="">
           <div class="info">
             <div class="title">{{item.user.userName}}</div>
           </div>

@@ -175,7 +175,7 @@
                 class="coverss"
                 @click="playVideo(index, item, 0)"
                 :src="
-                  imgOrigin + item.cover + '?x-oss-process=image/resize,h_256/format,webp/quality,q_75'
+                  imgOrigin + item.cover + '?x-oss-process=image/resize,h_256/quality,q_75'
                 "
                 alt=""
               />
@@ -318,7 +318,7 @@
                     :src="
                       imgOrigin +
                       item.sourcePost.cover +
-                      '?x-oss-process=image/resize,h_256/format,webp/quality,q_75'
+                      '?x-oss-process=image/resize,h_256/quality,q_75'
                     "
                     alt=""
                   />
