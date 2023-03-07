@@ -25,12 +25,12 @@
         删除街景
       </div>
       <div @click="toSubmitPanorama" class="more-item">
-        提交街景
+        投稿街景
       </div>
     </div>
-    <el-dialog title="提交街景" :visible.sync="submitPanoramaShow" :append-to-body="true">
+    <el-dialog title="投稿街景" :visible.sync="submitPanoramaShow" :append-to-body="true">
       <el-form :model="form">
-        <el-form-item label="街景链接:一行一条，目前只支持谷歌街景, 审核通过会加入到街景奇观中">
+        <el-form-item label="街景链接:一行一条，目前只支持谷歌/百度街景 审核通过会加入到街景奇观中">
           <el-input type="textarea" :autosize="{ minRows: 4}"
                     v-model="panoramaSubmitForm.links" autocomplete="off"> </el-input>
         </el-form-item>
