@@ -61,7 +61,7 @@ export default {
       this.change();
     },
     getCustomPanorama(pano) {
-      if (pano.indexOf('09') === 0 || pano.indexOf('01') === 0) {
+      if (pano.length === 27) {
         return {
           location: {
             pano: pano,
