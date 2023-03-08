@@ -17,6 +17,7 @@
       {{this.location}}
     </div>
     <div id="map" class="container" style=""></div>
+    <img v-if="panoId && panoId.length === 27" style="z-index: 5000; position: absolute; bottom: 10px; left: 10px; width: 100px; cursor: pointer;"  @click="toBaiduPano" src="https://webmap0.bdimg.com/wolfman/static/pano/images/pano-logo_7969e0c.png">
     <div v-if="!ISPHONE" class="more">
 <!--      <div class="more-item">-->
 <!--        反馈问题-->
@@ -54,6 +55,7 @@ export default {
     return {
       panorama: null,
       tuxunPid: null,
+      panoId: null,
       location: null,
       submitPanoramaShow: false,
       form: {
@@ -157,6 +159,7 @@ export default {
     },
     setPano(tuxunPid, panoId) {
       this.tuxunPid = tuxunPid;
+      this.panoId = panoId;
       this.panorama.setPano(panoId);
       this.panorama.setVisible(true);
       this.getLocation(panoId)
@@ -218,6 +221,9 @@ export default {
     hideSubmitPanorama() {
       this.submitPanoramaShow = false;
     },
+    toBaiduPano() {
+      tuxunOpen('https://maps.baidu.com/#panoid=' + this.panoId + '&panotype=street&pitch=0&l=13&tn=B_NORMAL_MAP&sc=0&newmap=1&shareurl=1&pid=' + this.panoId)
+    }
   }
 }
 </script>
