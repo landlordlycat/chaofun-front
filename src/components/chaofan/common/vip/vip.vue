@@ -7,10 +7,7 @@
         <div style="padding-top: 10px; position: relative; display: flex;  justify-content: space-between;">
           <div @click="changeTo('student')" :class="{'card': choose !== 'student', 'choose-card': choose === 'student'}">
             <div style="font-size: 16px">
-              下次一定
-              <div>
-              </div>
-              我是学生
+              试用
             </div>
           </div>
           <div @click="changeTo('year')" :class="{'card': choose !== 'year', 'choose-card': choose === 'year'}">
