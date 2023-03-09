@@ -14,7 +14,7 @@
           <el-button  @click="toRank" >积分排行</el-button>
         </div>
       </div>
-      <div class="info" @click="toFirstTournament">  图寻大师赛（玩家第一届个人赛）圆满结束！</div>
+      <div class="info" @click="toFirstTournament">  图寻新人赛！玩家第二届个人赛即将开赛！</div>
       <div v-if="times" class="times">图寻总轮次数：<span style="font-size: 18px">{{times}}</span></div>
       <section class="game_entrance">
         <div class="first_session_head">单人</div>
@@ -308,9 +308,9 @@ export default {
     },
     toFirstTournament() {
       try {
-        window.flutter_inappwebview.callHandler('toAppPost', {postId: '1249062'});
+        window.flutter_inappwebview.callHandler('toAppPost', {postId: '1249782'});
       } catch (e) {
-        tuxunOpen('https://choa.fun/p/1249062');
+        tuxunOpen('https://choa.fun/p/1249782');
       }
     }
   }
