@@ -57,7 +57,9 @@ export default {
       tuxunPid: null,
       panoId: null,
       location: null,
+      centerHeading: 0,
       submitPanoramaShow: false,
+      headingMap: {},
       form: {
         applyModReason: '',
       },
@@ -100,6 +102,13 @@ export default {
           }
       );
 
+      this.panorama.addListener("pano_changed", () => {
+        console.log("pano_changed");
+        if (this.panorama.getPano().length === 27) {
+          this.getPanoInfo(this.panorama.getPano());
+        }
+      });
+
       this.panorama.registerPanoProvider(this.getCustomPanorama)
 
       if (this.tuxunPid) {
@@ -110,7 +119,6 @@ export default {
     },
     getCustomPanoramaTileUrl(pano, zoom, tileX, tileY) {
       zoom = zoom +=1;
-
       if (zoom === 1) {
         return (
             'https://tuxun.fun/api/v0/tuxun/mapProxy/bd?pano=' + pano
@@ -127,7 +135,21 @@ export default {
         this.change()
       })
     },
-    getCustomPanorama(pano) {
+    getPanoInfo(pano) {
+      api.getByPath('/api/v0/tuxun/mapProxy/getPanoInfo', {pano: pano}).then(res => {
+        this.panorama.setLinks(res.data.links);
+        // this.centerHeading = res.data.heading;
+        this.headingMap[res.data.pano] = res.data.heading;
+        if (res.data.links) {
+          res.data.links.forEach((item) => {
+            this.headingMap[item.pano] = item.centerHeading;
+          })
+        }
+        // console.log(this.centerHeading);
+      })
+    },
+    getCustomPanorama(pano, zoom,tileX,tileY,callback) {
+      console.log("getCustomPanorama")
       if (pano.length === 27) {
         return {
           location: {
@@ -135,14 +157,13 @@ export default {
           },
           links: [],
           // The text for the copyright control.
-          copyright: "Imagery (c) 2010 Google",
+          copyright: "baidu",
           // The definition of the tiles for this panorama.
           tiles: {
             tileSize: new google.maps.Size(512, 512),
             worldSize: new google.maps.Size(8192, 4096),
             // The heading in degrees at the origin of the panorama
-            // tile set.
-            centerHeading: 0,
+            centerHeading: this.headingMap[pano],
             getTileUrl: this.getCustomPanoramaTileUrl,
           },
         };
@@ -159,13 +180,32 @@ export default {
     },
     setPano(tuxunPid, panoId) {
       this.tuxunPid = tuxunPid;
+      panoId = '09016200011704231112362625T';
       this.panoId = panoId;
-      this.panorama.setPano(panoId);
-      this.panorama.setVisible(true);
       this.getLocation(panoId)
       // 调整视角大小的
+
+      if (panoId.length === 27) {
+        api.getByPath('/api/v0/tuxun/mapProxy/getPanoInfo', {pano: panoId}).then(res => {
+          this.headingMap[res.data.pano] = res.data.heading;
+          if (res.data.links) {
+            res.data.links.forEach((item) => {
+              this.headingMap[item.pano] = item.centerHeading;
+            })
+          }
+          this.setPanoId(panoId);
+        })
+      } else {
+        this.setPanoId(panoId);
+      }
+    },
+
+    setPanoId(panoId) {
+      this.panorama.setPano(panoId);
+      this.panorama.setVisible(true);
       this.panorama.setZoom(0);
     },
+
     change() {
       this.location = null;
       this.doLoginStatus().then((res) => {
