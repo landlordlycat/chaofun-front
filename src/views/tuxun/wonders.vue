@@ -180,7 +180,6 @@ export default {
     },
     setPano(tuxunPid, panoId) {
       this.tuxunPid = tuxunPid;
-      panoId = '09016200011704231112362625T';
       this.panoId = panoId;
       this.getLocation(panoId)
       // 调整视角大小的
