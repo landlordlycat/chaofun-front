@@ -46,6 +46,7 @@
           v-if="type === 'image'"
           :data-form.sync="dataForm"
           :has-hint.sync="hasHint"
+          :slideshow.sync="slideshow"
           ></img-create>
 
       <text-create
@@ -85,6 +86,7 @@ export default {
       coverOssName: 'biz/1667921710402_beb8f2eaccb1482d87deb7816fd3baef_0.jpeg',
       id: null,
       type: 'image',
+      slideshow: false,
     }
   },
   mounted() {
@@ -130,6 +132,7 @@ export default {
         this.dataForm = res.data.data.data;
         this.hasHint = res.data.data.hasHint;
         this.coverOssName = res.data.cover;
+        this.slideshow = res.data.data.slideshow;
         this.imageUrl = this.imgOrigin + this.coverOssName + '?x-oss-process=image/resize,h_300/quality,q_75';
         if (res.data.tags) {
           this.tags = res.data.tags.join(",");
@@ -154,7 +157,7 @@ export default {
       //   return;
       // }
 
-      var data = {'version': 1.0,'hasHint': this.hasHint, data: this.dataForm};
+      var data = {'version': 1.0,'hasHint': this.hasHint, data: this.dataForm, slideshow: this.slideshow};
       api.postByPath('/api/v0/scratch/game/create', {id: this.id, type: this.type, countdown: this.countdown, name: this.name, tags: this.tags, desc: this.desc, cover: this.coverOssName, hasHint: this.hasHint, data: JSON.stringify(data)}).then((res) => {
         window.location.href = '/scratch/guess?id=' + res.data.id;
       })

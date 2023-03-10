@@ -112,7 +112,7 @@
           </tr>
         </table>
       </div>
-      <viewer v-else class="grid-main">
+      <viewer v-else-if="guessInfo.type === 'image' && !guessInfo.data.slideshow" class="grid-main">
         <div v-for="(item,index) in guessInfo.data.data" class="card">
           <div class="card-image-contain">
             <img :data-source="imgOrigin + item.image" :src="imgOrigin + item.image + '?x-oss-process=image/resize,h_300/format,jpeg/quality,q_75'" class="test-image" ></img>
@@ -130,6 +130,32 @@
           </div>
         </div>
       </viewer>
+      <div v-else-if="guessInfo" class="slide-table">
+        <viewer style="border: 1px dashed black;">
+          <img :data-source="imgOrigin + guessInfo.data.data[innerCurrent-1].image" :src="imgOrigin + guessInfo.data.data[innerCurrent-1].image + '?x-oss-process=image/format,jpeg/quality,q_30'" class="slideshow-img"  ></img>
+        </viewer>
+        <div style="width: 100%; border: 1px solid black; margin-bottom: 5px">
+          <div v-if="matched.has(innerCurrent-1)" style="font-size: 24px; text-align: center; color: green">
+            {{guessInfo.data.data[innerCurrent].answer}}
+          </div>
+          <div v-if="!matched.has(innerCurrent) && giveUp" style="font-size: 24px;text-align: center; color: red">
+            {{guessInfo.data.data[innerCurrent].answer}}
+          </div>
+          <div v-if="!matched.has(innerCurrent-1) && !giveUp" style="font-size: 24px;text-align: center">
+            {{'-'}}
+          </div>
+        </div>
+        <el-pagination
+            background
+            layout="prev, pager, next"
+            :pager-count="ISPHONE ? 3 : 6"
+            style="padding-bottom: 20px;"
+            :current-page.sync="innerCurrent"
+            :page-size="1"
+            @current-change=""
+            :total="guessInfo.data.data.length">
+        </el-pagination>
+      </div>
     </section>
     <div v-if="ISPHONE" style="height: 30rem"></div>
     <div v-if="!ISPHONE" style="height: 10rem"></div>
@@ -165,6 +191,7 @@ export default {
       timeLeft: null,
       endStatus: null,
       inputClass: 'input-container',
+      innerCurrent: 1,
     }
   },
   mounted() {
@@ -248,19 +275,26 @@ export default {
       });
     },
     match(e) {
-      var matchValue = null;
-      this.guessInfo.data.answers.forEach(v => {
-        if (this.palindrome(v) === this.palindrome(e) && !this.matched.has(v)) {
-          this.right = this.right + 1;
-          this.inputResult = '';
-          matchValue = v;
-          if (this.right === this.guessInfo.data.answers.length) {
-            this.showResult = true;
-          }
+      if (this.guessInfo.data.slideshow) {
+        var v = this.guessInfo.data.answers[this.innerCurrent];
+        if (this.palindrome(v) === this.palindrome(e)) {
+          this.matched.add(this.innerCurrent)
         }
-      });
-      if (matchValue || (!matchValue && !e)) {
-        this.matched.add(matchValue);
+      } else {
+        var matchValue = null;
+        this.guessInfo.data.answers.forEach(v => {
+          if (this.palindrome(v) === this.palindrome(e) && !this.matched.has(v)) {
+            this.right = this.right + 1;
+            this.inputResult = '';
+            matchValue = v;
+            if (this.right === this.guessInfo.data.answers.length) {
+              this.showResult = true;
+            }
+          }
+        });
+        if (matchValue || (!matchValue && !e)) {
+          this.matched.add(matchValue);
+        }
       }
     },
     share() {
@@ -352,6 +386,15 @@ export default {
     margin-left: auto;
     margin-right: auto;
   }
+  .slide-table {
+    margin-top: 2rem;
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    .slideshow-img {
+      width: 100%; height: 30vw; object-fit: contain;
+    }
+  }
   .back_home {
     position: absolute;
     padding-top: 1rem;
@@ -428,6 +471,12 @@ table, th, td {
 
     .table {
       width: 90%;
+    }
+    .slide-table {
+      width: 90%;
+      .slideshow-img {
+        width: 100%; height: 50vw; object-fit: contain;
+      }
     }
 
     .grid-main {
