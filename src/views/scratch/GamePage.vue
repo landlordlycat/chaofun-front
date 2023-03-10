@@ -10,14 +10,14 @@
     <div v-if="guessInfo" style="padding-top: 4rem; margin: auto; text-align: center; font-size: 32px">
       {{this.guessInfo.name}}
     </div>
-    <div v-if="guessInfo" style="margin: auto; text-align: center; font-size: 16px">
+    <div v-if="guessInfo" style="padding-bottom: 10px;margin: auto; text-align: center; font-size: 16px">
       {{this.guessInfo.desc}}
     </div>
     <div v-if="giveUp || !start">
       <div v-if="guessInfo && guessInfo.user" style="margin: auto; text-align: center; font-size: 16px">
         作者: <span @click="goUser(guessInfo.user.userId)" style="color: #333fff; text-decoration:underline;cursor: pointer;font-weight: bold">{{guessInfo.user.userName}}</span>
       </div>
-      <div v-if="guessInfo && guessInfo.gmtCreate" style="margin: auto; text-align: center; font-size: 16px">
+      <div v-if="guessInfo && guessInfo.gmtCreate" style="margin: auto; text-align: center; font-size: 16px;">
         创建时间: {{moment(guessInfo.gmtCreate).format('YYYY年MM月DD日 HH:mm')}}
       </div>
       <div v-if="guessInfo && guessInfo.tags" style="align-items: center;justify-items: center;margin: auto; text-align: center; font-size: 16px; display: flex;justify-content: center;text-align: center;">
