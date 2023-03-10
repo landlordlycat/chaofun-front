@@ -27,7 +27,7 @@
 
     <div style="padding-top: 20px">幻灯片模式
       <el-switch
-          v-model="innerSlidshow"
+          v-model="slideshow"
           @change="changeSlideshow"
           active-color="#13ce66"
           inactive-color="#ff4949">
@@ -45,13 +45,15 @@ export default {
       chooseIndex: null,
       filedata: {},
       cardClass: 'card',
-      innerSlidshow: false,
+      // innerSlideshow: false,
     }
   },
   props: {
     hasHint: Boolean,
     slideshow: Boolean,
     dataForm: Array,
+  },
+  created() {
   },
   methods: {
     changeSlideshow() {
