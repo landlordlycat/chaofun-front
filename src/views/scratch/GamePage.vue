@@ -148,7 +148,7 @@
           <div v-if="matched.has(innerCurrent-1)" style="font-size: 24px; text-align: center; color: green">
             {{guessInfo.data.data[innerCurrent-1].answer}}
           </div>
-          <div v-if="!matched.has(innerCurrent) && giveUp" style="font-size: 24px;text-align: center; color: red">
+          <div v-if="!matched.has(innerCurrent-1) && giveUp" style="font-size: 24px;text-align: center; color: red">
             {{guessInfo.data.data[innerCurrent-1].answer}}
           </div>
           <div v-if="!matched.has(innerCurrent-1) && !giveUp" style="font-size: 24px;text-align: center">
@@ -297,6 +297,14 @@ export default {
         var v = this.guessInfo.data.answers[this.innerCurrent - 1];
         if (this.palindrome(v) === this.palindrome(e) && !this.matched.has(this.innerCurrent - 1)) {
           this.matched.add(this.innerCurrent -1)
+          this.right = this.right + 1;
+          this.inputResult = '';
+          if (this.innerCurrent !== this.guessInfo.data.data.length) {
+            this.innerCurrent = this.innerCurrent + 1;
+          }
+          if (this.right === this.guessInfo.data.answers.length) {
+            this.showResult = true;
+          }
         }
       } else {
         var matchValue = null;
