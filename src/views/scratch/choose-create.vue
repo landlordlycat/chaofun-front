@@ -34,13 +34,13 @@ export default {
       window.location.href = '/scratch/create?type=image';
     },
     goHome() {
-      tuxunJump('/scratch/')
+      window.location.href =  '/scratch/'
     },
     goBack() {
       try {
         window.history.back();
       } catch (e) {
-        tuxunJump('/scratch/')
+        window.location.href =  '/scratch/'
       }
     },
   }

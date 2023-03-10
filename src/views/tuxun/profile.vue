@@ -1,7 +1,8 @@
 <template>
   <div class="container">
     <div class="top-left">
-      <el-button type="primary" @click="goHome" round>←返回首页</el-button>
+      <el-button v-if="history && history.length !== 1" @click="goBack" round>←返回</el-button>
+      <el-button v-else @click="goHome"  round>←图寻首页</el-button>
     </div>
     <div style="width: 100%; text-align: center; align-items: center; padding-top: 20px">
         <div @click="toUser(userProfile)" v-if="this.userProfile" class="left">
@@ -117,6 +118,7 @@ export default {
       historys: null,
       vipDue: null,
       isVip: false,
+      history: null,
       option: {
         xAxis: {
           type: 'time',
@@ -133,6 +135,7 @@ export default {
     }
   },
   created() {
+    this.history = history;
     this.userId= this.$route.path.split("/")[this.$route.path.split("/").length - 1];
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
@@ -208,7 +211,14 @@ export default {
           }
         })
       }
-    }
+    },
+    goBack() {
+      try {
+        window.history.back();
+      } catch (e) {
+        tuxunJump('/tuxun/')
+      }
+    },
   }
 }
 </script>

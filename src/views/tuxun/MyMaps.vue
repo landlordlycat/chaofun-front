@@ -1,13 +1,14 @@
 <template>
   <div class="container">
     <div class="back_home" @click="goHome">
-      <el-button type="primary" round>←返回首页</el-button>
+      <el-button v-if="history && history.length !== 1" @click="goBack" round>←返回</el-button>
+      <el-button v-else @click="goHome"  round>←图寻首页</el-button>
     </div>
     <div class="nav">
       我的题库
     </div>
     <el-button type="primary" @click.stop="toMapsCreate">创建</el-button>
-    <div class="game_entrance" v-if="!search">
+    <div class="game_entrance">
     <div class="grid_main" v-if="pagedata && pagedata.length >= 1">
       <div v-for="(item, index) in pagedata" :style="{'background-image': 'linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.6)), url('+ imgOrigin + (item.cover ?? 'biz/1659323781589_7d19c33667a54a4dabb0405ee5aec20f.jpeg') + '?x-oss-process=image/resize,h_400)','background-size':'cover'}" class="card">
         <div class="title">
@@ -36,9 +37,11 @@ export default {
   data() {
     return {
       pagedata: [],
+      history: null,
     }
   },
   mounted() {
+    this.history = history;
     this.getMapsList();
   },
   methods: {
@@ -80,7 +83,14 @@ export default {
     },
     toMapsModify(id) {
       tuxunJump('/tuxun/maps_modify?mapsId=' + id)
-    }
+    },
+    goBack() {
+      try {
+        window.history.back();
+      } catch (e) {
+        tuxunJump('/tuxun/')
+      }
+    },
   }
 }
 </script>
@@ -173,4 +183,15 @@ export default {
     }
   }
 }
+
+@media only screen and (max-width: 768px) {
+  .container {
+    .game_entrance {
+      .grid_main {
+        grid-template-columns: repeat(1, 1fr);
+      }
+    }
+  }
+}
+
 </style>

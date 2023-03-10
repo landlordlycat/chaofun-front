@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="top-left">
-      <el-button type="primary" @click="goHome" round>←返回首页</el-button>
+      <el-button @click="goHome" round>←图寻首页</el-button>
     </div>
     <div style="margin: 0 auto;width: 640px;max-width: 100%;padding: 10px;  ">
 

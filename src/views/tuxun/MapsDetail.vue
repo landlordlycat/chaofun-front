@@ -1,8 +1,9 @@
 <template>
   <div class="container">
     <div class="back_home">
-      <el-button type="primary"  @click="goHome" round>←返回首页</el-button>
-      <el-button type="primary"  @click="share" round>分享</el-button>
+      <el-button v-if="history && history.length !== 1" @click="goBack" round>←返回</el-button>
+      <el-button v-else  @click="goHome" round>←图寻首页</el-button>
+      <el-button @click="share" type="primary" round>分享</el-button>
     </div>
     <div v-if="name" class="nav">
       {{name}}
@@ -63,11 +64,14 @@ export default {
       name: null,
       mapsData: null,
       userInfo: null,
+      history: null,
       rank: [],
       type: 'noMove'
     }
   },
   mounted() {
+    this.history = history;
+    console.log(this.history);
     this.mapsId = this.$route.query.mapsId;
     this.getMapsInfo();
     this.getRank();
@@ -140,6 +144,13 @@ export default {
     },
     toUser(user) {
       tuxunJump( '/tuxun/user/' + user.userId);
+    },
+    goBack() {
+      try {
+        window.history.back();
+      } catch (e) {
+        tuxunJump('/tuxun/')
+      }
     },
   }
 

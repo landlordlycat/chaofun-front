@@ -1,7 +1,7 @@
 <template>
   <div class="container">
       <div class="back_home" @click="goHome">
-        <el-button type="primary" round>←返回首页</el-button>
+        <el-button round>←图寻首页</el-button>
       </div>
       <div class="nav">
         直播/视频/教程

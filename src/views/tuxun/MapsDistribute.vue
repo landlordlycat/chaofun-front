@@ -2,8 +2,8 @@
   <div class="container">
     <div id="map" class="maps"></div>
     <div class="back_home">
-      <el-button @click="goBack" size="small" round>←返回</el-button>
-      <el-button @click="goHome" size="small" round>图寻首页</el-button>
+      <el-button v-if="history && history.length !== 1" @click="goBack" size="small" round>←返回</el-button>
+      <el-button v-else @click="goHome" size="small" round>←图寻首页</el-button>
     </div>
   </div>
 </template>
@@ -21,9 +21,11 @@ export default {
       gameId: null,
       map: null,
       mapsId: null,
+      history: null
     };
   },
   mounted() {
+    this.history = history;
     var map = L.map('map', {
       attributionControl: true,
       worldCopyJump: true,

@@ -1,7 +1,8 @@
 <template>
   <div class="container">
     <div class="back_home" @click="goHome">
-      <el-button type="primary" round>←返回首页</el-button>
+      <el-button v-if="history && history.length !== 1" @click="goBack"  round>←返回</el-button>
+      <el-button v-else @click="goHome" round>←图寻首页</el-button>
     </div>
     <div class="nav">
       日常淘汰赛
@@ -61,12 +62,14 @@ export default {
       gameId: null,
       rank: null,
       type: 'noMove',
+      history: null
     }
   },
 
   created() {
   },
   mounted() {
+    this.history = history;
     this.init();
   },
 
@@ -111,6 +114,13 @@ export default {
     },
     toUser(item) {
       tuxunOpen("/tuxun/user/" + item.userId);
+    },
+    goBack() {
+      try {
+        window.history.back();
+      } catch (e) {
+        tuxunJump('/tuxun/')
+      }
     },
   }
 }
