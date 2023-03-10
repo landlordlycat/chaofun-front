@@ -110,7 +110,7 @@ export default {
       })
     },
     remove() {
-      api.getByPath("/api/v0/tuxun/wonders/remove", {tuxunPid: this.tuxunPid}).then(res => {
+      api.getByPath("/api/v0/tuxun/wonders/normalRemove", {tuxunPid: this.tuxunPid}).then(res => {
         if (res.success) {
           console.log(res.data)
           console.log(res.data.tuxunPid, res.data.panoId)

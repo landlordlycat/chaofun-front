@@ -354,6 +354,9 @@ export default {
       }
     }
   }
+  ::v-deep .el-dialog  {
+    width: 90vw;
+  }
 }
 </style>
 
