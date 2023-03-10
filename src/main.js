@@ -42,7 +42,7 @@ Viewer.setDefaults({
   // "transition": true, //使用 CSS3 过度
   // "fullscreen": false, //播放时是否全屏
   // "keyboard": true, //是否支持键盘
-  "url": "data-source",
+  "url": "data-source", // 原图的地址
 })
 
 import VueScroller from 'vue-scroller'

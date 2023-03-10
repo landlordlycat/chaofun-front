@@ -138,7 +138,7 @@
             style="padding-bottom: 20px;"
             :current-page.sync="innerCurrent"
             :page-size="1"
-            @current-change=""
+            @current-change="slideChangeCurrent"
             :total="guessInfo.data.data.length">
         </el-pagination>
         <viewer style="border: 1px dashed black;">
@@ -162,7 +162,7 @@
             style="padding-bottom: 20px;"
             :current-page.sync="innerCurrent"
             :page-size="1"
-            @current-change=""
+            @current-change="slideChangeCurrent"
             :total="guessInfo.data.data.length">
         </el-pagination>
       </div>
@@ -256,10 +256,18 @@ export default {
         }, 1000);
       }
 
+      this.focus();
+
+    },
+    slideChangeCurrent() {
+      this.inputResult = '';
+      this.focus();
+
+    },
+    focus() {
       setTimeout(() => {
         this.$refs.input.focus();
       }, 200);
-
     },
     getGuessInfo() {
       api.getByPath('/api/v0/scratch/game/get', {'id': this.id}).then(res=>{
