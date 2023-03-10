@@ -56,9 +56,13 @@ export default {
       })
     },
     toMapsDetail(item) {
-      tuxunJump('/tuxun/maps_detail?mapsId=' + item.id )
+      // console.log(this.callBack)
+      if (!this.callBack) {
+        tuxunJump('/tuxun/maps_detail?mapsId=' + item.id)
+      }
     },
     toMaps(item, type) {
+      if (!this.callBack) {
         api.getByPath('/api/v0/tuxun/game/enterMap', {mapsId: item.id}).then(res => {
         })
 
@@ -71,6 +75,10 @@ export default {
             }
           }
         })
+      } else {
+        this.show=false
+        this.callBack(item.id, type)
+      }
     }
   }
 }

@@ -63,40 +63,17 @@
         <div class="separate-line"></div>
         <div style="padding-top: 10px; font-size: 24px">设置</div>
         <div>
-            <div style="font-size: 16px">
-              题库：{{gameData.mapsName}}
-            </div>
-            <div>
-              <el-button
-                  v-if="this.$store.state.user.userInfo.userId === this.gameData.host.userId"
-                  @click="showMapsSearch('noMove')"
-                  type="primary"
-                  style="margin-left: 10px"
-                  size="small"
-              >切换固定</el-button>
-              <el-button
-                  v-if="this.$store.state.user.userInfo.userId === this.gameData.host.userId"
-                  @click="showMapsSearch('move')"
-                  type="primary"
-                  size="small"
-                  style="margin-left: 10px"
-              >切换移动</el-button>
-              <el-button
-                  v-if="this.$store.state.user.userInfo.userId === this.gameData.host.userId && this.mapsTagShow"
-                  @click="mapsTagShow = false"
-                  type="primary"
-                  size="small"
-                  style="margin-left: 10px"
-              >收起</el-button>
-            </div>
-
-<!--          <el-button-->
-<!--              v-if="this.$store.state.user.userInfo.userId === this.gameData.host.userId"-->
-<!--              @click="showMapsSearch"-->
-<!--              type="primary"-->
-<!--          >切换</el-button>-->
-          <div v-if="mapsTagShow">
-            <el-button v-for="(item, index) in this.mapsData" @click="changeMaps(item.id)" size="small" round>{{item.name}}</el-button>
+          <div style="font-size: 16px">
+            题库：{{gameData.mapsName}}
+          </div>
+          <div>
+            <el-button
+                v-if="this.$store.state.user.userInfo.userId === this.gameData.host.userId"
+                @click="showMapsSearch('noMove')"
+                type="primary"
+                style="margin-left: 10px"
+                size="small"
+            >切换题库</el-button>
           </div>
         </div>
         <div style="padding-top: 2rem; font-size: 16px">
@@ -196,7 +173,7 @@
               <div>
                 轮数:  {{gameData.currentRound}} / {{gameData.roundNumber}}
               </div>
-               本轮得分: {{gameData.player.lastRoundResult.score}}
+              本轮得分: {{gameData.player.lastRoundResult.score}}
               <div>
                 总得分:  {{gameData.player.totalScore}}
               </div>
@@ -248,9 +225,9 @@
           </div>
 
           <div v-if="showStreakGameEnd" class="challenge_result_bottom" >
-<!--            <div class="result_rank">-->
-<!--              排名：{{x}}, 超过：{{x}}-->
-<!--            </div>-->
+            <!--            <div class="result_rank">-->
+            <!--              排名：{{x}}, 超过：{{x}}-->
+            <!--            </div>-->
             <div style="font-size: 30px; color: orangered">
               选择错误，挑战结束
             </div>
@@ -496,8 +473,6 @@ export default {
       dailyChallengeRank: null,
       dailyChallengePercent: null,
       notifyStatus: '',
-      mapsTagShow: false,
-      mapsType: 'noMove',
       health: 6000,
       origin: location.origin,
       mapsData: []
@@ -850,11 +825,11 @@ export default {
                 }
 
                 this.viewer.setPanorama(
-                 this.imgOrigin + this.image, {
+                    this.imgOrigin + this.image, {
                       panoData: {
                         poseHeading: this.heading, // 0 to 360
                       },
-                  }
+                    }
                 );
 
                 this.viewer.animate({
@@ -1359,9 +1334,9 @@ export default {
       //   cancelButtonText: '取消',
       //   type: 'warning'
       // }).then(() => {
-        api.getByPath("/api/v0/tuxun/streak/skip", {gameId: this.gameId}).then(res => {
-          this.solveGameData(res.data, undefined);
-        });
+      api.getByPath("/api/v0/tuxun/streak/skip", {gameId: this.gameId}).then(res => {
+        this.solveGameData(res.data, undefined);
+      });
       // }).catch(() => {});
     },
 
@@ -1497,23 +1472,25 @@ export default {
         }, 1500);
       });
     },
-    showMapsSearch(type)  {
-        this.mapsType = type
-        // this.$mapsSearch();
-        this.mapsTagShow = true;
-        this.mapsData = null;
-        api.getByPath('/api/v0/tuxun/maps/listInGame', {type: type}).then(res => {
-          if (res.success) {
-            this.mapsData = res.data
-          } else if (res.errorCode === 'need_vip') {
-            this.$vip();
-          }
-        })
+    showMapsSearch()  {
+      this.$mapsSearch(
+          { callBack: (mapsId, mapsType) => {
+              if (mapsType === 'move') {
+                api.getByPath('/api/v0/tuxun/vip/check').then(res => {
+                  if (res.data) {
+                    this.changeMaps(mapsId, mapsType);
+                  } else {
+                    this.$vip();
+                  }
+                })
+              }
+              this.changeMaps(mapsId, mapsType);
+            }
+          })
     },
-    changeMaps(mapsId)  {
+    changeMaps(mapsId, mapsType) {
       // this.$mapsSearch();
-      this.mapsTagShow = false;
-      api.getByPath('/api/v0/tuxun/game/changeMapsId', {gameId: this.gameData.id, mapsId: mapsId, type: this.mapsType}).then(res=>{
+      api.getByPath('/api/v0/tuxun/game/changeMapsId', {gameId: this.gameData.id, mapsId: mapsId, type: mapsType}).then(res=>{
         this.mapsData = res.data
       })
     },
