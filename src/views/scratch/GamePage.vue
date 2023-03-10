@@ -136,10 +136,10 @@
         </viewer>
         <div style="width: 100%; border: 1px solid black; margin-bottom: 5px">
           <div v-if="matched.has(innerCurrent-1)" style="font-size: 24px; text-align: center; color: green">
-            {{guessInfo.data.data[innerCurrent].answer}}
+            {{guessInfo.data.data[innerCurrent-1].answer}}
           </div>
           <div v-if="!matched.has(innerCurrent) && giveUp" style="font-size: 24px;text-align: center; color: red">
-            {{guessInfo.data.data[innerCurrent].answer}}
+            {{guessInfo.data.data[innerCurrent-1].answer}}
           </div>
           <div v-if="!matched.has(innerCurrent-1) && !giveUp" style="font-size: 24px;text-align: center">
             {{'-'}}
@@ -276,9 +276,9 @@ export default {
     },
     match(e) {
       if (this.guessInfo.data.slideshow) {
-        var v = this.guessInfo.data.answers[this.innerCurrent];
-        if (this.palindrome(v) === this.palindrome(e)) {
-          this.matched.add(this.innerCurrent)
+        var v = this.guessInfo.data.answers[this.innerCurrent - 1];
+        if (this.palindrome(v) === this.palindrome(e) && !this.matched.has(this.innerCurrent - 1)) {
+          this.matched.add(this.innerCurrent -1)
         }
       } else {
         var matchValue = null;
