@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <div class="back_home">
-      <el-button @click="goBack" size="small" round>←返回</el-button>
-      <el-button @click="goHome" size="small" round>首页</el-button>
+      <el-button v-if="history && history.length !== 1" @click="goBack" size="small" round>←返回</el-button>
+      <el-button v-else @click="goHome" size="small" round>←小测验首页</el-button>
       <el-button @click="share" size="small"  round>分享</el-button>
       <el-button @click="random" size="small"  round>随机下一个</el-button>
       <el-button size="small"  v-if="guessInfo &&  this.$store.state.user && this.$store.state.user.userInfo  && this.$store.state.user.userInfo.userId === this.guessInfo.userId" @click="modify" round>修改</el-button>
@@ -187,6 +187,7 @@ export default {
   },
   data() {
     return {
+      history: null,
       showResult: false,
       inputResult: '',
       guessInfo: null,
@@ -207,6 +208,7 @@ export default {
     }
   },
   mounted() {
+    this.history = history;
     document.title = '炒饭小测验 - 一起来做小测验吧'
     this.id =  this.$route.query.id;
     this.getGuessInfo();
