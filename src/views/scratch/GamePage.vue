@@ -13,34 +13,36 @@
     <div v-if="guessInfo" style="margin: auto; text-align: center; font-size: 16px">
       {{this.guessInfo.desc}}
     </div>
-    <div v-if="guessInfo && guessInfo.user" style="margin: auto; text-align: center; font-size: 16px">
-      作者: <span @click="goUser(guessInfo.user.userId)" style="color: #333fff; text-decoration:underline;cursor: pointer;font-weight: bold">{{guessInfo.user.userName}}</span>
-    </div>
-    <div v-if="guessInfo && guessInfo.gmtCreate" style="margin: auto; text-align: center; font-size: 16px">
-      创建时间: {{moment(guessInfo.gmtCreate).format('YYYY年MM月DD日 HH:mm')}}
-    </div>
-    <div v-if="guessInfo && guessInfo.tags" style="align-items: center;justify-items: center;margin: auto; text-align: center; font-size: 16px; display: flex;justify-content: center;text-align: center;">
-      标签：
-      <div v-for="(item, index) in guessInfo.tags" @click="goTag(item)" style="padding: 2px; margin-right: 10px; color: #333fff; text-decoration:underline;cursor: pointer;">
-        {{item}}
+    <div v-if="giveUp || !start">
+      <div v-if="guessInfo && guessInfo.user" style="margin: auto; text-align: center; font-size: 16px">
+        作者: <span @click="goUser(guessInfo.user.userId)" style="color: #333fff; text-decoration:underline;cursor: pointer;font-weight: bold">{{guessInfo.user.userName}}</span>
       </div>
-    </div>
-    <div v-if="guessInfo" style="margin: auto; text-align: center; font-size: 16px">
-      测验次数: {{guessInfo.start}}
-    </div>
-    <div v-if="guessInfo" style="margin: auto; text-align: center; font-size: 16px;">
-      <div style="display: flex; align-items: center;justify-content: center">
-        评分( {{guessInfo.rateCount}} 人评价)：
-        <div>
-          <StarRating :read-only="true" :increment="0.01" :rating="guessInfo.rate" :star-size="25"></StarRating>
+      <div v-if="guessInfo && guessInfo.gmtCreate" style="margin: auto; text-align: center; font-size: 16px">
+        创建时间: {{moment(guessInfo.gmtCreate).format('YYYY年MM月DD日 HH:mm')}}
+      </div>
+      <div v-if="guessInfo && guessInfo.tags" style="align-items: center;justify-items: center;margin: auto; text-align: center; font-size: 16px; display: flex;justify-content: center;text-align: center;">
+        标签：
+        <div v-for="(item, index) in guessInfo.tags" @click="goTag(item)" style="padding: 2px; margin-right: 10px; color: #333fff; text-decoration:underline;cursor: pointer;">
+          {{item}}
         </div>
       </div>
-    </div>
-    <div v-if="guessInfo" style="margin: auto; text-align: center; font-size: 16px;">
-      <div style="display: flex; align-items: center;justify-content: center">
-        我的打分：
-        <div>
-          <StarRating @rating-selected ="setRating" :show-rating="false" v-model:rating="rating" :star-size="25"></StarRating>
+      <div v-if="guessInfo" style="margin: auto; text-align: center; font-size: 16px">
+        测验次数: {{guessInfo.start}}
+      </div>
+      <div v-if="guessInfo" style="margin: auto; text-align: center; font-size: 16px;">
+        <div style="display: flex; align-items: center;justify-content: center">
+          评分( {{guessInfo.rateCount}} 人评价)：
+          <div>
+            <StarRating :read-only="true" :increment="0.01" :rating="guessInfo.rate" :star-size="25"></StarRating>
+          </div>
+        </div>
+      </div>
+      <div v-if="guessInfo" style="margin: auto; text-align: center; font-size: 16px;">
+        <div style="display: flex; align-items: center;justify-content: center">
+          我的打分：
+          <div>
+            <StarRating @rating-selected ="setRating" :show-rating="false" v-model:rating="rating" :star-size="25"></StarRating>
+          </div>
         </div>
       </div>
     </div>
@@ -414,11 +416,11 @@ export default {
   }
   .slide-table {
     margin-top: 2rem;
-    width: 40%;
+    width: 30%;
     margin-left: auto;
     margin-right: auto;
     .slideshow-img {
-      width: 100%; height: 30vw; object-fit: contain;
+      width: 100%; height: 25vw; object-fit: contain;
     }
   }
   .back_home {
