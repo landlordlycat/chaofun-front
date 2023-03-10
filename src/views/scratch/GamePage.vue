@@ -131,6 +131,16 @@
         </div>
       </viewer>
       <div v-else-if="guessInfo" class="slide-table">
+        <el-pagination
+            background
+            layout="prev, pager, next"
+            :pager-count="ISPHONE ? 3 : 6"
+            style="padding-bottom: 20px;"
+            :current-page.sync="innerCurrent"
+            :page-size="1"
+            @current-change=""
+            :total="guessInfo.data.data.length">
+        </el-pagination>
         <viewer style="border: 1px dashed black;">
           <img :data-source="imgOrigin + guessInfo.data.data[innerCurrent-1].image" :src="imgOrigin + guessInfo.data.data[innerCurrent-1].image + '?x-oss-process=image/format,jpeg/quality,q_30'" class="slideshow-img"  ></img>
         </viewer>
