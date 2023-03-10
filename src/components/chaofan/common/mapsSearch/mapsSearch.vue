@@ -10,7 +10,12 @@
       <div v-for="(item, index) in this.pagedata" >
         <div @click.stop="toMapsDetail(item)" style="display: flex;  justify-content: space-between;">
           <div style="height: 100%;display: flex; color: white">
-            {{item.name}}
+            <div>
+              {{item.name}}
+              <div>
+                <span style="font-size: 6px;bottom: 0px; color: grey">(人次: {{item.players}})</span>
+              </div>
+            </div>
           </div>
           <div>
             <el-button style="background-color: unset; color: white" @click.stop="toMaps(item, 'noMove')" type="primary"round>固定</el-button>
@@ -18,7 +23,7 @@
             <div  v-if="!item.canMove" style="width: 150px"></div>
           </div>
         </div>
-        <div style="width: 100%;height: 1px; background-color: white;margin-bottom: 1rem"></div>
+        <div style="margin-top: 1px; width: 100%;height: 1px; background-color: white;margin-bottom: 8px"></div>
       </div>
     </section>
   </div>
