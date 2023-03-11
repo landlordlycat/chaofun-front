@@ -19,8 +19,9 @@
           </div>
           <div>
             <el-button style="background-color: unset; color: white" @click.stop="toMaps(item, 'noMove')" type="primary"round>固定</el-button>
-            <el-button style="background-color: unset; color: white" @click.stop="toMaps(item, 'move')" type="primary" v-if="item.canMove" round>移动</el-button>
-            <div  v-if="!item.canMove" style="width: 150px"></div>
+            <el-button style="background-color: unset; color: white" @click.stop="toMaps(item, 'move')" type="primary" v-if="item.canMove" round>移动
+              <span style="color: gold">(VIP)</span> </el-button>
+            <div  v-if="!item.canMove" style="width: 180px"></div>
           </div>
         </div>
         <div style="margin-top: 1px; width: 100%;height: 1px; background-color: white;margin-bottom: 8px"></div>
