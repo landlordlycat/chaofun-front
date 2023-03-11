@@ -475,7 +475,9 @@ export default {
       notifyStatus: '',
       health: 6000,
       origin: location.origin,
-      mapsData: []
+      mapsData: [],
+      panoId: null,
+      headingMap: {},
 
       // gameData: {playerIds: [1, 2]}
     }
@@ -874,6 +876,7 @@ export default {
                           },
                         }
                     );
+                    this.viewer.registerPanoProvider(this.getCustomPanorama)
                     this.setGoogle(this.lastRound.panoId);
                   })
                 } else {
@@ -925,13 +928,6 @@ export default {
       this.setGoogle(this.lastRound.panoId);
     },
 
-    setGoogle(panoId) {
-      this.viewer.setPano(panoId);
-      this.viewer.setVisible(true);
-      setTimeout(() => {
-        this.viewer.setZoom(0);
-      }, 50);
-    },
 
     wsSend(data) {
       console.log("wsSend: " + data);
@@ -1498,7 +1494,78 @@ export default {
       api.getByPath('/api/v0/tuxun/game/changeHealth', {gameId: this.gameData.id, health: this.health}).then(res=>{
         this.health = this.gameData.health;
       })
-    }
+    },
+    setGoogle(panoId) {
+      this.panoId = panoId;
+      // 调整视角大小的
+      if (panoId.length === 27) {
+        api.getByPath('/api/v0/tuxun/mapProxy/getPanoInfo', {pano: panoId}).then(res => {
+          this.headingMap[res.data.pano] = res.data.heading;
+          if (res.data.links) {
+            res.data.links.forEach((item) => {
+              this.headingMap[item.pano] = item.centerHeading;
+            })
+          }
+          this.setPanoId(panoId);
+        })
+      } else {
+        this.setPanoId(panoId);
+      }
+    },
+    getCustomPanorama(pano) {
+      if (pano.length === 27) {
+        return {
+          location: {
+            pano: pano,
+          },
+          links: [],
+          // The text for the copyright control.
+          copyright: "baidu",
+          // The definition of the tiles for this panorama.
+          tiles: {
+            tileSize: new google.maps.Size(512, 512),
+            worldSize: new google.maps.Size(8192, 4096),
+            // The heading in degrees at the origin of the panorama
+            centerHeading: this.headingMap[pano],
+            getTileUrl: this.getCustomPanoramaTileUrl,
+          },
+        };
+      }
+    },
+
+    getPanoInfo(pano) {
+      api.getByPath('/api/v0/tuxun/mapProxy/getPanoInfo', {pano: pano}).then(res => {
+        this.viewer.setLinks(res.data.links);
+        // this.centerHeading = res.data.heading;
+        this.headingMap[res.data.pano] = res.data.heading;
+        if (res.data.links) {
+          res.data.links.forEach((item) => {
+            this.headingMap[item.pano] = item.centerHeading;
+          })
+        }
+        // console.log(this.centerHeading);
+      })
+    },
+
+    getCustomPanoramaTileUrl(pano, zoom, tileX, tileY) {
+      zoom = zoom +=1;
+      if (zoom === 1) {
+        return (
+            'https://tuxun.fun/api/v0/tuxun/mapProxy/bd?pano=' + pano
+        );
+      }
+      return (
+          'https://mapsv1.bdimg.com/?qt=pdata&sid=' + pano + '&pos=' + tileY + '_' + tileX + '&z=' + zoom
+      );
+
+    },
+    setPanoId(panoId) {
+      this.viewer.setPano(panoId);
+      this.viewer.setVisible(true);
+      setTimeout(() => {
+        this.viewer.setZoom(0);
+      }, 50);
+    },
   }
 }
 </script>
