@@ -478,6 +478,7 @@ export default {
       mapsData: [],
       panoId: null,
       headingMap: {},
+      userId: null,
 
       // gameData: {playerIds: [1, 2]}
     }
@@ -485,7 +486,7 @@ export default {
 
   mounted() {
     THREE.Cache.enabled = false;
-
+    this.userId = this.$store.state.user.userInfo.userId;
     this.gameId = this.$route.query.gameId;
     this.challengeId = this.$route.query.challengeId;
     this.streakId = this.$route.query.streakId;
@@ -1079,12 +1080,31 @@ export default {
       if (this.chooseMarker) {
         this.chooseMarker.remove();
       }
-      var marker = L.marker([this.lat, this.lng], {icon: new L.Icon.Default()}).bindTooltip("你选择了",
+
+      var marker = L.marker([this.lat, this.lng], {icon: this.getOptionUser(this.userId)}).bindTooltip("你选择了",
           {
             permanent: true,
             direction: 'auto'
           }).addTo(this.map);
       this.chooseMarker = marker;
+    },
+
+
+    getOptionUser(userId) {
+      console.log(userId)
+      console.log(this.gameData.teams[1])
+      if (this.gameData && this.gameData.teams && this.gameData.teams.length === 2) {
+        if (this.checkInTeams(this.gameData.teams[1], userId)) {
+          var options = JSON.parse(JSON.stringify(L.Icon.Default.prototype.options))
+          options.iconUrl = this.imgOrigin + 'front/marker-icon-green.png';
+          options.iconRetinaUrl = this.imgOrigin + 'front/marker-icon-2x-green.png';
+          return new L.Icon(options)
+        } else {
+          return new L.Icon.Default()
+        }
+      } else {
+        return new L.Icon.Default()
+      }
     },
 
     addLine() {
@@ -1182,7 +1202,7 @@ export default {
         var lastGuess = teamUser.guesses[teamUser.guesses.length - 1];
         if (lastGuess.round === this.gameData.currentRound) {
           if (teamUser.user.userId !== this.$store.state.user.userInfo.userId) {
-            var marker = L.marker([lastGuess.lat, lastGuess.lng], {icon: new L.Icon.Default()}).bindTooltip(teamUser.user.userName,
+            var marker = L.marker([lastGuess.lat, lastGuess.lng], {icon: this.getOptionUser(teamUser.user.userId)}).bindTooltip(teamUser.user.userName,
                 {
                   permanent: true,
                   direction: 'auto'
@@ -1248,9 +1268,9 @@ export default {
       }, timeout);
     },
 
-    checkInTeams(team) {
+    checkInTeams(team, userId) {
       for (let i = 0; i < team.users.length; i++) {
-        if (team.users[i].userId == this.$store.state.user.userInfo.userId) {
+        if (team.users[i].userId === userId) {
           return true;
         }
       }
@@ -1266,7 +1286,7 @@ export default {
         this.clearRanksMarker();
         if (this.gameData) {
           this.gameData.teams.forEach(item => {
-            if (this.checkInTeams(item)) {
+            if (this.checkInTeams(item, this.userId)) {
               item.teamUsers.forEach(teamUser => {
                 this.drawTeamUser(teamUser);
               });
