@@ -15,7 +15,7 @@
         </div>
       </div>
       <div class="info" @click="toFirstTournament">  图寻新人赛！玩家第二届个人赛即将开赛！</div>
-      <div class="second-info" @click="raiseVIP"> 会员费用下月即将停止优惠，调至「9.99/月」「69.99/年」欲购从速 </div>
+      <div class="second-info" @click="raiseVIP"> 会员费用下月即将停止优惠，将会调至「9.99/月」「69.99/年」欲购从速 </div>
       <div v-if="times" class="times">图寻总轮次数：<span style="font-size: 18px">{{times}}</span></div>
       <section class="game_entrance">
         <div class="first_session_head">单人</div>
