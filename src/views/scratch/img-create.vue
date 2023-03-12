@@ -57,7 +57,7 @@ export default {
   },
   methods: {
     changeSlideshow() {
-      this.$emit('update:slideshow', this.innerSlidshow);
+      this.$emit('update:slideshow', this.slideshow);
     },
     handleAvatarSuccess(res, item) {
       console.log(res);
