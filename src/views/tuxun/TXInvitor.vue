@@ -1546,6 +1546,7 @@ export default {
         this.headingMap[res.data.pano] = res.data.heading;
         if (res.data.links) {
           res.data.links.forEach((item) => {
+            this.preloadImage(item.pano);
             this.headingMap[item.pano] = item.centerHeading;
           })
         }
@@ -1572,6 +1573,10 @@ export default {
         this.viewer.setZoom(0);
       }, 50);
     },
+    preloadImage(pano) {
+      var img=new Image();
+      img.src='https://tuxun.fun/api/v0/tuxun/mapProxy/bd?pano=' + pano;
+    }
   }
 }
 </script>
