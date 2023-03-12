@@ -117,7 +117,7 @@
     <div class="game" v-if="status === 'ongoing' || status === 'finish'">
       <div class="im-view">
         <div id="viewer"  style="width: 100%; height: 100%"></div>
-        <img v-if="lastRound && lastRound.source === 'baidu_pano'" style="z-index: 5000; position: absolute; bottom: 10px; left: 10px; width: 100px" src="https://webmap0.bdimg.com/wolfman/static/pano/images/pano-logo_7969e0c.png">
+        <img v-if="lastRound && lastRound.source === 'baidu_pano'" style="user-select: none; z-index: 5000; position: absolute; bottom: 10px; margin: auto; width: 100px" src="https://webmap0.bdimg.com/wolfman/static/pano/images/pano-logo_7969e0c.png">
         <div v-if="showRoundResult" class="round_result">
           <div class="round_result_top">
             <span v-if="gameData.type === 'daily_challenge'">每日挑战<span v-if="gameData.move && gameData.mapsId !== 9">(全球移动)</span><span v-if="!gameData.move && gameData.mapsId !== 9">(全球固定)</span><span v-if="!gameData.move && gameData.mapsId === 9">(中国固定)</span> - </span>
@@ -1962,6 +1962,7 @@ export default {
       top: 5px;
       left: 20px;
       z-index: 10000;
+      text-align: left;
     }
 
     .game_hud {
