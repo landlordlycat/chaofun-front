@@ -15,7 +15,7 @@
         </div>
       </div>
       <div class="info" @click="toFirstTournament">  图寻新人赛！玩家第二届个人赛即将开赛！</div>
-      <div class="second-info" @click="raiseVIP"> 会员费用下月即将涨价至「9.99/月」「69.99/年」欲购从速 </div>
+      <div class="second-info" @click="raiseVIP"> 会员费用下月即将停止优惠，调至「9.99/月」「69.99/年」欲购从速 </div>
       <div v-if="times" class="times">图寻总轮次数：<span style="font-size: 18px">{{times}}</span></div>
       <section class="game_entrance">
         <div class="first_session_head">单人</div>
@@ -185,7 +185,7 @@
             QQ群：<a target="_blank" href="https://jq.qq.com/?_wv=1027&k=1Woq40Au">943507031</a>
           </p>
           <p>
-            微信公众号：炒饭社区 产品微博： <a target="_blank" href="https://weibo.com/wwwchaofun">@炒饭社区</a> 开发者微博：<a target="_blank" href="https://weibo.com/u/3050203537">@此间ZY</a>
+            微信公众号：炒饭社区 | 开发者微博：<a target="_blank" href="https://weibo.com/u/3050203537">@此间ZY</a>
           </p>
           <p>
             地图审图号：GS（2022）2885号
