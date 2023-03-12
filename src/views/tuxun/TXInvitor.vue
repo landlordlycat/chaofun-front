@@ -1632,6 +1632,8 @@ export default {
         width: 100px;
         height: 100px;
         margin: 0 auto;
+        justify-content: center;
+        display: flex;
       }
 
       .userName {
@@ -2070,6 +2072,8 @@ export default {
         width: 50px;
         height: 50px;
         margin: 0 auto;
+        justify-content: center;
+        display: flex;
       }
 
       .userName {
