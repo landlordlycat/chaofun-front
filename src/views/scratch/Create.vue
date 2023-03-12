@@ -30,7 +30,7 @@
       </div>
       <el-input v-model="name"></el-input>
       <div>
-        描述(非必填):
+        描述(可选):
       </div>
       <el-input v-model="desc"></el-input>
       <div>
