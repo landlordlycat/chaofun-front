@@ -271,13 +271,6 @@ export const constantRoutes = [
         hidden: true
       },
       {
-        path: '/gamePage',
-        component: () => import('@/views/game/gamePage'),
-        name: 'gamePage',
-        meta: { title: '设置',keepAlive: false},
-        hidden: true
-      },
-      {
         path: '/message',
         component: () => import('@/views/users/message'),
         name: 'message',
