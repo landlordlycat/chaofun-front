@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <div class="back_home">
+      <el-button v-else @click="goHome" size="small" round>←首页</el-button>
       <el-button v-if="history && history.length !== 1" @click="goBack" size="small" round>←返回</el-button>
-      <el-button @click="goHome" size="small" round>←小测验首页</el-button>
       <el-button @click="share" size="small"  round>分享</el-button>
       <el-button @click="random" size="small"  round>随机下一个</el-button>
       <el-button size="small"  v-if="guessInfo &&  this.$store.state.user && this.$store.state.user.userInfo  && this.$store.state.user.userInfo.userId === this.guessInfo.userId" @click="modify" round>修改</el-button>
@@ -64,6 +64,7 @@
             点击输入答案
           </el-input>
         </div>
+
       </div>
       <div v-if="!showResult">
         <div v-if="!start && guessInfo && !giveUp" style="margin: auto; text-align: center; padding-top: 1rem">
@@ -376,7 +377,8 @@ export default {
   width: 100%;
   position: relative;
   .input-container {
-    position: relative;
+    position: sticky;
+    top: 0;
     margin: auto;
     width: 30%;
     .tiktok {
