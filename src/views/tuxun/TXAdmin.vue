@@ -10,6 +10,9 @@
     <div v-if="this.mapsName" class="info">
       用户投稿练习赛：{{this.mapsName}}
     </div>
+    <div v-if="this.nation" class="location" >
+      {{this.nation}}
+    </div>
   </div>
 </template>
 
@@ -44,6 +47,7 @@ export default {
       queryId: null,
       index: -1,
       totalCount: null,
+      nation: null,
       mapsid: undefined
     }
 
@@ -161,6 +165,7 @@ export default {
                   this.id = res.data.id;
                   this.totalCount = res.data.totalCount;
                   this.mapsName = res.data.mapsName;
+                  this.nation = res.data.nation;
                 }
             );
           }
@@ -205,5 +210,17 @@ export default {
   position: absolute;
   bottom: 30px;
   right: 30px;
+}
+.location {
+  font-size: 24px;
+  font-weight: bold;
+  position: absolute;
+  bottom: 1rem;
+  padding-left: 1rem;
+  z-index: 500;
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
 }
 </style>
