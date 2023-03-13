@@ -58,7 +58,7 @@
 
         <div v-if="start" class="input" style="height: 100%">
           <div v-if="guessInfo">
-            猜对：{{this.right}} / {{this.guessInfo.data.answers.length}}
+            猜对：<span style="color: green"> {{this.right}} </span> / {{this.guessInfo.data.answers.length}}
           </div>
           <el-input ref="input" autofocus @input="match" v-model="inputResult">
             点击输入答案

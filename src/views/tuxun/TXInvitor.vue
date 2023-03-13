@@ -1677,6 +1677,8 @@ export default {
 
     .separate-line {
       margin: auto;
+      margin-top: 2rem;
+      margin-bottom: 2rem;
       width: 40%;
       height: 1px;
       background-color: grey;
