@@ -372,6 +372,7 @@
       </div>
 
       <div class="home">
+        <el-button v-if="history && history.length !== 1" @click="goBack" size="small" round>←返回</el-button>
         <el-button v-if="gameData.type === 'challenge' || gameData.type === 'battle_royale'" size="mini" @click="goHome" round>图寻首页</el-button>
         <el-button size="mini" v-if="gameData && gameData.type !== 'daily_challenge'" @click="toReport" round> 坏题反馈 </el-button>
         <el-button v-if="gameData && gameData.move" size="mini"  @click="reset" round> 回到原点</el-button>
@@ -479,6 +480,7 @@ export default {
       panoId: null,
       headingMap: {},
       userId: null,
+      history: null,
 
       // gameData: {playerIds: [1, 2]}
     }
@@ -486,6 +488,7 @@ export default {
 
   mounted() {
     THREE.Cache.enabled = false;
+    this.history = history;
     this.userId = this.$store.state.user.userInfo.userId;
     this.gameId = this.$route.query.gameId;
     this.challengeId = this.$route.query.challengeId;
@@ -1596,7 +1599,14 @@ export default {
     preloadImage(pano) {
       var img=new Image();
       img.src='https://tuxun.fun/api/v0/tuxun/mapProxy/bd?pano=' + pano;
-    }
+    },
+    goBack() {
+      try {
+        window.history.back();
+      } catch (e) {
+        tuxunJump('/tuxun/')
+      }
+    },
   }
 }
 </script>
