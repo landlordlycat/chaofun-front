@@ -377,6 +377,7 @@ export default {
   width: 100%;
   position: relative;
   .input-container {
+    background-color: white;
     position: sticky;
     top: 0;
     margin: auto;
