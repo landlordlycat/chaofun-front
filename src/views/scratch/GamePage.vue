@@ -378,6 +378,7 @@ export default {
   position: relative;
   .input-container {
     background-color: white;
+    z-index: 20;
     position: sticky;
     top: 0;
     margin: auto;
