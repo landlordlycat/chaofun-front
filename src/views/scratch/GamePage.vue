@@ -395,10 +395,11 @@ export default {
       this.left = this.left - 1;
       if (this.right === this.guessInfo.data.data.length) {
         this.showResult = true;
-      } else if (this.left === 0){
+        this.clickIndex = 0;
+      } else if (this.left === 0) {
         this.endGame();
+        this.clickIndex = 0;
       }
-
 
       this.clickNext();
     },
