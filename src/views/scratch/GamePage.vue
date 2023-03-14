@@ -292,6 +292,10 @@ export default {
       this.wrong = 0;
       this.clickIndex = 0;
       this.left = this.guessInfo.data.data.length;
+      // 重新开始的时候标记一下
+      this.guessInfo.data.data.forEach(item => {
+        item.guessd = false;
+      })
       this.showResult = false;
       this.right = 0;
       this.endStatus = null;
