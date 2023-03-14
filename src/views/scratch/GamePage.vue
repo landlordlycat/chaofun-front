@@ -583,6 +583,7 @@ export default {
     .title {
       font-size: 24px;
       font-weight: 500;
+      margin-bottom: 1rem;
     }
     .answer-grid {
       display: flex;
