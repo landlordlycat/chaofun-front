@@ -105,12 +105,12 @@ export default {
     changeSort(tab, event) {
       this.list = [];
       this.innerCurrent = 1;
-      this.$router.replace({query: {tag: this.tag, sort: this.innerSort, page: this.innerCurrent  }})
+      this.$router.replace({query: {tagName: this.tag, sort: this.innerSort, page: this.innerCurrent  }})
       this.getList();
     },
 
     handleCurrentChange(current) {
-      this.$router.replace({query: {tag: this.tag, sort: this.innerSort, page: this.innerCurrent}})
+      this.$router.replace({query: {tagName: this.tag, sort: this.innerSort, page: this.innerCurrent}})
       this.getList()
     },
     gotoSearch() {
