@@ -85,7 +85,7 @@ export default {
     padding-left: 1rem;
   }
 
-  .text-create, .img-create {
+  .text-create, .img-create .click-create {
     cursor: pointer;
 
     &:hover {
