@@ -192,7 +192,17 @@
           {{guessInfo.data.data[clickIndex].hint}}
         </div>
         <div class="answer-grid" >
-          <div v-for="(item, index) in guessInfo.data.data" class="answer" @click="clickMatch(index)"> {{item.answer}}</div>
+          <div v-for="(item, index) in guessInfo.data.data"  @click="clickMatch(index)">
+            <div v-if="rightClickIndex === index" class="answer-right">
+              {{item.answer}}
+            </div>
+            <div v-else-if="wrongClickIndex === index"  class="answer-wrong">
+              {{item.answer}}
+            </div>
+            <div v-else  class="answer">
+              {{item.answer}}
+            </div>
+          </div>
         </div>
         <div v-if="showClickRight" style="color: green; font-size: 20px; font-weight: bold">✅ 正确</div>
         <div v-if="showClickWrong" style="color: red; font-size: 20px; font-weight: bold">X 错误</div>
@@ -554,6 +564,25 @@ export default {
         margin: 0 8px 8px 0;
         border-radius: 4px;
         cursor: pointer;
+      }
+      .answer-wrong {
+        border: 1px solid #c7ccd1;
+        padding: 4px 8px;
+        font-size: 20px;
+        margin: 0 8px 8px 0;
+        border-radius: 4px;
+        cursor: pointer;
+        background-color: red;
+      }
+
+      .answer-right {
+        border: 1px solid #c7ccd1;
+        padding: 4px 8px;
+        font-size: 20px;
+        margin: 0 8px 8px 0;
+        border-radius: 4px;
+        cursor: pointer;
+        background-color: green;
       }
     }
   }
