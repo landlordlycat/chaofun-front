@@ -66,7 +66,7 @@
         </div>
 
         <div v-if="start && guessInfo && guessInfo.type === 'click'" class="input" style="height: 100%; display: flex; flex-grow: 1">
-          <div style="display: block">
+          <div style="display: flex">
             <el-button type="primary" @click="clickPrev">上一个</el-button>
             <el-button type="primary" @click="clickNext">下一个</el-button>
           </div>
@@ -206,6 +206,27 @@
         </div>
         <div v-if="showClickRight" style="color: green; font-size: 20px; font-weight: bold">✅ 正确</div>
         <div v-if="showClickWrong" style="color: red; font-size: 20px; font-weight: bold">X 错误</div>
+        <table v-if="guessInfo && endStatus" style="width: 100%; margin-top: 1rem">
+          <tr style="width: 100px;">
+            <th style="background-color: #eee">问题</th>
+            <th style="background-color: #eee">答案</th>
+          </tr>
+          <tr v-for="(item, index) in guessInfo.data.data">
+            <td v-if="guessInfo.data" style="width: 50%">
+              <div style="text-align: center;">
+                {{item.hint}}
+              </div>
+            </td>
+            <td style="width: 50%; border: 1px solid black;">
+              <div v-if="guessInfo.data.data[index].right" style="text-align: center; color: green">
+                {{item.answer}}
+              </div>
+              <div v-else style="text-align: center; color: red">
+                {{item.answer}}
+              </div>
+            </td>
+          </tr>
+        </table>
       </div>
 
     </section>
@@ -295,6 +316,7 @@ export default {
       // 重新开始的时候标记一下
       this.guessInfo.data.data.forEach(item => {
         item.guessd = false;
+        item.right = false;
       })
       this.showResult = false;
       this.right = 0;
@@ -360,10 +382,12 @@ export default {
         this.right = this.right + 1;
         this.rightClickIndex = index;
         this.showClickRight = true;
+        this.guessInfo.data.data[this.clickIndex].right = true;
       } else {
         this.wrongClickIndex = index;
         this.wrong = this.wrong + 1;
         this.showClickWrong = true;
+        this.guessInfo.data.data[this.clickIndex].right = false;
       }
       this.guessInfo.data.data[this.clickIndex].guessd = true;
       this.left = this.left - 1;
