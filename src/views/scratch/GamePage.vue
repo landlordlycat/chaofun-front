@@ -596,6 +596,9 @@ export default {
         margin: 0 8px 8px 0;
         border-radius: 4px;
         cursor: pointer;
+        &:hover {
+          border: 2px solid green;
+        }
       }
       .answer-wrong {
         border: 1px solid #c7ccd1;
