@@ -93,10 +93,14 @@ export default {
     }
   },
   mounted() {
+    this.type = this.$route.query.type || 'province'
     this.init();
   },
   methods: {
     init() {
+      if (this.$route.query.type !== this.type) {
+        this.$router.replace({query: {type: this.type}});
+      }
       this.rank = null;
       this.listRank();
     },
