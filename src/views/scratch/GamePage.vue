@@ -339,8 +339,8 @@ export default {
       });
     },
     clickMatch(index) {
-      if (!this.start || this.showClickWrong || this.showClickRight) {
-        return;
+      if (!this.start) {
+        this.startGuess();
       }
       if (index === this.clickIndex) {
         this.right = this.right + 1;
