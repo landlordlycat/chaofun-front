@@ -1,25 +1,17 @@
 <template>
   <div>
-    <div style="padding-top: 10px">是否有提示
-      <el-switch
-          v-model="hint"
-          @change="changeHasHint"
-          active-color="#13ce66"
-          inactive-color="#ff4949">
-      </el-switch>
-    </div>
     <div>
-      提示/答案:
+      问题/答案:
     </div>
 
     <table style="width: 100%">
       <tbody>
       <tr style="width: 100px;">
-        <th v-if="hasHint" style="background-color: #eee">提示</th>
+        <th style="background-color: #eee">问题</th>
         <th style="background-color: #eee">答案</th>
       </tr>
       <tr v-for="(item, index) in dataForm">
-        <td  v-if="hasHint" style=" width: 50%; border: 1px solid black; ">
+        <td style=" width: 50%; border: 1px solid black; ">
           <input @focus="columnChoose(index)" @blur="cleanChoose" v-model="item.hint" style="width: 100%" ></input>
         </td>
         <td style=" width: 50%; border: 1px solid black;">
@@ -37,7 +29,7 @@
 
 <script>
 export default {
-  name: "text-create",
+  name: "click-create",
   data() {
     return {
       chooseIndex: null,
@@ -45,10 +37,12 @@ export default {
     }
   },
   props: {
-    hasHint: Boolean,
+    // hasHint: Boolean,
     dataForm: Array,
   },
   created() {
+    this.hasHint = true;
+    this.updatehin
     this.hint = this.hasHint;
   },
   methods: {

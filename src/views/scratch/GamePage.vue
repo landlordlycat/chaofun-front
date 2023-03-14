@@ -7,7 +7,7 @@
       <el-button @click="random" size="small"  round>随机下一个</el-button>
       <el-button size="small"  v-if="guessInfo &&  this.$store.state.user && this.$store.state.user.userInfo  && this.$store.state.user.userInfo.userId === this.guessInfo.userId" @click="modify" round>修改</el-button>
     </div>
-    <div v-if="guessInfo" style="padding-top: 4rem; margin: auto; text-align: center; font-size: 32px">
+    <div v-if="guessInfo" :class="nameClass">
       {{this.guessInfo.name}}
     </div>
     <div v-if="guessInfo" style="padding-bottom: 10px;margin: auto; text-align: center; font-size: 16px">
@@ -56,13 +56,31 @@
           <el-button v-if="ISPHONE && start" size="mini" type="warning" style="margin: auto; text-align: center;" @click="endGame">放弃</el-button>
         </div>
 
-        <div v-if="start" class="input" style="height: 100%">
+        <div v-if="start && guessInfo && guessInfo.type !== 'click'" class="input" style="height: 100%">
           <div v-if="guessInfo">
             猜对：<span style="color: green"> {{this.right}} </span> / {{this.guessInfo.data.answers.length}}
           </div>
           <el-input ref="input" autofocus @input="match" v-model="inputResult">
             点击输入答案
           </el-input>
+        </div>
+
+        <div v-if="start && guessInfo && guessInfo.type === 'click'" class="input" style="height: 100%; display: flex; flex-grow: 1">
+          <div style="display: block">
+            <el-button type="primary" @click="clickPrev">上一个</el-button>
+            <el-button type="primary" @click="clickNext">下一个</el-button>
+          </div>
+          <div style="display: block">
+            <div v-if="guessInfo">
+              猜对：<span style="color: green"> {{this.right}}  </span> / {{this.guessInfo.data.answers.length}}
+            </div>
+            <div v-if="guessInfo">
+              猜错：<span style="color: red"> {{this.wrong}} </span> / {{this.guessInfo.data.answers.length}}
+            </div>
+            <div v-if="guessInfo">
+              剩余： {{this.left}}  / {{this.guessInfo.data.answers.length}}
+            </div>
+          </div>
         </div>
 
       </div>
@@ -88,7 +106,7 @@
     <div v-if="!start && guessInfo && giveUp" style="margin: auto; text-align: center; padding-top: 1rem">
       <el-button type="primary" style="margin: auto; text-align: center; margin-bottom: 10px" @click="startGuess" round>再来一次</el-button>
     </div>
-    <section v-if="guessInfo" style="width: 100%; ">
+    <section v-if="guessInfo" style="width: 100%;">
       <div v-if="guessInfo.type === 'text'" class="table">
         <table v-if="guessInfo" style="width: 100%">
           <tr style="width: 100px;">
@@ -115,7 +133,7 @@
           </tr>
         </table>
       </div>
-      <viewer v-else-if="guessInfo.type === 'image' && !guessInfo.data.slideshow" class="grid-main">
+      <viewer v-else-if="guessInfo && guessInfo.type === 'image' && !guessInfo.data.slideshow" class="grid-main">
         <div v-for="(item,index) in guessInfo.data.data" class="card">
           <div class="card-image-contain">
             <img :data-source="imgOrigin + item.image" :src="imgOrigin + item.image + '?x-oss-process=image/resize,h_300/format,jpeg/quality,q_75'" class="test-image" ></img>
@@ -133,7 +151,7 @@
           </div>
         </div>
       </viewer>
-      <div v-else-if="guessInfo" class="slide-table">
+      <div v-else-if="guessInfo && guessInfo.type === 'image' && guessInfo.data.slideshow" class="slide-table">
         <el-pagination
             background
             layout="prev, pager, next"
@@ -169,6 +187,17 @@
             :total="guessInfo.data.data.length">
         </el-pagination>
       </div>
+      <div v-else-if="guessInfo && guessInfo.type === 'click'" class="table">
+        <div class="title">
+          {{guessInfo.data.data[clickIndex].hint}}
+        </div>
+        <div class="answer-grid" >
+          <div v-for="(item, index) in guessInfo.data.data" class="answer" @click="clickMatch(index)"> {{item.answer}}</div>
+        </div>
+        <div v-if="showClickRight" style="color: green; font-size: 20px; font-weight: bold">✅ 正确</div>
+        <div v-if="showClickWrong" style="color: red; font-size: 20px; font-weight: bold">X 错误</div>
+      </div>
+
     </section>
     <div v-if="ISPHONE" style="height: 30rem"></div>
     <div v-if="!ISPHONE" style="height: 10rem"></div>
@@ -193,10 +222,16 @@ export default {
       inputResult: '',
       guessInfo: null,
       giveUp: false,
+      showClickRight: null,
+      showClickWrong: null,
+      rightClickIndex: null,
+      wrongClickIndex: null,
       matched: new Set(),
       id: null,
       moment: moment,
       right: 0,
+      wrong: 0,
+      left: 0,
       start: false,
       end: false,
       countdownTimer: null,
@@ -205,6 +240,8 @@ export default {
       timeLeft: null,
       endStatus: null,
       inputClass: 'input-container',
+      nameClass: 'name',
+      clickIndex: 0,
       innerCurrent: 1,
     }
   },
@@ -230,6 +267,7 @@ export default {
       }
 
       this.inputClass='input-container'
+      this.nameClass = 'name'
       this.start = false;
       this.giveUp = true;
     },
@@ -238,7 +276,12 @@ export default {
       this.start = true;
       if (this.ISPHONE) {
         this.inputClass = "input-container-phone"
+        this.nameClass = 'name-phone-click'
       }
+      this.right = 0;
+      this.wrong = 0;
+      this.clickIndex = 0;
+      this.left = this.guessInfo.data.data.length;
       this.showResult = false;
       this.right = 0;
       this.endStatus = null;
@@ -260,14 +303,11 @@ export default {
           }
         }, 1000);
       }
-
       this.focus();
-
     },
     slideChangeCurrent() {
       this.inputResult = '';
       this.focus();
-
     },
     focus() {
       setTimeout(() => {
@@ -277,6 +317,7 @@ export default {
     getGuessInfo() {
       api.getByPath('/api/v0/scratch/game/get', {'id': this.id}).then(res=>{
         this.guessInfo = res.data;
+        this.left = this.guessInfo.data.data.length;
       })
     },
     getRate() {
@@ -297,7 +338,74 @@ export default {
         },
       });
     },
+    clickMatch(index) {
+      if (!this.start || this.showClickWrong || this.showClickRight) {
+        return;
+      }
+      if (index === this.clickIndex) {
+        this.right = this.right + 1;
+        this.rightClickIndex = index;
+        this.showClickRight = true;
+      } else {
+        this.wrongClickIndex = index;
+        this.wrong = this.wrong + 1;
+        this.showClickWrong = true;
+      }
+      this.guessInfo.data.data[this.clickIndex].guessd = true;
+      this.left = this.left - 1;
+      if (this.right === this.guessInfo.data.data.length) {
+        this.showResult = true;
+      } else if (this.left === 0){
+        this.endGame();
+      }
+
+
+      this.clickNext();
+    },
+    cleanClickStatus() {
+      this.showClickRight = false;
+      this.showClickWrong = false;
+      this.rightClickIndex = null;
+      this.wrongClickIndex = null;
+    },
+    clickNext() {
+      setTimeout(() => {
+        this.cleanClickStatus();
+      }, 500);
+      console.log(this.clickIndex)
+      for (let i = this.clickIndex + 1; i < this.guessInfo.data.data.length; i++) {
+        if (!this.guessInfo.data.data[i].guessd) {
+          this.clickIndex = i;
+          console.log(this.clickIndex)
+          return;
+        }
+      }
+      for (let i = 0; i < this.clickIndex; i++) {
+        if (!this.guessInfo.data.data[i].guessd) {
+          this.clickIndex = i;
+          return;
+        }
+      }
+    },
+    clickPrev() {
+      setTimeout(() => {
+        this.cleanClickStatus();
+      }, 500);
+      for (let i = this.clickIndex - 1; i >= 0; i--) {
+        if (!this.guessInfo.data.data[i].guessd) {
+          this.clickIndex = i;
+          return;
+        }
+      }
+      for (let i = this.guessInfo.data.data.length - 1; i > this.clickIndex; i--) {
+        if (!this.guessInfo.data.data[i].guessd) {
+          this.clickIndex = i;
+          return;
+        }
+      }
+    },
     match(e) {
+
       if (this.guessInfo.data.slideshow) {
         var v = this.guessInfo.data.answers[this.innerCurrent - 1];
         if (this.palindrome(v) === this.palindrome(e) && !this.matched.has(this.innerCurrent - 1)) {
@@ -376,6 +484,18 @@ export default {
   height: 100%;
   width: 100%;
   position: relative;
+  .name {
+    padding-top: 4rem;
+    margin: auto;
+    text-align: center;
+    font-size: 32px
+  }
+  .name-phone-click {
+    padding-top: 6rem;
+    margin: auto;
+    text-align: center;
+    font-size: 32px
+  }
   .input-container {
     background-color: white;
     z-index: 20;
@@ -419,6 +539,23 @@ export default {
     width: 30%;
     margin-left: auto;
     margin-right: auto;
+
+    .title {
+      font-size: 24px;
+      font-weight: 500;
+    }
+    .answer-grid {
+      display: flex;
+      flex-wrap: wrap;
+      .answer {
+        border: 1px solid #c7ccd1;
+        padding: 4px 8px;
+        font-size: 20px;
+        margin: 0 8px 8px 0;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+    }
   }
   .slide-table {
     margin-top: 2rem;

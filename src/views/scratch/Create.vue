@@ -55,6 +55,12 @@
           :has-hint.sync="hasHint"
           ></text-create>
 
+      <click-create
+          v-if="type === 'click'"
+          :data-form.sync="dataForm"
+          :has-hint.sync="hasHint"
+      ></click-create>
+
       <el-button type="primary" style="margin-top: 20px" @click="submit">提交测验</el-button>
     </div>
 
@@ -65,9 +71,10 @@
 import * as api from '../../api/api'
 import ImgCreate from './img-create'
 import TextCreate from './text-create'
+import ClickCreate from './click-create'
 export default {
   name: "Create",
-  components: {ImgCreate, TextCreate},
+  components: {ImgCreate, TextCreate, ClickCreate},
   data() {
     return {
       history: null,

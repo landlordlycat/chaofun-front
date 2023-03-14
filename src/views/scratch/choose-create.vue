@@ -17,6 +17,11 @@
           图片
         </div>
       </div>
+      <div @click="createClick" class="click-create" style="width: 100%; padding:2rem;margin-top: 2rem; background-color: #9B41F1">
+        <div style="text-align: center; font-size: 24px; font-weight: bold">
+          点击
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -32,6 +37,9 @@ export default {
     },
     createImage() {
       window.location.href = '/scratch/create?type=image';
+    },
+    createClick() {
+      window.location.href = '/scratch/create?type=click';
     },
     goHome() {
       window.location.href =  '/scratch/'
@@ -67,7 +75,7 @@ export default {
     padding-left: 1rem;
   }
 
-  .text-create, .img-create {
+  .text-create, .img-create .click-create {
     cursor: pointer;
     &:hover {
       transform: scale(1.03);
