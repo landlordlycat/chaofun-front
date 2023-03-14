@@ -192,15 +192,15 @@
           {{guessInfo.data.data[clickIndex].hint}}
         </div>
         <div class="answer-grid" >
-          <div v-for="(item, index) in guessInfo.data.data"  @click="clickMatch(index)">
+          <div v-for="(item, index) in shuffleAnswers"  @click="clickMatch(index)">
             <div v-if="rightClickIndex === index" class="answer-right">
-              {{item.answer}}
+              {{item}}
             </div>
             <div v-else-if="wrongClickIndex === index"  class="answer-wrong">
-              {{item.answer}}
+              {{item}}
             </div>
             <div v-else  class="answer">
-              {{item.answer}}
+              {{item}}
             </div>
           </div>
         </div>
@@ -273,6 +273,7 @@ export default {
       inputClass: 'input-container',
       nameClass: 'name',
       clickIndex: 0,
+      shuffleAnswers: [],
       innerCurrent: 1,
     }
   },
@@ -354,6 +355,7 @@ export default {
       api.getByPath('/api/v0/scratch/game/get', {'id': this.id}).then(res=>{
         this.guessInfo = res.data;
         this.left = this.guessInfo.data.data.length;
+        this.shuffleAnswers = Array.from(new Set(this.guessInfo.data.answers)).sort();
       })
     },
     getRate() {
@@ -378,7 +380,7 @@ export default {
       if (!this.start) {
         this.startGuess();
       }
-      if (index === this.clickIndex) {
+      if (this.shuffleAnswers[index] === this.guessInfo.data.data[this.clickIndex].answer) {
         this.right = this.right + 1;
         this.rightClickIndex = index;
         this.showClickRight = true;
