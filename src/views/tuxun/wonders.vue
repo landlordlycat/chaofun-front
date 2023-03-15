@@ -130,7 +130,7 @@ export default {
 
     },
     deleteWonders() {
-      api.getByPath('/api/v0/tuxun/wonders/remove', {tuxunPid: this.tuxunPid}).then(res => {
+      api.getByPath('/api/v0/tuxun/wonders/normalRemove', {tuxunPid: this.tuxunPid}).then(res => {
         this.$message.success('删除成功')
         this.change()
       })
