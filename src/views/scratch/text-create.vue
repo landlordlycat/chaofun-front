@@ -31,6 +31,7 @@
     <el-button  size="mini" @click="addColumn">加一行</el-button>
     <el-button  size="mini" @click="deleteColumn">删除最后一行</el-button>
     <el-button  v-if="chooseIndex != null" size="mini" @click="deleteChooseColumn">删除选中行</el-button>
+    <el-button  size="mini" @click="shuffle">打乱顺序</el-button>
     <div></div>
   </div>
 </template>
@@ -52,6 +53,9 @@ export default {
     this.hint = this.hasHint;
   },
   methods: {
+    shuffle() {
+      this.dataForm.sort(() => Math.random() - 0.5);
+    },
     deleteChooseColumn() {
       if (this.chooseIndex !== null) {
         this.dataForm.splice(this.chooseIndex, 1);
