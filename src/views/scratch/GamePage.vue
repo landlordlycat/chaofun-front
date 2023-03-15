@@ -710,6 +710,24 @@ table, th, td {
 
     .table {
       width: 90%;
+      .answer-grid {
+        .answer {
+          font-size: 16px;
+          padding: 4px 8px;
+          margin: 0 8px 8px 0;
+        }
+        .answer-right {
+          font-size: 16px;
+          padding: 4px 8px;
+          margin: 0 8px 8px 0;
+        }
+        .answer-wrong {
+          font-size: 16px;
+          padding: 4px 8px;
+          margin: 0 8px 8px 0;
+        }
+      }
+
     }
     .slide-table {
       width: 90%;
