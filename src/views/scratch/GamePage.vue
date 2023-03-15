@@ -594,10 +594,10 @@ export default {
       display: flex;
       flex-wrap: wrap;
       .answer {
-        outline: 1px solid #c7ccd1;
+        border: 1px solid #c7ccd1;
         padding: 4px 8px;
         font-size: 20px;
-        margin: 0 8px 8px 0;
+        margin: 0 10px 10px 0;
         border-radius: 4px;
         cursor: pointer;
         &:hover {
@@ -605,10 +605,10 @@ export default {
         }
       }
       .answer-wrong {
-        outline: 1px solid #c7ccd1;
+        border: 1px solid #c7ccd1;
         padding: 4px 8px;
         font-size: 20px;
-        margin: 0 8px 8px 0;
+        margin: 0 10px 10px 0;
         border-radius: 4px;
         cursor: pointer;
         background-color: red;
@@ -618,7 +618,7 @@ export default {
         border: 1px solid #c7ccd1;
         padding: 4px 8px;
         font-size: 20px;
-        margin: 0 8px 8px 0;
+        margin: 0 10px 10px 0;
         border-radius: 4px;
         cursor: pointer;
         background-color: green;
