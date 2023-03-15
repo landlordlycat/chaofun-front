@@ -483,7 +483,7 @@ export default {
     },
     share() {
       var input = document.createElement('input');
-      input.setAttribute('value','邀请你来炒饭做「' + this.guessInfo.name + '」小测验, 你能答出来吗？ https://choa.fun/scratch/guess?id=' + this.id);
+      input.setAttribute('value','邀请你来炒饭做「' + this.guessInfo.name + '」小测验, 看看你能得多少分？ https://choa.fun/scratch/guess?id=' + this.id);
       document.body.appendChild(input);
       input.select();
       var result = document.execCommand('copy');
