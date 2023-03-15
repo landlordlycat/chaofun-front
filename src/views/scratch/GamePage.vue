@@ -355,7 +355,11 @@ export default {
       api.getByPath('/api/v0/scratch/game/get', {'id': this.id}).then(res=>{
         this.guessInfo = res.data;
         this.left = this.guessInfo.data.data.length;
-        this.shuffleAnswers = Array.from(new Set(this.guessInfo.data.answers)).sort();
+        this.shuffleAnswers = Array.from(new Set(this.guessInfo.data.answers)).sort(function (a,b){
+          var c = isFinite(a), // 如果 number 是有限数字（或可转换为有限数字），那么返回 true。
+          d = isFinite(b);
+          return (c != d && d - c) || (c && d ? a -b : a.localeCompare(b));
+        });
       })
     },
     getRate() {
