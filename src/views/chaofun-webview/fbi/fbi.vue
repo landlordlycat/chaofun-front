@@ -69,15 +69,15 @@
 
 
 
-      <div @click="getMusicPackage" style="padding-top: 20px;width: 50%; display: inline-block; text-align: center">
-        <img style="padding-right: 10px; padding-left: 10px; max-width: 100%; max-height: 200px" src="https://i.chao-fan.com/biz/1653662548745_fe793a4930f64d31a6acc0129adfc4d6.png">
-        <p style="text-align: center">
-          网易云音乐 音乐包月卡
-        </p>
-        <p style="text-align: center">
-          FBi: 800
-        </p>
-      </div>
+<!--      <div @click="getMusicPackage" style="padding-top: 20px;width: 50%; display: inline-block; text-align: center">-->
+<!--        <img style="padding-right: 10px; padding-left: 10px; max-width: 100%; max-height: 200px" src="https://i.chao-fan.com/biz/1653662548745_fe793a4930f64d31a6acc0129adfc4d6.png">-->
+<!--        <p style="text-align: center">-->
+<!--          网易云音乐 音乐包月卡-->
+<!--        </p>-->
+<!--        <p style="text-align: center">-->
+<!--          FBi: 800-->
+<!--        </p>-->
+<!--      </div>-->
 
       <div @click="getTuxunVip('1month')" style="padding-top: 20px;width: 50%; display: inline-block; text-align: center">
         <img style="padding-right: 10px; padding-left: 10px; max-width: 100%; max-height: 200px" src="https://i.chao-fan.com/biz/1670860881679_9b783640ff674791864b6aa4674a9ca8_0.png">
@@ -98,24 +98,24 @@
           FBi: 1000
         </p>
       </div>
-      <div @click="getQQMusicPackage" style="padding-top: 20px; width: 50%; display: inline-block">
-        <img style="padding-right: 10px; padding-left: 10px; width: 100%" src="https://i.chao-fan.com/biz/1653664313972_86702ab2d35c487ca376ec939e4110d1.png">
-        <p style="text-align: center">
-          QQ音乐 绿钻1个月
-        </p>
-        <p style="text-align: center">
-          FBi: 1500
-        </p>
-      </div>
-      <div @click="orderCup('cup')" style="padding-top: 20px; width: 50%; display: inline-block">
-        <img style="padding-right: 10px; padding-left: 10px; width: 100%" src="https://i.chao-fan.com/biz/0e848c137be852a5d7999f4acd10a640.png">
-        <p style="text-align: center">
-          炒饭马克杯
-        </p>
-        <p style="text-align: center">
-          FBi: 1500
-        </p>
-      </div>
+<!--      <div @click="getQQMusicPackage" style="padding-top: 20px; width: 50%; display: inline-block">-->
+<!--        <img style="padding-right: 10px; padding-left: 10px; width: 100%" src="https://i.chao-fan.com/biz/1653664313972_86702ab2d35c487ca376ec939e4110d1.png">-->
+<!--        <p style="text-align: center">-->
+<!--          QQ音乐 绿钻1个月-->
+<!--        </p>-->
+<!--        <p style="text-align: center">-->
+<!--          FBi: 1500-->
+<!--        </p>-->
+<!--      </div>-->
+<!--      <div @click="orderCup('cup')" style="padding-top: 20px; width: 50%; display: inline-block">-->
+<!--        <img style="padding-right: 10px; padding-left: 10px; width: 100%" src="https://i.chao-fan.com/biz/0e848c137be852a5d7999f4acd10a640.png">-->
+<!--        <p style="text-align: center">-->
+<!--          炒饭马克杯-->
+<!--        </p>-->
+<!--        <p style="text-align: center">-->
+<!--          FBi: 1500-->
+<!--        </p>-->
+<!--      </div>-->
 
       <div @click="orderCup('pillow')" style="padding-top: 20px; width: 50%; display: inline-block">
         <img style="padding-right: 10px; padding-left: 10px; width: 100%" src="https://i.chao-fan.com/biz/8ac76ef85cc8096adf30863e45a27374.jpg">
@@ -127,25 +127,25 @@
         </p>
       </div>
 
-      <div @click="orderCup('mask')" style="padding-top: 20px;width: 50%; display: inline-block">
-        <img style="padding-right: 10px; padding-left: 10px; width: 100%" src="https://i.chao-fan.com/biz/1654480598414_3451e4cf70784419a54c1476224101f0.png">
-        <p style="text-align: center">
-          炒饭口罩 30 个（独立包装）
-        </p>
-        <p style="text-align: center">
-          FBi: 2500
-        </p>
-      </div>
+<!--      <div @click="orderCup('mask')" style="padding-top: 20px;width: 50%; display: inline-block">-->
+<!--        <img style="padding-right: 10px; padding-left: 10px; width: 100%" src="https://i.chao-fan.com/biz/1654480598414_3451e4cf70784419a54c1476224101f0.png">-->
+<!--        <p style="text-align: center">-->
+<!--          炒饭口罩 30 个（独立包装）-->
+<!--        </p>-->
+<!--        <p style="text-align: center">-->
+<!--          FBi: 2500-->
+<!--        </p>-->
+<!--      </div>-->
 
-      <div @click="getBilibili1Month" style="padding-top: 20px; width: 50%; display: inline-block">
-        <img style="padding-right: 10px; padding-left: 10px; width: 100%" src="https://i.chao-fan.com/biz/9683983f7ae6a723a76fc00dd7f9a103.png">
-        <p style="text-align: center">
-          Bilibili月度大会员
-        </p>
-        <p style="text-align: center">
-          FBi: 2500
-        </p>
-      </div>
+<!--      <div @click="getBilibili1Month" style="padding-top: 20px; width: 50%; display: inline-block">-->
+<!--        <img style="padding-right: 10px; padding-left: 10px; width: 100%" src="https://i.chao-fan.com/biz/9683983f7ae6a723a76fc00dd7f9a103.png">-->
+<!--        <p style="text-align: center">-->
+<!--          Bilibili月度大会员-->
+<!--        </p>-->
+<!--        <p style="text-align: center">-->
+<!--          FBi: 2500-->
+<!--        </p>-->
+<!--      </div>-->
 
       <div @click="getTuxunVip('1year')" style="padding-top: 20px;width: 50%; display: inline-block; text-align: center">
         <img style="padding-right: 10px; padding-left: 10px; max-width: 100%; max-height: 200px" src="https://i.chao-fan.com/biz/1670861709222_dfe1d453d9cc49e6b7033ae1b12a2f85_0.png">
@@ -157,34 +157,34 @@
         </p>
       </div>
 
-      <div @click="orderCup('tshirt')" style="padding-top: 20px;width: 50%; display: inline-block">
-        <img style="padding-right: 10px; padding-left: 10px; width: 100%" src="https://i.chao-fan.com/biz/e3e44a77908676ea7047c18601a0297b.png">
-        <p style="text-align: center">
-          炒饭 T-shirt (无L码)
-        </p>
-        <p style="text-align: center">
-          FBi: 7500
-        </p>
-      </div>
+<!--      <div @click="orderCup('tshirt')" style="padding-top: 20px;width: 50%; display: inline-block">-->
+<!--        <img style="padding-right: 10px; padding-left: 10px; width: 100%" src="https://i.chao-fan.com/biz/e3e44a77908676ea7047c18601a0297b.png">-->
+<!--        <p style="text-align: center">-->
+<!--          炒饭 T-shirt (无L码)-->
+<!--        </p>-->
+<!--        <p style="text-align: center">-->
+<!--          FBi: 7500-->
+<!--        </p>-->
+<!--      </div>-->
 
-      <div @click="getBilibili1Year" style="padding-top: 20px; width: 50%; display: inline-block">
-        <img style="padding-right: 10px; padding-left: 10px; width: 100%" src="https://i.chao-fan.com/biz/9683983f7ae6a723a76fc00dd7f9a103.png">
-        <p style="text-align: center">
-          Bilibili年度大会员
-        </p>
-        <p style="text-align: center">
-          FBi: 16800
-        </p>
-      </div>
-      <div style="padding-top: 20px; width: 50%; display: inline-block">
-        <img style="padding-right: 10px; padding-left: 10px; width: 100%" src="https://i.chao-fan.com/biz/da67f9c40bc0f80db68e40de94b9a3f5.png">
-        <p style="text-align: center">
-          西兰公国 Lord (勋爵)
-        </p>
-        <p style="text-align: center">
-          FBi: 35000
-        </p>
-      </div>
+<!--      <div @click="getBilibili1Year" style="padding-top: 20px; width: 50%; display: inline-block">-->
+<!--        <img style="padding-right: 10px; padding-left: 10px; width: 100%" src="https://i.chao-fan.com/biz/9683983f7ae6a723a76fc00dd7f9a103.png">-->
+<!--        <p style="text-align: center">-->
+<!--          Bilibili年度大会员-->
+<!--        </p>-->
+<!--        <p style="text-align: center">-->
+<!--          FBi: 16800-->
+<!--        </p>-->
+<!--      </div>-->
+<!--      <div style="padding-top: 20px; width: 50%; display: inline-block">-->
+<!--        <img style="padding-right: 10px; padding-left: 10px; width: 100%" src="https://i.chao-fan.com/biz/da67f9c40bc0f80db68e40de94b9a3f5.png">-->
+<!--        <p style="text-align: center">-->
+<!--          西兰公国 Lord (勋爵)-->
+<!--        </p>-->
+<!--        <p style="text-align: center">-->
+<!--          FBi: 35000-->
+<!--        </p>-->
+<!--      </div>-->
     </div>
 
 
