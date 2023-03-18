@@ -8,11 +8,11 @@
     </div>
 
     <div style="margin: 0 auto;padding-top: 5px; display: flex;justify-content: center;">
-      <div style="margin-right: 2px;">
-        <img
-          :src="imgOrigin + 'biz/a7a11ce394ec3bad0f25f4aead7855ec.png'"
-          alt="" style="width: 50px;height: 50px;border-radius: 100%;" />
-      </div>
+<!--      <div style="margin-right: 2px;">-->
+<!--        <img-->
+<!--          :src="imgOrigin + 'biz/a7a11ce394ec3bad0f25f4aead7855ec.png'"-->
+<!--          alt="" style="width: 50px;height: 50px;border-radius: 100%;" />-->
+<!--      </div>-->
       <div class="box" style="display: flex;flex-direction: column;">
         <div class="front" style="min-width: 42px;">
           <div style="color: #e85827;font-size: 24px;">{{ remainFbi }}</div>
@@ -228,20 +228,20 @@ export default {
               this.myDonate = row;
             }
 
-            // 图片
-            if (row.rank === 1 || row.rank === 2 || row.rank === 3) {
-              let image;
-              if (row.rank === 1) {
-                image = "biz/5bc9173a1a4dd54120e0083893d524c9.png";
-              } else if (row.rank === 2) {
-                image = "biz/4f7e167e5ee7594626a43fbc93020dbf.png";
-              } else {
-                image = "biz/32b3f8bba180e2256489ec4ecd9c1dc9.png";
-              }
-              if (image) {
-                row.rankImg = this.imgOrigin + image + "?x-oss-process=image/resize,h_40/quality,q_75";
-              }
-            }
+            // // 图片
+            // if (row.rank === 1 || row.rank === 2 || row.rank === 3) {
+            //   let image;
+            //   if (row.rank === 1) {
+            //     image = "biz/5bc9173a1a4dd54120e0083893d524c9.png";
+            //   } else if (row.rank === 2) {
+            //     image = "biz/4f7e167e5ee7594626a43fbc93020dbf.png";
+            //   } else {
+            //     image = "biz/32b3f8bba180e2256489ec4ecd9c1dc9.png";
+            //   }
+            //   if (image) {
+            //     row.rankImg = this.imgOrigin + image + "?x-oss-process=image/resize,h_40/quality,q_75";
+            //   }
+            // }
 
           });
 

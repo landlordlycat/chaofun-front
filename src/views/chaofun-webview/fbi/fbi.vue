@@ -3,11 +3,11 @@
 
     <div style="display: flex;margin:10px 0 20px 0;">
 
-      <img
-          :src="imgOrigin + 'biz/a7a11ce394ec3bad0f25f4aead7855ec.png'"
-          alt="FBi" style="width: 36px;height: 36px;border-radius: 100%;" />
+<!--      <img-->
+<!--          :src="imgOrigin + 'biz/a7a11ce394ec3bad0f25f4aead7855ec.png'"-->
+<!--          alt="FBi" style="width: 36px;height: 36px;border-radius: 100%;" />-->
       <span style="margin: auto 5px;color: orangered;font-weight: bold; font-size: 20px;">
-        {{ this.fbi }}
+        余额：{{ this.fbi }}
       </span>
 
     </div>
