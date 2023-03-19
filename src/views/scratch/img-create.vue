@@ -23,7 +23,7 @@
     </div>
     <el-button  size="mini" @click="addColumn">加一张</el-button>
     <el-button  size="mini" @click="deleteColumn">删除最后一张</el-button>
-
+    <el-button  size="mini" @click="shuffle">打乱顺序</el-button>
 
     <div style="padding-top: 20px">幻灯片模式
       <el-switch
@@ -56,6 +56,9 @@ export default {
   created() {
   },
   methods: {
+    shuffle() {
+      this.dataForm.sort(() => Math.random() - 0.5);
+    },
     changeSlideshow() {
       this.$emit('update:slideshow', this.slideshow);
     },
