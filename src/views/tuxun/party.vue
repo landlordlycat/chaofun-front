@@ -199,9 +199,12 @@ export default {
       })
     },
     change2Player(teamIndex) {
-
       var teamId = null;
-      if (this.partyData.teams && this.partyData.teams.length > teamId) {
+      // console.log(teamIndex);
+      // console.log(this.partyData.teams);
+      // console.log(this.partyData.teams[teamIndex]);
+      // console.log(this.partyData.teams.length)
+      if (this.partyData.teams && this.partyData.teams.length > teamIndex) {
         teamId = this.partyData.teams[teamIndex].id;
       }
       api.getByPath('/api/v0/tuxun/party/change2Player', {teamId: teamId}).then(res=>{
@@ -471,7 +474,7 @@ export default {
 
     .invite {
       margin: 2rem auto 0;
-      //max-width: 80%;
+      //max-width: 90%;
       min-width: 35rem;
 
       .title {
@@ -488,6 +491,58 @@ export default {
 
       .button {
         font-size: 16px;
+      }
+    }
+  }
+}
+@media only screen and (max-width: 768px) {
+  .game_container {
+    .prepare {
+      .separate-line {
+        width: 80%;
+      }
+
+      .vs {
+        width: 80%;
+
+        .vs_img {
+          width: 30px;
+          height: 30px;
+        }
+
+      }
+
+      .invite {
+        width: 100%;
+        min-width: 50%;
+        max-width: 100%;
+
+        .body {
+          max-width: 100%;
+        }
+      }
+    }
+
+    .player {
+      width: 80%;
+
+      .user {
+        .avatar {
+          width: 50px;
+          height: 50px;
+        }
+        .userName {
+          font-size: 12px;
+        }
+      }
+      .user-small {
+        .avatar {
+          width: 50px;
+          height: 50px;
+        }
+        .userName {
+          font-size: 8px;
+        }
       }
     }
   }
