@@ -412,8 +412,8 @@ export default {
       display: flex;
 
       .vs_img {
-        width: 100px;
-        height: 100px;
+        width: 75px;
+        height: 75px;
         margin: auto;
       }
     }
