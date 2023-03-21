@@ -4,6 +4,11 @@
       <el-button round>←图寻首页</el-button>
     </div>
 
+    <div class="disband">
+      <el-button v-if="partyData && $store.state.user.userInfo.userId === partyData.host.userId" @click="disband" round> 解散派对 </el-button>
+      <el-button v-else @click="leave" round> 离开房间 </el-button>
+    </div>
+
     <div v-if="partyData" class="prepare">
       <div class="party-name">
         {{partyData.host.userName}} 的聚会
@@ -170,6 +175,21 @@ export default {
       }, 15000);
     },
 
+    leave() {
+      api.getByPath('/api/v0/tuxun/party/leave').then(res=>{
+        if (res.success) {
+          tuxunJump('/tuxun/')
+        }
+      })
+    },
+    disband() {
+      api.getByPath('/api/v0/tuxun/party/disband').then(res=>{
+        if (res.success) {
+          tuxunJump('/tuxun/')
+        }
+      })
+    },
+
     showMapsSearch()  {
       this.$mapsSearch(
           { callBack: (mapsId, mapsType) => {
@@ -313,13 +333,19 @@ export default {
   padding-left: 1rem;
   z-index: 5000;
 }
+
 .game_container {
   position: absolute;
   width: 100%;
   min-height: 100%;
   text-align: center;
   background-color: #18182A;
-
+  .disband {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 5000;
+  }
   .home_button {
     z-index: 10000;
     margin-top: 2rem;
