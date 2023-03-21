@@ -265,7 +265,7 @@ export default {
       this.status = this.partyData.status;
       this.health = this.partyData.gameHealth;
       if (code === 'start_game') {
-        tuxunJump('/tuxun/solo_game?gameId=' + res.partyData.gameId)
+        tuxunJump('/tuxun/solo_game?gameId=' + this.partyData.gameId)
       }
     },
 
