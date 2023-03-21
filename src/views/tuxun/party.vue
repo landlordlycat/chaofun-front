@@ -25,7 +25,7 @@
               <div class="userName">{{item.userName}} <span v-if="item.userId === partyData.host.userId">(房主)</span></div>
             </div>
           </div>
-          <div v-else>
+          <div v-if="partyData && (!partyData.teams || partyData.teams.length == 0  || partyData.gameType === 'team')">
             <el-button @click="change2Player">加入对决</el-button>
           </div>
         </div>
@@ -41,7 +41,7 @@
               <div class="userName">{{item.userName}} <span v-if="item.userId === partyData.host.userId">(房主)</span></div>
             </div>
           </div>
-          <div v-else>
+          <div v-if="partyData && (!partyData.teams || partyData.teams.length <= 1  || partyData.gameType === 'team')">
             <el-button @click="change2Player">加入对决</el-button>
           </div>
         </div>
@@ -89,11 +89,11 @@
         <div style="padding-top: 10px; font-size: 24px">设置</div>
         <div  style="">
           <div style="font-size: 16px">
-            类型: <span v-if="this.$store.state.user.userInfo.userId !== this.partyData.host.userId"> {{this.partyData.gameType === 'solo'? '1v1对决' : '多对多对决'}} </span>
+            类型: <span v-if="$store.state.user.userInfo.userId !== partyData.host.userId"> {{this.partyData.gameType === 'solo'? '1v1对决' : '多对多对决'}} </span>
           </div>
-          <div v-if="this.$store.state.user.userInfo.userId === this.partyData.host.userId" style="display: flex;   justify-content: center ">
-            <div :class="{}" style="margin:0px 1rem; padding: 4px 8px; color: white; background-color: green;">1v1对决</div>
-            <div style="margin:0px 1rem; padding: 4px 8px; color: white; background-color: green;">组队对决</div>
+          <div v-if="$store.state.user.userInfo.userId === partyData.host.userId" style="display: flex;   justify-content: center ">
+            <div :class="partyData.gameType === 'solo' ? 'choose-type' : 'normal-type'" @click="changeGameType('solo')" >1v1对决</div>
+            <div :class="partyData.gameType === 'team' ? 'choose-type' : 'normal-type'" @click="changeGameType('team')">组队对决</div>
           </div>
         </div>
         <div  style="padding-top: 2rem;">
@@ -193,6 +193,11 @@ export default {
       })
     },
 
+    swapTeam() {
+      api.getByPath('/api/v0/tuxun/party/swapTeam').then(res=>{
+        this.solvePartyData(res.data)
+      })
+    },
     change2Player() {
       api.getByPath('/api/v0/tuxun/party/change2Player').then(res=>{
         this.solvePartyData(res.data)
@@ -200,6 +205,11 @@ export default {
     },
     changeHealth() {
       api.getByPath('/api/v0/tuxun/party/changeHealth', {health: this.health}).then(res=>{
+        this.solvePartyData(res.data)
+      })
+    },
+    changeGameType(type) {
+      api.getByPath('/api/v0/tuxun/party/changeType', {type: type}).then(res=>{
         this.solvePartyData(res.data)
       })
     },
@@ -390,6 +400,22 @@ export default {
     .wait_game_start {
       padding-top: 2rem;
       font-size: 16px;
+    }
+
+    .choose-type {
+      margin:0px 1rem;
+      padding: 4px 8px;
+      color: white;
+      background-color: green;
+      outline: 1px solid white;
+    }
+
+    .normal-type {
+      cursor: pointer;
+      margin:0px 1rem;
+      padding: 4px 8px;
+      color: white;
+      outline: 1px solid white;
     }
 
     .wait_game_user {
