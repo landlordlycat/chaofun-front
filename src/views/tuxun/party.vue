@@ -77,7 +77,7 @@
             <div style="display: flex; flex-flow: row wrap;  justify-content: center; width: 100%" v-if="partyData && partyData.onlookers">
               <div class="user" v-for="(item, index) in partyData.onlookers">
                 <el-avatar :src="imgOrigin + item.icon" class="avatar"></el-avatar>
-                <div class="userName">{{item.userName}} <span v-if="partyData.gameType === 'team' && item.userId === partyData.host.userId">(房主)</span></div>
+                <div class="userName">{{item.userName}} <span v-if="item.userId === partyData.host.userId">(房主)</span></div>
               </div>
             </div>
           </div>
