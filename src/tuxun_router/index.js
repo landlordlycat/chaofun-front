@@ -44,15 +44,15 @@ export const constantRoutes = [
   {
     path: '/party',
     component: () => import('@/views/tuxun/party'),
-    name: '聚会-图寻',
-    meta: { title: '图寻聚会'},
+    name: '派对-图寻',
+    meta: { title: '图寻派对'},
     hidden: true
   },
   {
     path: '/join',
     component: () => import('@/views/tuxun/join'),
-    name: '加入聚会-图寻',
-    meta: { title: '加入聚会-图寻'},
+    name: '加入派对-图寻',
+    meta: { title: '加入派对-图寻'},
     hidden: true
   },
   {

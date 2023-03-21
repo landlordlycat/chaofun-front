@@ -98,7 +98,7 @@
           </div>
           <div class="card" @click="toParty" >
             <div class="title">
-              聚会
+              派对
             </div>
             <div class="describe">
               新版邀请好友对决
