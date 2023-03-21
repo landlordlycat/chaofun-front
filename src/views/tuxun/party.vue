@@ -22,7 +22,7 @@
           <div style="display: flex; flex-flow: row wrap; justify-content: center; width: 100%" v-if="partyData && partyData.teams && partyData.teams.length >= 1">
             <div class="user" v-for="(item, index) in partyData.teams[0].users">
               <el-avatar :src="imgOrigin + item.icon" class="avatar"></el-avatar>
-              <div class="userName">{{item.userName}} <span v-if="partyData.gameType === 'team' && item.userId === partyData.host.userId">(房主)</span></div>
+              <div class="userName">{{item.userName}} <span v-if="item.userId === partyData.host.userId">(房主)</span></div>
             </div>
           </div>
           <div v-else>
@@ -38,7 +38,7 @@
           <div style="display: flex; flex-flow: row wrap;  justify-content: center; width: 100%" v-if="partyData && partyData.teams && partyData.teams.length >= 2">
             <div class="user" v-for="(item, index) in partyData.teams[1].users">
               <el-avatar :src="imgOrigin + item.icon" class="avatar"></el-avatar>
-              <div class="userName">{{item.userName}} <span v-if="partyData.gameType === 'team' && item.userId === partyData.host.userId">(房主)</span></div>
+              <div class="userName">{{item.userName}} <span v-if="item.userId === partyData.host.userId">(房主)</span></div>
             </div>
           </div>
           <div v-else>
