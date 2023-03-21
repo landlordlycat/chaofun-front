@@ -83,13 +83,15 @@ export default {
             this.image = round.content;
           }
 
+
+
           this.viewer = new Viewer({
             loadingImg: this.imgOrigin + 'biz/1659528755270_550cd22e10c84073a12e6f83840320bc.gif',
             navbar: null,
             panorama: this.imgOrigin + this.image,
             container: document.querySelector('#viewer'),
             panoData: {
-              poseHeading: this.heading, // 0 to 360
+              poseHeading: round.heading, // 0 to 360
             },
             defaultZoomLvl: 0,
             plugins: plugins
@@ -104,7 +106,6 @@ export default {
 
         var compassPlugin = this.viewer.getPlugin(CompassPlugin);
         if (compassPlugin) {
-          console.log(round.heading);
           if (round.heading) {
             compassPlugin.show();
           } else {

@@ -205,23 +205,31 @@ export default {
         teamId = this.partyData.teams[teamIndex].id;
       }
       api.getByPath('/api/v0/tuxun/party/change2Player', {teamId: teamId}).then(res=>{
-        this.solvePartyData(res.data)
+        if (res.success) {
+          this.solvePartyData(res.data)
+        }
       })
     },
     changeHealth() {
       api.getByPath('/api/v0/tuxun/party/changeHealth', {health: this.health}).then(res=>{
-        this.solvePartyData(res.data)
+        if (res.success) {
+          this.solvePartyData(res.data)
+        }
       })
     },
     changeGameType(type) {
       api.getByPath('/api/v0/tuxun/party/changeType', {type: type}).then(res=>{
-        this.solvePartyData(res.data)
+        if (res.success) {
+          this.solvePartyData(res.data)
+        }
       })
     },
     changeMaps(mapsId, mapsType) {
       // this.$mapsSearch();
       api.getByPath('/api/v0/tuxun/party/changeMaps', {mapsId: mapsId, type: mapsType}).then(res=>{
-        this.solvePartyData(res.data)
+        if (res.success) {
+          this.solvePartyData(res.data)
+        }
       })
     },
 
@@ -260,8 +268,10 @@ export default {
 
     joinByParty() {
       api.getByPath('/api/v0/tuxun/party/joinByParty').then(res=>{
-        this.solvePartyData(res.data, null)
-        this.initWS()
+            if (res.success) {
+              this.solvePartyData(res.data, null)
+              this.initWS()
+            }
       })
     },
 
