@@ -42,6 +42,20 @@ export const constantRoutes = [
     hidden: true
   },
   {
+    path: '/party',
+    component: () => import('@/views/tuxun/party'),
+    name: '聚会-图寻',
+    meta: { title: '图寻聚会'},
+    hidden: true
+  },
+  {
+    path: '/join',
+    component: () => import('@/views/tuxun/join'),
+    name: '加入聚会-图寻',
+    meta: { title: '加入聚会-图寻'},
+    hidden: true
+  },
+  {
     path: '/my_maps',
     component: () => import('@/views/tuxun/MyMaps'),
     meta: { title: '图寻-练习赛'},

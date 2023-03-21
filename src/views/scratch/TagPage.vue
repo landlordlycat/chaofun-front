@@ -15,7 +15,7 @@
     </div>
 
     <section class="list_container">
-      <scratch-list :tag.sync="this.tagName"></scratch-list>
+      <scratch-list :tag.sync="this.tagName" :current.sync="this.current"></scratch-list>
     </section>
   </div>
 </template>
@@ -32,11 +32,21 @@ export default {
       totalTimes: null,
       sort: 'hot',
       tagName: null,
+      current: 1,
       list: [],
     }
   },
   created() {
     this.tagName = this.$route.query.tagName;
+    if (this.$route.query.sort) {
+      this.sort = this.$route.query.sort;
+    }
+
+    console.log(this.$route.query.page)
+    if (this.$route.query.page) {
+      // console.log()
+      this.current = parseInt(this.$route.query.page);
+    }
   },
 
   methods: {

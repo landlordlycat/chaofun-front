@@ -96,6 +96,15 @@
             </div>
             <div class="card-top-right">可移动</div>
           </div>
+          <div class="card" @click="toParty" >
+            <div class="title">
+              聚会
+            </div>
+            <div class="describe">
+              新版邀请好友对决
+            </div>
+            <div class="card-top-right">可移动</div>
+          </div>
         </div>
 
         <div class="first_session_head">其他</div>
@@ -273,6 +282,11 @@ export default {
           tuxunJump('/tuxun/team_game?gameId=' + id);
           // this.$router.push({path: '/tuxun/solo_game?gameId=' + id}).catch((e) => {})
         });
+      })
+    },
+    toParty() {
+      this.doLoginStatus().then((res) => {
+          tuxunJump('/tuxun/party');
       })
     },
 

@@ -121,16 +121,19 @@ export default {
     toMaps(item, type) {
       api.getByPath('/api/v0/tuxun/game/enterMap', {mapsId: item.id}).then(res => {
       })
+      this.doLoginStatus().then((res) => {
+        if (res) {
 
-      api.getByPath('/api/v0/tuxun/challenge/create', {'mapsId': item.id, 'type': type}).then(res => {
-        if (res.success) {
-          tuxunJump('/tuxun/challenge?challengeId=' + res.data);
-        } else {
-          if (res.errorCode === 'need_vip') {
-            this.$vip({})
-          }
-        }
-      })
+          api.getByPath('/api/v0/tuxun/challenge/create', {'mapsId': item.id, 'type': type}).then(res => {
+            if (res.success) {
+              tuxunJump('/tuxun/challenge?challengeId=' + res.data);
+            } else {
+              if (res.errorCode === 'need_vip') {
+                this.$vip({})
+              }
+            }
+          })
+        }})
     },
     share() {
       var input = document.createElement('input');

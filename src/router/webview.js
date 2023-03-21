@@ -352,6 +352,20 @@ routes = [
     hidden: true
   },
   {
+    path: '/tuxun/party',
+    component: () => import('@/views/tuxun/party'),
+    name: '图寻聚会',
+    meta: { title: '图寻聚会'},
+    hidden: true
+  },
+  {
+    path: '/tuxun/join',
+    component: () => import('@/views/tuxun/join'),
+    name: '图寻聚会',
+    meta: { title: '图寻聚会'},
+    hidden: true
+  },
+  {
     path: '/solo_game',
     component: () => import('@/views/tuxun/TXInvitor'),
     name: '图寻邀请PK',

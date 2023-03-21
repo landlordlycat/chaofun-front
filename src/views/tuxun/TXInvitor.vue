@@ -270,7 +270,8 @@
               <el-button class="home_button"  type="primary" @click="goTuxun" round>继续匹配</el-button>
             </div>
             <div v-if="gameData && ( gameData.type === 'solo' || gameData.type === 'team')">
-              <el-button class="home_button"  type="primary" @click="again" round>再来一局</el-button>
+              <el-button v-if="!gameData.partyId" class="home_button"  type="primary" @click="again" round>再来一局</el-button>
+              <el-button v-else class="home_button"  type="primary" @click="backParty" round>回到聚会</el-button>
             </div>
             <div v-if="gameData">
               <el-button class="home_button"  type="primary" @click="replay" round>题目复盘</el-button>
@@ -576,7 +577,9 @@ export default {
         this.changeMapBig();
       }
     },
-
+    backParty() {
+      tuxunJump('/tuxun/party')
+    },
     mapMouseOut() {
       if (!window.matchMedia("(hover: none)").matches && document.body.clientWidth > 678 && !this.mapPin) {
         this.needSmall = true;
@@ -2096,8 +2099,8 @@ export default {
         max-width: 100%;
 
         .body {
-          padding-left: 10px;
-          padding-right: 10px;
+          //padding-left: 10px;
+          //padding-right: 10px;
           max-width: 100%;
         }
       }
