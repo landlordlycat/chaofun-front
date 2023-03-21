@@ -26,7 +26,7 @@
             </div>
           </div>
           <div v-if="partyData && (!partyData.teams || partyData.teams.length == 0  || partyData.gameType === 'team')">
-            <el-button @click="change2Player(0)">加入对决</el-button>
+            <el-button @click="change2Player(0)" size="small">加入对决</el-button>
           </div>
         </div>
         <div>
@@ -42,7 +42,7 @@
             </div>
           </div>
           <div v-if="partyData && (!partyData.teams || partyData.teams.length <= 1  || partyData.gameType === 'team')">
-            <el-button @click="change2Player(1)">加入对决</el-button>
+            <el-button @click="change2Player(1)" size="small">加入对决</el-button>
           </div>
         </div>
       </div>
@@ -71,11 +71,11 @@
       <div class="wait_game_start">
         <div class="separate-line"></div>
         <div style="font-size: 24px">围观</div>
-        <el-button @click="change2Onlooker">切换为围观</el-button>
+        <el-button @click="change2Onlooker" size="small">切换为围观</el-button>
         <div>
           <div class="player">
             <div style="display: flex; flex-flow: row wrap;  justify-content: center; width: 100%" v-if="partyData && partyData.onlookers">
-              <div class="user" v-for="(item, index) in partyData.onlookers">
+              <div class="user-small" v-for="(item, index) in partyData.onlookers">
                 <el-avatar :src="imgOrigin + item.icon" class="avatar"></el-avatar>
                 <div class="userName">{{item.userName}} <span v-if="item.userId === partyData.host.userId">(房主)</span></div>
               </div>
@@ -324,7 +324,7 @@ export default {
   }
 
   .player {
-    width: 40%;
+    width: 60%;
     margin: auto;
     div{
       color: white;
@@ -343,8 +343,8 @@ export default {
       display: block;
       margin: 10px;
       .avatar {
-        width: 100px;
-        height: 100px;
+        width: 75px;
+        height: 75px;
         margin: 0 auto;
         justify-content: center;
         display: flex;
@@ -352,10 +352,25 @@ export default {
 
       .userName {
         margin-top: 1rem;
-        font-size: 16px;
+        font-size: 12px;
       }
     }
+    .user-small {
+      display: block;
+      margin: 10px;
+      .avatar {
+        width: 50px;
+        height: 50px;
+        margin: 0 auto;
+        justify-content: center;
+        display: flex;
+      }
 
+      .userName {
+        margin-top: 1rem;
+        font-size: 10px;
+      }
+    }
   }
   .prepare {
     padding-bottom: 10rem;
