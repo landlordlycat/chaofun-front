@@ -12,7 +12,7 @@
 
     <div class="prepare" v-if="status==='wait_join' || status === 'ready'">
       <div class="header" v-if="gameData.type === 'solo' || gameData.type === 'solo_match'">
-        图寻1v1决斗
+        图寻1v1对决
       </div>
 
       <div class="header" v-if="gameData.type === 'team'">

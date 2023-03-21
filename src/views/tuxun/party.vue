@@ -10,7 +10,7 @@
       </div>
 
       <div class="header" v-if="partyData.gameType === 'solo' || partyData.gameType === 'solo_match'">
-        图寻1v1决斗
+        图寻1v1对决
       </div>
 
       <div class="header" v-if="partyData.gameType === 'team'">
@@ -25,6 +25,9 @@
               <div class="userName">{{item.userName}} <span v-if="partyData.gameType === 'team' && item.userId === partyData.host.userId">(房主)</span></div>
             </div>
           </div>
+          <div v-else>
+            <el-button @click="change2Player">加入对决</el-button>
+          </div>
         </div>
         <div>
           <img class="vs_img"  :src="this.imgOrigin + 'biz/1658807128256_91c9df63c2d144359005b6f504a96a81.png'"></img>
@@ -37,6 +40,9 @@
               <el-avatar :src="imgOrigin + item.icon" class="avatar"></el-avatar>
               <div class="userName">{{item.userName}} <span v-if="partyData.gameType === 'team' && item.userId === partyData.host.userId">(房主)</span></div>
             </div>
+          </div>
+          <div v-else>
+            <el-button @click="change2Player">加入对决</el-button>
           </div>
         </div>
       </div>
@@ -58,14 +64,39 @@
         等待其他玩家加入或队伍至少有一人....
       </div>
 
-      <div v-if="partyData.host && this.$store.state.user.userInfo.userId !== partyData.host.userId && partyData.gameType !== 'solo_match' && partyData.gameType !== 'battle_royale' " class="wait_game_start">
+      <div v-if="partyData.host && $store.state.user.userInfo.userId !== partyData.host.userId && partyData.status === 'ready' " class="wait_game_start">
         等待房主开始游戏...
+      </div>
+
+      <div class="wait_game_start">
+        <div class="separate-line"></div>
+        <div style="font-size: 24px">围观</div>
+        <el-button @click="change2Onlooker">切换为围观</el-button>
+        <div>
+          <div class="player">
+            <div style="display: flex; flex-flow: row wrap;  justify-content: center; width: 100%" v-if="partyData && partyData.onlookers">
+              <div class="user" v-for="(item, index) in partyData.onlookers">
+                <el-avatar :src="imgOrigin + item.icon" class="avatar"></el-avatar>
+                <div class="userName">{{item.userName}} <span v-if="partyData.gameType === 'team' && item.userId === partyData.host.userId">(房主)</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div v-if="(partyData.gameType === 'solo' || partyData.gameType === 'team') && partyData.gameMapsName " class="wait_game_start">
         <div class="separate-line"></div>
         <div style="padding-top: 10px; font-size: 24px">设置</div>
-        <div>
+        <div  style="">
+          <div style="font-size: 16px">
+            类型: <span v-if="this.$store.state.user.userInfo.userId !== this.partyData.host.userId"> {{this.partyData.gameType === 'solo'? '1v1对决' : '多对多对决'}} </span>
+          </div>
+          <div v-if="this.$store.state.user.userInfo.userId === this.partyData.host.userId" style="display: flex;   justify-content: center ">
+            <div :class="{}" style="margin:0px 1rem; padding: 4px 8px; color: white; background-color: green;">1v1对决</div>
+            <div style="margin:0px 1rem; padding: 4px 8px; color: white; background-color: green;">组队对决</div>
+          </div>
+        </div>
+        <div  style="padding-top: 2rem;">
           <div style="font-size: 16px">
             题库：{{partyData.gameMapsName}}
           </div>
@@ -156,6 +187,17 @@ export default {
           })
     },
 
+    change2Onlooker() {
+      api.getByPath('/api/v0/tuxun/party/change2Onlooker').then(res=>{
+        this.solvePartyData(res.data)
+      })
+    },
+
+    change2Player() {
+      api.getByPath('/api/v0/tuxun/party/change2Player').then(res=>{
+        this.solvePartyData(res.data)
+      })
+    },
     changeHealth() {
       api.getByPath('/api/v0/tuxun/party/changeHealth', {health: this.health}).then(res=>{
         this.solvePartyData(res.data)
@@ -199,7 +241,7 @@ export default {
     },
     joinByParty() {
       api.getByPath('/api/v0/tuxun/party/joinByParty').then(res=>{
-        this.solvePartyData(res.data)
+        this.solvePartyData(res.data, null)
         this.initWS()
       })
     },
