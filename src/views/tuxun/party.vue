@@ -26,7 +26,7 @@
             </div>
           </div>
           <div v-if="partyData && (!partyData.teams || partyData.teams.length == 0  || partyData.gameType === 'team')">
-            <el-button @click="change2Player">加入对决</el-button>
+            <el-button @click="change2Player(0)">加入对决</el-button>
           </div>
         </div>
         <div>
@@ -42,7 +42,7 @@
             </div>
           </div>
           <div v-if="partyData && (!partyData.teams || partyData.teams.length <= 1  || partyData.gameType === 'team')">
-            <el-button @click="change2Player">加入对决</el-button>
+            <el-button @click="change2Player(1)">加入对决</el-button>
           </div>
         </div>
       </div>
@@ -198,8 +198,13 @@ export default {
         this.solvePartyData(res.data)
       })
     },
-    change2Player() {
-      api.getByPath('/api/v0/tuxun/party/change2Player').then(res=>{
+    change2Player(teamIndex) {
+
+      var teamId = null;
+      if (this.partyData.teams && this.partyData.teams.length > teamId) {
+        teamId = this.partyData.teams[teamIndex].id;
+      }
+      api.getByPath('/api/v0/tuxun/party/change2Player', {teamId: teamId}).then(res=>{
         this.solvePartyData(res.data)
       })
     },
@@ -242,6 +247,9 @@ export default {
     },
 
     solvePartyData(partyData, code) {
+      if (partyData === null) {
+        return;
+      }
       this.partyData = partyData;
       this.status = this.partyData.status;
       this.health = this.partyData.gameHealth;
@@ -249,6 +257,7 @@ export default {
         tuxunJump('/tuxun/solo_game?gameId=' + res.partyData.gameId)
       }
     },
+
     joinByParty() {
       api.getByPath('/api/v0/tuxun/party/joinByParty').then(res=>{
         this.solvePartyData(res.data, null)
