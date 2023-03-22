@@ -78,6 +78,15 @@
               缘，妙不可言(积分)
             </div>
           </div>
+          <div class="card" @click="toParty" >
+            <div class="title">
+              派对
+            </div>
+            <div class="describe">
+              新版邀请好友对决
+            </div>
+            <div class="card-top-right">可移动</div>
+          </div>
           <div class="card" @click="createSolo" >
             <div class="title">
               邀请Solo
@@ -93,15 +102,6 @@
             </div>
             <div class="describe">
               组队对决，群体的力量
-            </div>
-            <div class="card-top-right">可移动</div>
-          </div>
-          <div class="card" @click="toParty" >
-            <div class="title">
-              派对
-            </div>
-            <div class="describe">
-              新版邀请好友对决
             </div>
             <div class="card-top-right">可移动</div>
           </div>

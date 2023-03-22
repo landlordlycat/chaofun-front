@@ -6,12 +6,12 @@
 
     <div class="disband">
       <el-button v-if="partyData && $store.state.user.userInfo.userId === partyData.host.userId" @click="disband" round> 解散派对 </el-button>
-      <el-button v-else @click="leave" round> 离开聚会 </el-button>
+      <el-button v-else @click="leave" round> 离开派对 </el-button>
     </div>
 
     <div v-if="partyData" class="prepare">
       <div class="party-name">
-        {{partyData.host.userName}} 的聚会
+        {{partyData.host.userName}} 的派对
       </div>
 
       <div class="header" v-if="partyData.gameType === 'solo' || partyData.gameType === 'solo_match'">
