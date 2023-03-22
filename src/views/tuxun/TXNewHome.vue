@@ -5,7 +5,7 @@
         <div class="top-left">
           <img style=" width: 5rem; height: 3rem" :src="imgOrigin + 'biz/1658657631523_45db8dd090dc49af99f2a8a4ace01122.svg'"></img>
           <div style=" color: white">探索真实世界，收集线索，找出自己的位置</div>
-          <div style=" color: white">「炒饭社区」出品</div>
+          <div style=" color: white" v-if="$store.state.user.userInfo.userId !== 54242">「炒饭社区」出品</div>
         </div>
         <div class="top-right">
           <el-button  style="" @click="toUserHome">个人首页</el-button>
