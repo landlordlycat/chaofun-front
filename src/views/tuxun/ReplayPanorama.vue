@@ -3,7 +3,7 @@
     <div id="viewer"  style="position: absolute; width: 100%; height: 100%"></div>
     <div class="back_home">
       <el-button @click="goBack" size="small" round>←返回</el-button>
-      <el-button @click="goHome" size="small" round>图寻首页</el-button>
+      <el-button @click="goHome" size="small" round>首页</el-button>
       <el-button @click="toReport" size="small"  round> 坏题反馈 </el-button>
 
     </div>

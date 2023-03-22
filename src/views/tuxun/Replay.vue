@@ -3,7 +3,7 @@
     <div id="map" class="maps"></div>
     <div class="back_home">
       <el-button @click="goBack" size="small" round>←返回</el-button>
-      <el-button @click="goHome" size="small" round>图寻首页</el-button>
+      <el-button @click="goHome" size="small" round>首页</el-button>
     </div>
   </div>
 </template>

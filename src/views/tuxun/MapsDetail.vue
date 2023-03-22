@@ -2,7 +2,7 @@
   <div class="container">
     <div class="back_home">
       <el-button v-if="history && history.length !== 1" @click="goBack" round>←返回</el-button>
-      <el-button v-else  @click="goHome" round>←图寻首页</el-button>
+      <el-button v-else  @click="goHome" round>←首页</el-button>
       <el-button @click="share" type="primary" round>分享</el-button>
     </div>
     <div v-if="name" class="nav">

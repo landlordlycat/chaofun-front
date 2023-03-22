@@ -94,7 +94,7 @@
       </div>
     </div>
     <div class="home">
-      <el-button size="mini" @click="toHome" round> 图寻首页 </el-button>
+      <el-button size="mini" @click="toHome" round> 首页 </el-button>
       <el-button v-if="!this.isMaps" size="mini"  @click="toSend" round> 发送弹幕 </el-button>
       <el-button size="mini"  @click="toReport" round> 坏题反馈 </el-button>
 <!--      <el-button v-if="!ISPHONE && this.isMaps" size="mini"  @click="toSubmitPanorama" round> 提交街景 </el-button>-->

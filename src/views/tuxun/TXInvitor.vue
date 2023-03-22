@@ -7,7 +7,7 @@
     </div>
 
     <div v-if="!gameData || (gameData.status !== 'ongoing' && gameData.status !== 'finish')" class="back_home" @click="goHome">
-      <el-button round>←图寻首页</el-button>
+      <el-button round>←首页</el-button>
     </div>
 
     <div class="prepare" v-if="status==='wait_join' || status === 'ready'">
@@ -220,7 +220,7 @@
               <el-button class="result_button" @click="goMaps" round>回到练习赛首页</el-button>
             </div>
             <div>
-              <el-button class="result_button" @click="goHome" round>回到图寻首页</el-button>
+              <el-button class="result_button" @click="goHome" round>回到首页</el-button>
             </div>
           </div>
 
@@ -241,7 +241,7 @@
               <el-button class="result_button"  type="primary" @click="replay" round>题目复盘</el-button>
             </div>
             <div>
-              <el-button class="result_button"  @click="goHome" round>回到图寻首页</el-button>
+              <el-button class="result_button"  @click="goHome" round>回到首页</el-button>
             </div>
           </div>
         </div>
@@ -277,7 +277,7 @@
               <el-button class="home_button"  type="primary" @click="replay" round>题目复盘</el-button>
             </div>
             <div>
-              <el-button class="home_button" type="warning" @click="goHome" round>回到图寻首页</el-button>
+              <el-button class="home_button" type="warning" @click="goHome" round>回到首页</el-button>
             </div>
           </div>
         </div>
@@ -293,7 +293,7 @@
               <el-button class="home_button"  type="primary" @click="toNew" round>进入最新局</el-button>
             </div>
             <div>
-              <el-button class="home_button" type="warning" @click="goHome" round>回到图寻首页</el-button>
+              <el-button class="home_button" type="warning" @click="goHome" round>回到首页</el-button>
             </div>
           </div>
         </div>
@@ -374,7 +374,7 @@
 
       <div class="home">
         <el-button v-if="history && history.length !== 1" size="mini" @click="goBack" round>←返回</el-button>
-        <el-button v-if="gameData.type === 'challenge' || gameData.type === 'battle_royale'" size="mini" @click="goHome" round>图寻首页</el-button>
+        <el-button v-if="gameData.type === 'challenge' || gameData.type === 'battle_royale'" size="mini" @click="goHome" round>首页</el-button>
         <el-button size="mini" v-if="gameData && gameData.type !== 'daily_challenge'" @click="toReport" round> 坏题反馈 </el-button>
         <el-button v-if="gameData && gameData.move" size="mini"  @click="reset" round> 回到原点</el-button>
         <el-button size="mini" v-if="gameData && !gameData.player && gameData.type != 'battle_royale'"  @click="sendEmoji=true" round> 发送表情 </el-button>
@@ -1407,15 +1407,22 @@ export default {
     challengeAgain() {
       this.doLoginStatus().then((res) => {
         if (res) {
-          var type = 'noMove';
-          if (this.gameData.move) {
-            type = 'move'
-          }
-          api.getByPath('/api/v0/tuxun/challenge/create', {'mapsId': this.gameData.mapsId, 'type': type}).then(res => {
-            if (res.success) {
-              tuxunJump( '/tuxun/challenge?challengeId=' + res.data);
+          if (this.gameData.type === 'challenge') {
+            var type = 'noMove';
+            if (this.gameData.move) {
+              type = 'move'
             }
-          })
+            api.getByPath('/api/v0/tuxun/challenge/create', {
+              'mapsId': this.gameData.mapsId,
+              'type': type
+            }).then(res => {
+              if (res.success) {
+                tuxunJump('/tuxun/challenge?challengeId=' + res.data);
+              }
+            })
+          } else {
+            this.createNew();
+          }
         }
       });
     },

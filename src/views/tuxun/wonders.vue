@@ -7,7 +7,7 @@
         <div v-if="ISPHONE" class="desc">街景奇观</div>
       </div>
       <div class="button">
-        <!--      <el-button type="primary" @click="goHome" size="mini" round>←图寻首页</el-button>-->
+        <!--      <el-button type="primary" @click="goHome" size="mini" round>←首页</el-button>-->
         <el-button type="primary" @click="change" size="large" round>换一个</el-button>
         <el-button  @click="shareLink" size="large" round>分享街景</el-button>
 

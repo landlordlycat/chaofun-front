@@ -1,7 +1,7 @@
 <template>
   <div class="game_container">
     <div class="back_home" @click="goHome">
-      <el-button round>←图寻首页</el-button>
+      <el-button round>←首页</el-button>
     </div>
 
     <div class="disband">

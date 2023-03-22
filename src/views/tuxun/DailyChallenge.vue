@@ -1,12 +1,12 @@
 <template>
   <div class="container">
     <div class="back_home" @click="goHome">
-      <el-button round>←图寻首页</el-button>
+      <el-button round>←首页</el-button>
     </div>
     <div class="main_content">
       <div class="top">
         <div class="nav">
-          图寻每日挑战
+          每日挑战
         </div>
         <div class="time">
           {{this.getDate()}}
