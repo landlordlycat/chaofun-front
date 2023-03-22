@@ -381,7 +381,7 @@
         <el-button size="mini" v-if="gameData && (gameData.type ==='country_streak' || gameData.type ==='province_streak')"  @click="skip" round> 换一题 <span>
           ({{gameData.leftSkipTimes}})
         </span> </el-button>
-        <el-button size="mini" v-if="gameData && gameData.type === 'challenge'" @click="challengeAgain" round> 重开 </el-button>
+        <el-button size="mini" v-if="gameData && (gameData.type === 'challenge' || gameData.type ==='country_streak' || gameData.type ==='province_streak')" @click="challengeAgain" round> 重开 </el-button>
         <el-button v-if="ISPHONE" @click="reloadPage" size="mini" round>刷新页面</el-button>
       </div>
 
