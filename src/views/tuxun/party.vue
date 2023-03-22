@@ -6,7 +6,7 @@
 
     <div class="disband">
       <el-button v-if="partyData && $store.state.user.userInfo.userId === partyData.host.userId" @click="disband" round> 解散派对 </el-button>
-      <el-button v-else @click="leave" round> 离开房间 </el-button>
+      <el-button v-else @click="leave" round> 离开聚会 </el-button>
     </div>
 
     <div v-if="partyData" class="prepare">
