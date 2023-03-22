@@ -94,7 +94,7 @@
         <div style="padding-top: 10px; font-size: 24px">设置</div>
         <div  style="">
           <div style="font-size: 16px">
-            类型: <span v-if="$store.state.user.userInfo.userId !== partyData.host.userId"> {{this.partyData.gameType === 'solo'? '1v1对决' : '多对多对决'}} </span>
+            类型: <span v-if="$store.state.user.userInfo.userId !== partyData.host.userId"> {{this.partyData.gameType === 'solo'? '1v1对决' : '组队对决'}} </span>
           </div>
           <div v-if="$store.state.user.userInfo.userId === partyData.host.userId" style="display: flex;   justify-content: center ">
             <div :class="partyData.gameType === 'solo' ? 'choose-type' : 'normal-type'" @click="changeGameType('solo')" >1v1对决</div>
