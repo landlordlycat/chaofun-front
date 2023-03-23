@@ -223,8 +223,8 @@ routes = [
   {
     path: '/webview/OAuth',
     component: () => import('@/views/chaofun-webview/OAuth'),
-    name: 'FBi 红包',
-    meta: { title: 'FBi 红包'},
+    name: '登录-炒饭',
+    meta: { title: '登录-炒饭'},
     hidden: true
   },
   {
