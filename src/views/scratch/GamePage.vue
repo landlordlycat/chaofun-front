@@ -453,7 +453,12 @@ export default {
 
       if (this.guessInfo.data.slideshow) {
         var v = this.guessInfo.data.answers[this.innerCurrent - 1];
-        if (this.palindrome(v) === this.palindrome(e) && !this.matched.has(this.innerCurrent - 1)) {
+        var isRight = this.guessInfo.data.data[this.innerCurrent - 1].alternatives.some(item => {
+          if (this.palindrome(item.answer.toLowerCase()) === this.palindrome(e.toLowerCase())) {
+            return true;
+          }
+        })
+        if (isRight && !this.matched.has(this.innerCurrent - 1)) {
           this.matched.add(this.innerCurrent -1)
           this.right = this.right + 1;
           this.inputResult = '';
@@ -471,7 +476,7 @@ export default {
           }
           var matchValue = null;
           var isRight = v.alternatives.some(item => {
-            if (this.palindrome(item.answer) === this.palindrome(e)) {
+            if (this.palindrome(item.answer.toLowerCase()) === this.palindrome(e.toLowerCase())) {
               matchValue = item.answer;
               return true;
             }
