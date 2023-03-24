@@ -155,7 +155,7 @@
         <el-pagination
             background
             layout="prev, pager, next"
-            :pager-count="ISPHONE ? 3 : 6"
+            :pager-count="pageCount"
             style="padding-bottom: 20px;"
             :current-page.sync="innerCurrent"
             :page-size="1"
@@ -179,7 +179,7 @@
         <el-pagination
             background
             layout="prev, pager, next"
-            :pager-count="ISPHONE ? 3 : 6"
+            :pager-count="pageCount"
             style="padding-bottom: 20px;"
             :current-page.sync="innerCurrent"
             :page-size="1"
@@ -262,6 +262,7 @@ export default {
       moment: moment,
       right: 0,
       wrong: 0,
+      pageCount: 5,
       left: 0,
       start: false,
       end: false,
@@ -283,6 +284,9 @@ export default {
     this.id =  this.$route.query.id;
     this.getGuessInfo();
     this.getRate();
+    if (this.ISPHONE) {
+      this.pageCount = 5;
+    }
   },
   methods: {
     goUser(userId) {
@@ -348,7 +352,9 @@ export default {
     },
     focus() {
       setTimeout(() => {
-        this.$refs.input.focus();
+        if (this.$refs.input) {
+          this.$refs.input.focus();
+        }
       }, 200);
     },
     getGuessInfo() {
