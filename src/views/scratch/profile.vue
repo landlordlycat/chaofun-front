@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="back_home">
-      <el-button size="small" @click="goBack" round>←返回</el-button>
+      <el-button v-if="history && history.length !== 1" size="small" @click="goBack" round>←返回</el-button>
       <el-button @click="goHome" size="small" round>首页</el-button>
     </div>
     <div class="profile-container">
@@ -50,12 +50,13 @@ export default {
       list: [],
       userId: null,
       userStats: null,
+      history: null,
     }
   },
   created() {
+    this.history = history;
     this.userId= this.$route.path.split("/")[this.$route.path.split("/").length - 1];
     this.getUserStats()
-
   },
   methods: {
     getUserStats() {
