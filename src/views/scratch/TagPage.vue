@@ -15,7 +15,7 @@
     </div>
 
     <section class="list_container">
-      <scratch-list :tag.sync="this.tagName" :current.sync="this.current"></scratch-list>
+      <scratch-list :tag.sync="this.tagName" :sort="sort" :current="this.current"></scratch-list>
     </section>
   </div>
 </template>
