@@ -120,13 +120,13 @@
               </div>
             </td>
             <td style="width: 50%; border: 1px solid black;">
-              <div v-if="matched.has(item.answer)" style="text-align: center; color: green">
-                {{item.answer}}
+              <div v-if="matched.has(index)" style="text-align: center; color: green">
+                {{item.showAnswer}}
               </div>
-              <div v-if="!matched.has(item.answer) && giveUp" style="text-align: center; color: red">
-                {{item.answer}}
+              <div v-if="!matched.has(index) && giveUp" style="text-align: center; color: red">
+                {{item.showAnswer}}
               </div>
-              <div v-if="!matched.has(item.answer) && !giveUp" style="text-align: center">
+              <div v-if="!matched.has(index) && !giveUp" style="text-align: center">
                 {{'-'}}
               </div>
             </td>
@@ -139,13 +139,13 @@
             <img :data-source="imgOrigin + item.image" :src="imgOrigin + item.image + '?x-oss-process=image/resize,h_300/format,jpeg/quality,q_75'" class="test-image" ></img>
           </div>
           <div style="width: 100%; border: 1px solid black;">
-            <div v-if="matched.has(item.answer)" style="text-align: center; color: green">
-              {{item.answer}}
+            <div v-if="matched.has(index)" style="text-align: center; color: green">
+              {{item.showAnswer}}
             </div>
-            <div v-if="!matched.has(item.answer) && giveUp" style="text-align: center; color: red">
-              {{item.answer}}
+            <div v-if="!matched.has(index) && giveUp" style="text-align: center; color: red">
+              {{item.showAnswer}}
             </div>
-            <div v-if="!matched.has(item.answer) && !giveUp" style="text-align: center">
+            <div v-if="!matched.has(index) && !giveUp" style="text-align: center">
               {{'-'}}
             </div>
           </div>
@@ -167,10 +167,10 @@
         </viewer>
         <div style="width: 100%; border: 1px solid black; margin-bottom: 5px">
           <div v-if="matched.has(innerCurrent-1)" style="font-size: 24px; text-align: center; color: green">
-            {{guessInfo.data.data[innerCurrent-1].answer}}
+            {{guessInfo.data.data[innerCurrent-1].showAnswer}}
           </div>
           <div v-if="!matched.has(innerCurrent-1) && giveUp" style="font-size: 24px;text-align: center; color: red">
-            {{guessInfo.data.data[innerCurrent-1].answer}}
+            {{guessInfo.data.data[innerCurrent-1].showAnswer}}
           </div>
           <div v-if="!matched.has(innerCurrent-1) && !giveUp" style="font-size: 24px;text-align: center">
             {{'-'}}
@@ -465,20 +465,28 @@ export default {
           }
         }
       } else {
-        var matchValue = null;
-        this.guessInfo.data.answers.forEach(v => {
-          if (this.palindrome(v) === this.palindrome(e) && !this.matched.has(v)) {
+        this.guessInfo.data.data.forEach((v, index) => {
+          if (this.matched.has(index)) {
+            return;
+          }
+          var matchValue = null;
+          var isRight = v.alternatives.some(item => {
+            if (this.palindrome(item.answer) === this.palindrome(e)) {
+              matchValue = item.answer;
+              return true;
+            }
+          })
+          // console.log(isRight);
+          if (isRight && (matchValue || (!matchValue && !e))) {
             this.right = this.right + 1;
             this.inputResult = '';
-            matchValue = v;
+            this.matched.add(index);
             if (this.right === this.guessInfo.data.answers.length) {
               this.showResult = true;
             }
           }
         });
-        if (matchValue || (!matchValue && !e)) {
-          this.matched.add(matchValue);
-        }
+
       }
     },
     share() {
