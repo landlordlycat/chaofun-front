@@ -54,7 +54,7 @@
       FBi兑换
     </div>
     <div style="padding-top: 10px; padding-bottom: 10px">
-      注: 除勋爵外其余都支持点击自助兑换（包邮），谢谢！
+      注: 点击自助兑换（包邮），谢谢！
     </div>
     <div style="width: 100%; ">
 <!--      <div @click="getWechatCover" style="padding-top: 20px;width: 50%; display: inline-block; text-align: center">-->

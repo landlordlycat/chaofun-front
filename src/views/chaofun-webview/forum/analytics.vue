@@ -1,7 +1,7 @@
 <template>
   <div>
   <div class="title">累计版主激励: {{modInfo.money}} 元 </div>
-  <div class="tips" style="margin-top:0;line-height:24px;margin-bottom: 10px" slot="tip">(按照每日版块活跃度分配，每日3点过5分更新，请关注微信公众号 「炒饭社区」回复版块和收款码提取, 多版主版块请协商提取)</div>
+  <div class="tips" style="margin-top:0;line-height:24px;margin-bottom: 10px" slot="tip">版主激励机制已于2023.3.23日停止，感谢各位版主的支持</div>
   <div class="tips">24小时帖子数: {{modInfo.past24HPosts}} </div>
   <div class="tips">24小时帖子获赞数(不包括楼主自己的赞): {{modInfo.past24HVotes}} </div>
   <div class="tips">24小时全站版块综合排名: {{modInfo.rank}} </div>
