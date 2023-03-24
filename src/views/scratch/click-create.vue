@@ -49,12 +49,14 @@ export default {
   },
   methods: {
     shuffle() {
-      // for (let i = 0; i < this.dataForm.length; i++) {
-      //   if (!this.dataForm[i].answer) {
-      //     this.$toast('')
-      //   }
-      // }
-      this.dataForm.sort(() => Math.random() - 0.5);
+      this.$confirm('你确定要打乱顺序吗？', '', {
+        confirmButtonText: '确定',
+        callback: action => {
+          if (action == 'confirm') {
+            this.dataForm.sort(() => Math.random() - 0.5);
+          }
+        }
+      });
     },
     deleteChooseColumn() {
       if (this.chooseIndex !== null) {

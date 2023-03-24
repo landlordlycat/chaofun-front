@@ -54,7 +54,14 @@ export default {
   },
   methods: {
     shuffle() {
-      this.dataForm.sort(() => Math.random() - 0.5);
+      this.$confirm('你确定要打乱顺序吗？', '', {
+        confirmButtonText: '确定',
+        callback: action => {
+          if (action == 'confirm') {
+            this.dataForm.sort(() => Math.random() - 0.5);
+          }
+        }
+      });
     },
     deleteChooseColumn() {
       if (this.chooseIndex !== null) {
