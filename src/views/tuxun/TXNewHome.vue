@@ -87,24 +87,6 @@
             </div>
             <div class="card-top-right">可移动</div>
           </div>
-          <div class="card" @click="createSolo" >
-            <div class="title">
-              邀请Solo
-            </div>
-            <div class="describe">
-              邀请朋友图寻对决吧！
-            </div>
-            <div class="card-top-right">可移动</div>
-          </div>
-          <div class="card" @click="createTeam" >
-            <div class="title">
-              组队对战
-            </div>
-            <div class="describe">
-              组队对决，群体的力量
-            </div>
-            <div class="card-top-right">可移动</div>
-          </div>
         </div>
 
         <div class="first_session_head">其他</div>
@@ -262,28 +244,6 @@ export default {
       }
     },
 
-    createSolo() {
-      this.doLoginStatus().then((res) => {
-        if (res) {
-          api.getByPath("/api/v0/tuxun/solo/create").then(res => {
-            var id = res.data.id;
-            tuxunJump('/tuxun/solo_game?gameId=' + id);
-            // this.$router.push({path: '/tuxun/solo_game?gameId=' + id}).catch((e) => {})
-          });
-        }
-      })
-    },
-
-    createTeam() {
-      this.doLoginStatus().then((res) => {
-        api.getByPath("/api/v0/tuxun/team/create").then(res => {
-          var id = res.data.id;
-          // window.open(location.origin + '/tuxun/solo_game?gameId=' + id,"_blank");
-          tuxunJump('/tuxun/team_game?gameId=' + id);
-          // this.$router.push({path: '/tuxun/solo_game?gameId=' + id}).catch((e) => {})
-        });
-      })
-    },
     toParty() {
       this.doLoginStatus().then((res) => {
           tuxunJump('/tuxun/party');
