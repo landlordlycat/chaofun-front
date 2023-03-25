@@ -2,11 +2,13 @@
   <div class="game_container">
     <div class="back_home" @click="goHome">
       <el-button round>←首页</el-button>
+      <el-button v-if="partyData && $store.state.user.userInfo.userId === partyData.host.userId" @click="disband" round> 解散派对 </el-button>
+      <el-button v-else @click="leave" round> 离开派对 </el-button>
     </div>
 
     <div class="disband">
-      <el-button v-if="partyData && $store.state.user.userInfo.userId === partyData.host.userId" @click="disband" round> 解散派对 </el-button>
-      <el-button v-else @click="leave" round> 离开派对 </el-button>
+
+      <el-button class="button" type="success" @click="copyInviterLink" round>分享链接</el-button>
     </div>
 
     <div v-if="partyData" class="prepare">
@@ -122,17 +124,17 @@
         </div>
       </div>
 
-      <div class="invite" v-if="status !== 'ready' && ((partyData.gameType !== 'battle_royale' && partyData.gameType !== 'solo_match')  || partyData.gameType == 'team')">
-        <div class="separate-line"></div>
-        <div class="title" style="padding-top: 10px">
-          邀请链接
-        </div>
-        <div class="body">
-<!--          <input class="invite_input" placeholder readonly :value="'https://tuxun.fun/join?code=' + partyData.joinCode" >-->
-<!--          </input>-->
-          <el-button class="button" type="success" @click="copyInviterLink" round>分享链接</el-button>
-        </div>
-      </div>
+<!--      <div class="invite" v-if="status !== 'ready' && ((partyData.gameType !== 'battle_royale' && partyData.gameType !== 'solo_match')  || partyData.gameType == 'team')">-->
+<!--        <div class="separate-line"></div>-->
+<!--        <div class="title" style="padding-top: 10px">-->
+<!--          邀请链接-->
+<!--        </div>-->
+<!--        <div class="body">-->
+<!--&lt;!&ndash;          <input class="invite_input" placeholder readonly :value="'https://tuxun.fun/join?code=' + partyData.joinCode" >&ndash;&gt;-->
+<!--&lt;!&ndash;          </input>&ndash;&gt;-->
+<!--          <el-button class="button" type="success" @click="copyInviterLink" round>分享链接</el-button>-->
+<!--        </div>-->
+<!--      </div>-->
     </div>
   </div>
 </template>
