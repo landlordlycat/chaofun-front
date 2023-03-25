@@ -299,6 +299,14 @@ export default {
     }
     .tab_container {
       width: 90%;
+      .tab {
+        .normal {
+          font-size: 18px;
+        }
+        .choose {
+          font-size: 18px;
+        }
+      }
     }
   }
 }
