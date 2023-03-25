@@ -161,7 +161,11 @@ export default {
       if (item.source === 'baidu_pano') {
         tuxunOpen('https://maps.baidu.com/#panoid=' + item.panoId + '&panotype=street&pitch=0&l=13&tn=B_NORMAL_MAP&sc=0&newmap=1&shareurl=1&pid=' + item.panoId)
       } else {
-        tuxunOpen('https://www.google.com/maps/@?api=1&map_action=pano&pano=' + item.panoId)
+        if (latlng.panoId.indexOf('AF') === 0) {
+          tuxunOpen('https://www.google.com/maps/@0.0,0.0,3a,75y,90t/data=!3m7!1e1!3m5!1s' + latlng.panoId +  '!2e10!3e11!7i8192!8i4096')
+        } else {
+          tuxunOpen('https://www.google.com/maps/@?api=1&map_action=pano&pano=' + latlng.panoId)
+        }
       }
     },
     toGuid() {
