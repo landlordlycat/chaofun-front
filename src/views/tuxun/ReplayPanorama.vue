@@ -39,7 +39,7 @@ export default {
     THREE.Cache.enabled = false;
     this.gameId = this.$route.query.gameId;
     this.round = this.$route.query.round;
-    document.title = "第" + this.round + "回合复盘";
+    document.title = "第" + this.round + "轮复盘";
     this.get();
   },
   methods: {

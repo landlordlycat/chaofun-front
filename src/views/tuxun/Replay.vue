@@ -3,8 +3,9 @@
     <div id="map" class="maps"></div>
     <div class="back_home">
       <el-button @click="goBack" size="small" round>←返回</el-button>
-      <el-button @click="goHome" size="small" round>首页</el-button>
+      <el-button @click="goHome" size="small" round>图寻首页</el-button>
     </div>
+    <div style="z-index: 10000; position: absolute; right: 1.5rem; top: 1.5rem">注: 点击黄色针头查看街景</div>
   </div>
 </template>
 
