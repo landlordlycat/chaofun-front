@@ -1,7 +1,6 @@
 <template>
   <div>
-    <img v-if="image" class="im-view" :src="'https://i.chao-fan.com/'+ this.image" alt="">
-    </img>
+    <div style="position: absolute; width: 100%; height: 100%" id="viewer"></div>
     <div class="confirm">
       剩余 {{totalCount}}
       <el-button @click="check" style="white-space: pre-line;">加入题库(方向键上)</el-button>
@@ -161,24 +160,55 @@ export default {
             );
           } else {
             api.getByPath("/api/v0/tuxun/game/generateQueue", {index: this.index, mapsId: this.mapsid}).then(res => {
-                  if (this.canUseWebP() && res.data.contentSpeedUp) {
-                    this.image = res.data.contentSpeedUp;
-                  } else {
-                    this.image = res.data.content;
-                  }
                   this.id = res.data.id;
-              this.panoId = res.data.panoId;
-
-              this.totalCount = res.data.totalCount;
+                  this.panoId = res.data.panoId;
+                  this.totalCount = res.data.totalCount;
                   this.mapsName = res.data.mapsName;
                   this.nation = res.data.nation;
+                  this.setPano();
                 }
             );
           }
         }
       });
-
     },
+
+    setPano() {
+      if (!this.viewer) {
+        document.head.insertAdjacentHTML("beforeend", `<style>a[href^="http://maps.google.com/maps"]{display:none !important}a[href^="https://maps.google.com/maps"]{display:none !important}.gmnoprint a, .gmnoprint span, .gm-style-cc {display:none;}</style>`)
+        this.sharePanoId = this.$route.query.pano;
+        loadScript('https://chaofun-test.oss-cn-hangzhou.aliyuncs.com/google/js-test.js').then(() => {
+          this.viewer = new google.maps.StreetViewPanorama(
+              document.getElementById("viewer"), {
+                fullscreenControl: false,
+                panControl: true,
+                addressControl: false,
+                imageDateControl: false,
+                motionTracking: false,
+                motionTrackingControl: false,
+                streetViewControl: false,
+                showRoadLabels: false,
+                scaleControl: false,
+                zoomControl: false,
+                panControlOptions: {
+                  position: google.maps.ControlPosition.BOTTOM_LEFT,
+                },
+              }
+          );
+          this.setGoogle(this.panoId);
+        })
+      } else {
+        this.setGoogle(this.panoId);
+      }
+    },
+    setGoogle(panoId) {
+      this.viewer.setPano(panoId);
+      this.viewer.setVisible(true);
+      setTimeout(() => {
+        this.viewer.setZoom(0);
+      }, 50);
+    },
+
     mapReady(e) {
       console.log("hahah");
       console.log(e)
@@ -214,6 +244,7 @@ export default {
 
 .confirm {
   position: absolute;
+  z-index: 5000;
   bottom: 30px;
   right: 30px;
 }
@@ -221,9 +252,10 @@ export default {
   font-size: 24px;
   font-weight: bold;
   position: absolute;
-  bottom: 1rem;
+  top: 1rem;
+  right: 1rem;
   padding-left: 1rem;
-  z-index: 500;
+  z-index: 5000;
   -webkit-user-select:none;
   -moz-user-select:none;
   -ms-user-select:none;
