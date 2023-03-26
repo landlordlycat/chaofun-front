@@ -75,7 +75,6 @@
       <el-button @mouseover.native="mapMouseOver"  class="not_stop_hover" v-else-if="!isMaps && confirmed && !distance" @click="centerChoose" round>等待答案</el-button>
       <el-button @mouseover.native="mapMouseOver"  class="not_stop_hover" v-else-if="!showMap && ISPHONE && confirmed" @click="showMapTrue" round> 打开地图</el-button>
       <el-button @mouseover.native="mapMouseOver"  class="not_stop_hover" v-else-if="!showMap && ISPHONE" @click="showMapTrue" round>选择地点</el-button>
-      <el-button @mouseover.native="mapMouseOver" class="not_stop_hover" v-if="isMaps && confirmed && distance" @click="next" round>下一题</el-button>
     </div>
 
     <div v-if="showMap && ISPHONE" style="position: absolute; left: 20px; bottom: 20px; z-index: 1000">
@@ -206,11 +205,7 @@ export default {
   mounted() {
     THREE.Cache.enabled = false;
 
-    if (!this.isMaps) {
-      this.initWS();
-    } else {
-      this.next();
-    }
+    this.initWS();
     this.initMap();
     document.onkeydown=function(event){
       var e = event || window.event || arguments.callee.caller.arguments[0];
@@ -756,54 +751,6 @@ export default {
     },
     toHome() {
       tuxunJump( '/tuxun/');
-    },
-
-    next() {
-
-      this.removeChooseMarker();
-      this.removeTargetMarker();
-      this.removeLine();
-
-      this.showMap = false;
-      this.confirmed = false;
-      this.returnResult = true;
-      this.polylinePath = null;
-      this.lng = null;
-      this.lat = null;
-      this.targetLat = null;
-      this.targetLng = null;
-      this.image = null;
-      this.distance = null;
-      this.heading = null;
-      this.contents = null;
-      if (this.map) {
-        this.map.setView([38.8, 106.0], 2);
-      }
-
-      api.getByPath("/api/v0/tuxun/game/generate", {mapsId: this.mapsId}).then(res => {
-        this.image = res.data.content;
-        this.id  = res.data.id;
-        this.contentType = res.data.type;
-        this.heading = res.data.heading;
-        // this.baiduPano = res.data.baiduPano;
-        this.contents = res.data.contents;
-
-        if (this.canUseWebP() && res.data.contentSpeedUp) {
-          this.image = res.data.contentSpeedUp;
-        }
-
-        console.log('test_123');
-        var self = this;
-        if (this.contentType === 'panorama') {
-          setTimeout(function () {
-            if (self.baiduPano && self.baiduPano !== null) {
-              self.initBaiduPanorama();
-            } else {
-              self.initPanorama();
-            }
-          }, 500);
-        }
-      });
     },
     enterMaps() {
       api.getByPath('/api/v0/tuxun/game/enterMap', {mapsId: this.mapsId}).then(res=>{

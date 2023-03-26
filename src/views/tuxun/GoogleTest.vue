@@ -9,7 +9,7 @@ export default {
   name: "GoogleTest",
   mounted() {
     let recaptchaScript = document.createElement('script')
-    recaptchaScript.setAttribute('src', 'https://chaofun-test.oss-cn-hangzhou.aliyuncs.com/google/js-1.js??key=AIzaSyDvx5IM2bbHnOb4sY-0aISwH8bAxH7ecS4')
+    recaptchaScript.setAttribute('src', 'https://chaofun-test.oss-cn-hangzhou.aliyuncs.com/google/js-test.js??key=AIzaSyDvx5IM2bbHnOb4sY-0aISwH8bAxH7ecS4')
     // recaptchaScript.setAttribute('src', 'https://gac-geo.googlecnapps.cn/maps/api/js?key=AIzaSyDvx5IM2bbHnOb4sY-0aISwH8bAxH7ecS4')
     document.head.appendChild(recaptchaScript)
     setTimeout(() => {
