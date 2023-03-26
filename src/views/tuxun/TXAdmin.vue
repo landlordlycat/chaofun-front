@@ -108,7 +108,7 @@ export default {
       }
     },
     deleteQ() {
-        api.getByPath("/api/v0/tuxun/game/delete", {content: this.image}).then(res => {
+        api.getByPath("/api/v0/tuxun/game/delete", {panoId: this.panoId}).then(res => {
           this.index = this.index - 1;
           if (this.queryId !== null && this.queryId) {
             window.close();

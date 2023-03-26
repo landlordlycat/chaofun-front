@@ -13,26 +13,8 @@
     </el-dialog>
 
     <div id="container" :class="[{'im-view': !ISPHONE}, {'im-view-phone': ISPHONE}]">
-      <div v-show="this.contentType === 'panorama' && this.baiduPano && this.baiduPano !== null"  id="panorama" style="width: 100%; height: 100%;"></div>
-      <div v-show="this.contentType === 'panorama' && !(this.baiduPano && this.baiduPano !== null) " id="viewer"  style="width: 100%; height: 100%"></div>
-      <img v-if="this.image && this.contentType === 'image'" v-viewer="{inline: false}" :data-source="imgOrigin+ this.image" style=" width: 100%;height: 100%;object-fit: contain;"  :src="imgOrigin+ this.image" alt=""></img>
-      <video style="height: 100%; max-width: 100%;"
-             v-if="this.image && this.contentType === 'video'"
-             webkit-playsinline="true"
-             x-webkit-airplay="true"
-             playsinline="true"
-             x5-video-player-type="h5"
-             x5-video-orientation="h5"
-             x5-video-player-fullscreen="true"
-             controls
-             autoplay
-             loop
-             muted
-             :src="imgOrigin+this.image"
-             ref="videoPlayer"
-             alt="">
-      </video>
-      <div v-if="status === 'rank'" style="position: absolute; width: 100%; height: 100%; background: white; opacity: 80%; overflow:auto;">
+      <div v-show="this.contentType === 'panorama'" id="viewer"  style="width: 100%; height: 100%"></div>
+      <div v-if="status === 'rank'" style="z-index: 500; position: absolute; width: 100%; height: 100%; background: white; opacity: 80%; overflow:auto;">
         <div style="padding-top: 40px; font-weight: bold; font-size: 20px;">排行榜:</div>
         <div v-if="this.rank" style="padding-top: 10px; font-weight: bold; font-size: 20px">你的本场次排名:{{this.rank}}</div>
         <div v-for="item in this.ranks" class="item">
@@ -130,6 +112,7 @@ import 'photo-sphere-viewer/dist/plugins/virtual-tour.css'
 import 'photo-sphere-viewer/dist/plugins/markers.css'
 import BMapLoader from "../../utils/bmap-jsapi-loader";
 import {tuxunJump, tuxunOpen} from "./common";
+import { loadScript } from "vue-plugin-load-script";
 
 export default {
   components: {
@@ -147,6 +130,7 @@ export default {
       },
       dialogVisible: false,
       submitPanoramaShow: false,
+      panoId: null,
       viewer: null,
       center: {lng: 0, lat: 0},
       zoom: 3,
@@ -194,13 +178,6 @@ export default {
   },
 
   created() {
-    this.mapsId = this.$route.query.mapsId;
-    this.autoRotate = this.$route.query.autoRotate;
-    console.log(this.mapsId);
-    if (this.mapsId) {
-      this.isMaps = true;
-      this.enterMaps();
-    }
   },
   mounted() {
     THREE.Cache.enabled = false;
@@ -307,61 +284,98 @@ export default {
     },
 
     initPanorama() {
+      console.log('initPanorama');
       try {
         if (!this.viewer) {
-          var plugins = [];
-          plugins.push([CompassPlugin, {
-            size: '5vh',
-            position: 'left bottom'
-          }]);
-
-          plugins.push([VirtualTourPlugin, {
-            positionMode: VirtualTourPlugin.MODE_GPS,
-            renderMode: VirtualTourPlugin.MODE_3D,
-            // preload: true,
-          }])
-
-          this.viewer = new Viewer({
-            loadingImg: this.imgOrigin + 'biz/1659528755270_550cd22e10c84073a12e6f83840320bc.gif',
-            navbar: null,
-            container: document.querySelector('#viewer'),
-            defaultZoomLvl: 0,
-            autorotateDelay: this.autoRotate !== 'true' ? null : 100,
-            // autorotateIdle: 2000,
-            plugins: plugins,
-          });
+          document.head.insertAdjacentHTML("beforeend", `<style>a[href^="http://maps.google.com/maps"]{display:none !important}a[href^="https://maps.google.com/maps"]{display:none !important}.gmnoprint a, .gmnoprint span, .gm-style-cc {display:none;}</style>`)
+          loadScript('https://chaofun-test.oss-cn-hangzhou.aliyuncs.com/google/js-test.js').then(() => {
+            this.viewer = new google.maps.StreetViewPanorama(
+                document.getElementById("viewer"), {
+                  fullscreenControl:false,
+                  panControl:true,
+                  addressControl: false,
+                  imageDateControl: false,
+                  motionTracking: false,
+                  motionTrackingControl:false,
+                  streetViewControl:false,
+                  showRoadLabels: false,
+                  scaleControl: false,
+                  zoomControl: false,
+                  panControlOptions: {
+                    position: google.maps.ControlPosition.BOTTOM_LEFT,
+                  },
+                }
+            );
+            this.viewer.registerPanoProvider(this.getCustomPanorama)
+            this.viewer.addListener("pano_changed", () => {
+              console.log("pano_changed");
+              if (this.viewer.getPano().length === 27) {
+                this.getPanoInfo(this.viewer.getPano());
+              }
+            });
+            this.setGoogle(this.panoId);
+          })
+        } else {
+          this.setGoogle(this.panoId);
         }
-
-        this.viewer.setPanorama(
-            this.imgOrigin + this.image, {
-              panoData: {
-                poseHeading: this.heading, // 0 to 360
-              },
-            }
-        );
-
-        // this.viewer.setOptions({zoom: 0});
-        this.viewer.animate({
-          zoom: 0,
-          speed: '1000rpm',
-        }).then(() => {});
-
-        var compassPlugin = this.viewer.getPlugin(CompassPlugin);
-        if (compassPlugin) {
-          console.log("compassPlugin")
-          if (this.heading) {
-            compassPlugin.show();
-          } else {
-            compassPlugin.hide();
-          }
-        }
-
-        setTimeout(function () {
-          THREE.Cache.clear();
-        }, 1000);
       } catch (e) {
         console.log(e)
       }
+    },
+    getPanoInfo(pano) {
+      api.getByPath('/api/v0/tuxun/mapProxy/getPanoInfo', {pano: pano}).then(res => {
+        this.viewer.setLinks(res.data.links);
+        // this.centerHeading = res.data.heading;
+        this.headingMap[res.data.pano] = res.data.heading;
+        if (res.data.links) {
+          res.data.links.forEach((item) => {
+            this.preloadImage(item.pano);
+            this.headingMap[item.pano] = item.centerHeading;
+          })
+        }
+        // console.log(this.centerHeading);
+      })
+    },
+    getCustomPanoramaTileUrl(pano, zoom, tileX, tileY) {
+      zoom = zoom +=1;
+      if (zoom === 1) {
+        return (
+            'https://tuxun.fun/api/v0/tuxun/mapProxy/bd?pano=' + pano
+        );
+      }
+      return (
+          'https://mapsv1.bdimg.com/?qt=pdata&sid=' + pano + '&pos=' + tileY + '_' + tileX + '&z=' + zoom
+      );
+
+    },
+    setGoogle(panoId) {
+      this.panoId = panoId;
+      // 调整视角大小的
+      if (panoId.length === 27 ) {
+        api.getByPath('/api/v0/tuxun/mapProxy/getPanoInfo', {pano: panoId}).then(res => {
+          this.headingMap[res.data.pano] = res.data.heading;
+          if (res.data.links) {
+            res.data.links.forEach((item) => {
+              this.headingMap[item.pano] = item.centerHeading;
+            })
+          }
+          this.setPanoId(panoId, false);
+        })
+      } else {
+        this.setPanoId(panoId, false);
+      }
+    },
+    setPanoId(panoId, move) {
+      this.viewer.setPano(panoId);
+      if (!move) {
+        this.viewer.setOptions({linksControl: false, clickToGo: false});
+      } else {
+        this.viewer.setOptions({linksControl: true, clickToGo: true});
+      }
+      this.viewer.setVisible(true);
+      setTimeout(() => {
+        this.viewer.setZoom(0);
+      }, 50);
     },
     notShowPanorama() {
       this.viewer.hide();
@@ -408,14 +422,11 @@ export default {
       if (data.data.type === 'tick') {
         this.status = data.data.status;
         this.onlineNums = data.data.onlineNums;
-        // 避免下面的判断失误
-        if (this.canUseWebP() && data.data.contentSpeedUp && data.data.contentSpeedUp !== null) {
-          data.data.content = data.data.contentSpeedUp
-        }
-        if (this.image !== data.data.content && data.data.content && data.data.content !== null) {
+
+        if (this.panoId !== data.data.panoId && data.data.panoId && data.data.panoId !== null) {
           this.showMap = false;
           this.heading = data.data.heading;
-          this.image = data.data.content;
+          this.panoId = data.data.panoId;
 
           // this.baiduPano = data.data.baiduPano;
           this.contents = data.data.contents;
@@ -425,16 +436,9 @@ export default {
           }
 
           if (this.contentType === "panorama") {
-            if (this.baiduPano && this.baiduPano !== null) {
-              var self = this;
-              setTimeout(function () {
-                self.initBaiduPanorama();
-              }, 200);
-            } else {
-              setTimeout(function () {
-                this.initPanorama();
-              }.bind(this), 200);
-            }
+            setTimeout(function () {
+              this.initPanorama();
+            }.bind(this), 200);
           }
         }
 
@@ -731,30 +735,17 @@ export default {
     },
 
     toReport() {
-      api.getByPath('/api/v0/tuxun/game/report', {content: this.image}).then(res=>{
+      api.getByPath('/api/v0/tuxun/game/report', {panoId: this.panoId}).then(res=>{
         this.$toast("反馈成功");
       })
     },
     deleteTuxun() {
-      api.getByPath('/api/v0/tuxun/game/delete', {content: this.image}).then(res=>{
+      api.getByPath('/api/v0/tuxun/game/delete', {panoId: this.panoId}).then(res=>{
         this.$toast("删除成功");
       })
     },
-
-    removeFromMaps() {
-      api.getByPath('/api/v0/tuxun/maps/remove', {tuxunId: this.id, mapsId: this.mapsId}).then(res=>{
-        this.$toast("移除成功");
-      })
-    },
-    toMaps() {
-      tuxunOpen('/tuxun/maps');
-    },
     toHome() {
       tuxunJump( '/tuxun/');
-    },
-    enterMaps() {
-      api.getByPath('/api/v0/tuxun/game/enterMap', {mapsId: this.mapsId}).then(res=>{
-      })
     },
     send() {
       this.dialogVisible = false;
@@ -771,7 +762,6 @@ export default {
     hide() {
       this.dialogVisible = false;
     },
-
 
     mapReady(e) {
       console.log("hahah");
@@ -796,6 +786,7 @@ export default {
   -moz-user-select:none;
   -ms-user-select:none;
   user-select:none;
+  z-index: 500;
   .danmaku-title {
     -webkit-user-select:none;
     -moz-user-select:none;
@@ -854,6 +845,7 @@ export default {
 }
 
 .bm-view-container-phone {
+  z-index: 500;
   position: absolute;
   width: 100%;
   height: 60%;
@@ -871,6 +863,7 @@ export default {
 }
 
 .bm-view-container-phone-hidden {
+  z-index: 500;
   position: absolute;
   width: 100%;
   height: 60%;
@@ -902,6 +895,7 @@ export default {
   position: absolute;
   top: 5px;
   left: 20px;
+  z-index: 500;
 }
 .topRight {
   position: absolute;
@@ -942,6 +936,7 @@ export default {
   -moz-user-select:none;
   -ms-user-select:none;
   user-select:none;
+  z-index: 5000;
 }
 .top-info-phone {
   font-size: 10px;
@@ -963,6 +958,7 @@ export default {
   text-align: left;
   overflow: hidden;
   .left{
+    z-index: 5000;
     flex: 1;
     display: flex;
     img{
