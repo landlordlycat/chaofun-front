@@ -303,10 +303,21 @@ export default {
       })
     },
 
+
+    getPartyInfo() {
+      api.getByPath('/api/v0/tuxun/party/get').then(res=>{
+        if (res.success) {
+          this.solvePartyData(res.data, null)
+        }
+      })
+    },
+
     start() {
       api.getByPath('/api/v0/tuxun/party/start').then(res=>{
         if (res.success) {
           tuxunJump('/tuxun/solo_game?gameId=' + res.data.id)
+        } else {
+          this.getPartyInfo()
         }
       })
     },
