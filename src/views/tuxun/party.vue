@@ -60,7 +60,7 @@
       </div>
 
       <div class="start_game" v-if="status === 'ready' && this.partyData.gameType !== 'solo_match' && this.partyData.gameType !== 'battle_royale' && this.$store.state.user.userInfo.userId === partyData.host.userId">
-        <el-button class="button" type="primary" round @click="start">解决Bug中，20分钟后恢复</el-button>
+        <el-button class="button" type="primary" round @click="start">开始图寻对决</el-button>
       </div>
 
       <div v-if="(partyData.gameType === 'solo' || partyData.gameType === 'solo_match') && partyData.status === 'wait_join'" class="wait_game_start">
