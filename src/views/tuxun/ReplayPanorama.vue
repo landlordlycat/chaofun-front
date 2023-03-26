@@ -5,7 +5,6 @@
       <el-button @click="goBack" size="small" round>←返回</el-button>
       <el-button @click="goHome" size="small" round>首页</el-button>
       <el-button @click="toReport" size="small"  round> 坏题反馈 </el-button>
-
     </div>
   </div>
 </template>
@@ -64,85 +63,31 @@ export default {
     },
     render(round) {
       console.log(round);
-      if (!round.move) {
-        if (!this.viewer) {
-          var plugins = [];
-          plugins.push([CompassPlugin, {
-            size: '5vh',
-            position: 'left bottom'
-          }]);
-          plugins.push([VirtualTourPlugin, {
-            positionMode: VirtualTourPlugin.MODE_GPS,
-            renderMode: VirtualTourPlugin.MODE_3D,
-            // preload: true,
-          }]);
-
-          if (this.canUseWebP() && round.contentSpeedUp) {
-            this.image = round.contentSpeedUp;
-          } else {
-            this.image = round.content;
-          }
-
-
-
-          this.viewer = new Viewer({
-            loadingImg: this.imgOrigin + 'biz/1659528755270_550cd22e10c84073a12e6f83840320bc.gif',
-            navbar: null,
-            panorama: this.imgOrigin + this.image,
-            container: document.querySelector('#viewer'),
-            panoData: {
-              poseHeading: round.heading, // 0 to 360
-            },
-            defaultZoomLvl: 0,
-            plugins: plugins
-          });
-        }
-
-        this.viewer.animate({
-          zoom: 0,
-          speed: '1000rpm',
-        }).then(() => {
-        });
-
-        var compassPlugin = this.viewer.getPlugin(CompassPlugin);
-        if (compassPlugin) {
-          if (round.heading) {
-            compassPlugin.show();
-          } else {
-            compassPlugin.hide();
-          }
-        }
-
-        setTimeout(function () {
-          THREE.Cache.clear();
-        }, 1000);
-      } else {
-        if (!this.viewer) {
-          document.head.insertAdjacentHTML("beforeend", `<style>a[href^="http://maps.google.com/maps"]{display:none !important}a[href^="https://maps.google.com/maps"]{display:none !important}.gmnoprint a, .gmnoprint span, .gm-style-cc {display:none;}</style>`)
-          this.sharePanoId = this.$route.query.pano;
-          loadScript('https://chaofun-test.oss-cn-hangzhou.aliyuncs.com/google/js-test.js').then(() => {
-            this.viewer = new google.maps.StreetViewPanorama(
-                document.getElementById("viewer"), {
-                  fullscreenControl: false,
-                  panControl: true,
-                  addressControl: false,
-                  imageDateControl: false,
-                  motionTracking: false,
-                  motionTrackingControl: false,
-                  streetViewControl: false,
-                  showRoadLabels: false,
-                  scaleControl: false,
-                  zoomControl: false,
-                  panControlOptions: {
-                    position: google.maps.ControlPosition.BOTTOM_LEFT,
-                  },
-                }
-            );
-            this.setGoogle(round.panoId);
-          })
-        } else {
+      if (!this.viewer) {
+        document.head.insertAdjacentHTML("beforeend", `<style>a[href^="http://maps.google.com/maps"]{display:none !important}a[href^="https://maps.google.com/maps"]{display:none !important}.gmnoprint a, .gmnoprint span, .gm-style-cc {display:none;}</style>`)
+        this.sharePanoId = this.$route.query.pano;
+        loadScript('https://chaofun-test.oss-cn-hangzhou.aliyuncs.com/google/js-test.js').then(() => {
+          this.viewer = new google.maps.StreetViewPanorama(
+              document.getElementById("viewer"), {
+                fullscreenControl: false,
+                panControl: true,
+                addressControl: false,
+                imageDateControl: false,
+                motionTracking: false,
+                motionTrackingControl: false,
+                streetViewControl: false,
+                showRoadLabels: false,
+                scaleControl: false,
+                zoomControl: false,
+                panControlOptions: {
+                  position: google.maps.ControlPosition.BOTTOM_LEFT,
+                },
+              }
+          );
           this.setGoogle(round.panoId);
-        }
+        })
+      } else {
+        this.setGoogle(round.panoId);
       }
     },
     setGoogle(panoId) {
