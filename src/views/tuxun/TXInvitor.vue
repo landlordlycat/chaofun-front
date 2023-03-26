@@ -393,7 +393,7 @@
       </div>
     </div>
     <matching v-if="this.showMatch"/>
-    <emoji-sender :gameId="gameData.id" v-if="this.sendEmoji" @hide="hideEmojiSender" style="z-index: 501"></emoji-sender>
+    <emoji-sender :gameId="gameData.id" v-if="this.sendEmoji" @hide="hideEmojiSender" style="z-index: 5001"></emoji-sender>
   </div>
 </template>
 
@@ -888,7 +888,7 @@ export default {
     },
 
     reset() {
-      this.setGoogle(this.lastRound.panoId);
+      this.setGoogle(this.lastRound.panoId, this.lastRound.move);
     },
 
 
@@ -1492,7 +1492,7 @@ export default {
     setGoogle(panoId, move) {
       this.panoId = panoId;
       // 调整视角大小的
-      if (panoId.length === 27 && !move) {
+      if (panoId.length === 27 ) {
         api.getByPath('/api/v0/tuxun/mapProxy/getPanoInfo', {pano: panoId}).then(res => {
           this.headingMap[res.data.pano] = res.data.heading;
           if (res.data.links) {
@@ -1500,12 +1500,14 @@ export default {
               this.headingMap[item.pano] = item.centerHeading;
             })
           }
+          this.setPanoId(panoId, move);
         })
       } else {
         this.setPanoId(panoId, move);
       }
     },
     getCustomPanorama(pano) {
+      console.log(pano)
       if (pano.length === 27) {
         return {
           location: {
@@ -1757,7 +1759,7 @@ export default {
 
     }
     .count-down {
-      z-index: 5000;
+      z-index: 5002;
       display: inline-block;
       margin: 0 auto;
       background-color: rgb(255, 255, 255, 0.7);
