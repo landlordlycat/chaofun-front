@@ -18,6 +18,8 @@
 
 <script>
 import Vue from 'vue'
+import { loadScript } from "vue-plugin-load-script";
+
 import BaiduMap from 'vue-baidu-map'
 import { mapGetters } from 'vuex'
 import * as api from '../../api/api'
@@ -45,6 +47,7 @@ export default {
       image: null,
       id: null,
       queryId: null,
+      viewer: null,
       index: -1,
       totalCount: null,
       nation: null,
@@ -151,6 +154,7 @@ export default {
           if (this.queryId !== null && this.queryId) {
             api.getByPath("/api/v0/tuxun/game/getContent", {id: this.queryId}).then(res => {
                   this.image = res.data.content;
+                  this.panoId = res.data.panoId;
                   this.id = res.data.id;
                   this.totalCount = res.data.totalCount;
                 }
@@ -163,7 +167,9 @@ export default {
                     this.image = res.data.content;
                   }
                   this.id = res.data.id;
-                  this.totalCount = res.data.totalCount;
+              this.panoId = res.data.panoId;
+
+              this.totalCount = res.data.totalCount;
                   this.mapsName = res.data.mapsName;
                   this.nation = res.data.nation;
                 }
