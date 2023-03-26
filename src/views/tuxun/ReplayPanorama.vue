@@ -2,7 +2,8 @@
   <div class="container">
     <div id="viewer"  style="position: absolute; width: 100%; height: 100%"></div>
     <div class="back_home">
-      <el-button @click="goBack" size="small" round>←返回</el-button>
+      <el-button v-if="history && history.length !== 1" @click="goBack" size="small" round>←返回</el-button>
+      <el-button v-else @click="goReplay" size="small" round>返回复盘</el-button>
       <el-button @click="goHome" size="small" round>首页</el-button>
       <el-button @click="toReport" size="small"  round> 坏题反馈 </el-button>
     </div>
@@ -38,7 +39,7 @@ export default {
     THREE.Cache.enabled = false;
     this.gameId = this.$route.query.gameId;
     this.round = this.$route.query.round;
-
+    document.title = "第" + this.round + "回合复盘";
     this.get();
   },
   methods: {
@@ -60,6 +61,9 @@ export default {
       api.getByPath('/api/v0/tuxun/game/report', {content: this.image}).then(res => {
         this.$toast("反馈成功");
       })
+    },
+    goReplay() {
+      tuxunJump('/tuxun/replay?gameId='+ this.gameId);
     },
     render(round) {
       console.log(round);
