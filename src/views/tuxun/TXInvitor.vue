@@ -813,55 +813,6 @@ export default {
             this.heading = this.lastRound.heading;
 
             setTimeout(function () {
-              if (!this.lastRound.move) {
-                if (!this.viewer) {
-                  var plugins = [];
-                  plugins.push([CompassPlugin, {
-                    size: '5vh',
-                    position: 'left bottom'
-                  }]);
-
-                  this.viewer = new Viewer({
-                    loadingImg: this.imgOrigin + 'biz/1659528755270_550cd22e10c84073a12e6f83840320bc.gif',
-                    navbar: null,
-                    container: document.querySelector('#viewer'),
-                    panoData: {
-                      poseHeading: this.heading, // 0 to 360
-                    },
-                    defaultZoomLvl: 0,
-                    plugins: plugins
-                  });
-                }
-
-                this.viewer.setPanorama(
-                    this.imgOrigin + this.image, {
-                      panoData: {
-                        poseHeading: this.heading, // 0 to 360
-                      },
-                    }
-                );
-
-                this.viewer.animate({
-                  zoom: 0,
-                  speed: '1000rpm',
-                }).then(() => {
-                });
-
-                var compassPlugin = this.viewer.getPlugin(CompassPlugin);
-                if (compassPlugin) {
-                  console.log(this.heading);
-                  if (this.heading) {
-                    compassPlugin.show();
-                  } else {
-                    compassPlugin.hide();
-                  }
-                }
-
-                setTimeout(function () {
-                  THREE.Cache.clear();
-                }, 1000);
-
-              } else {
                 if (!this.viewer) {
                   document.head.insertAdjacentHTML("beforeend", `<style>a[href^="http://maps.google.com/maps"]{display:none !important}a[href^="https://maps.google.com/maps"]{display:none !important}.gmnoprint a, .gmnoprint span, .gm-style-cc {display:none;}</style>`)
                   this.sharePanoId = this.$route.query.pano;
@@ -890,12 +841,11 @@ export default {
                         this.getPanoInfo(this.viewer.getPano());
                       }
                     });
-                    this.setGoogle(this.lastRound.panoId);
+                    this.setGoogle(this.lastRound.panoId, this.lastRound.move);
                   })
                 } else {
-                  this.setGoogle(this.lastRound.panoId);
+                  this.setGoogle(this.lastRound.panoId, this.lastRound.move);
                 }
-              }
               this.initMap();
             }.bind(this), 100);
           }
@@ -1539,10 +1489,10 @@ export default {
         this.health = this.gameData.health;
       })
     },
-    setGoogle(panoId) {
+    setGoogle(panoId, move) {
       this.panoId = panoId;
       // 调整视角大小的
-      if (panoId.length === 27) {
+      if (panoId.length === 27 && !move) {
         api.getByPath('/api/v0/tuxun/mapProxy/getPanoInfo', {pano: panoId}).then(res => {
           this.headingMap[res.data.pano] = res.data.heading;
           if (res.data.links) {
@@ -1550,10 +1500,9 @@ export default {
               this.headingMap[item.pano] = item.centerHeading;
             })
           }
-          this.setPanoId(panoId);
         })
       } else {
-        this.setPanoId(panoId);
+        this.setPanoId(panoId, move);
       }
     },
     getCustomPanorama(pano) {
@@ -1604,8 +1553,13 @@ export default {
       );
 
     },
-    setPanoId(panoId) {
+    setPanoId(panoId, move) {
       this.viewer.setPano(panoId);
+      if (!move) {
+        this.viewer.setOptions({linksControl: false, clickToGo: false});
+      } else {
+        this.viewer.setOptions({linksControl: true, clickToGo: true});
+      }
       this.viewer.setVisible(true);
       setTimeout(() => {
         this.viewer.setZoom(0);
