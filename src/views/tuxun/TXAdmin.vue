@@ -220,6 +220,7 @@ export default {
 
 <style lang="scss" scoped>
 .info {
+  z-index: 5000;
   font-size: 32px;
   position: absolute;
   left: 2rem;
