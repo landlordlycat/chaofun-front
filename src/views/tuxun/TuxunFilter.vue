@@ -24,11 +24,12 @@ export default {
   mounted() {
     this.type = this.$route.query.type;
     this.exceptNations = this.$route.query.exceptNations;
+    this.expectNations = this.$route.query.expectNations;
     this.create();
   },
   methods: {
     create() {
-      api.getByPath('/api/v0/tuxun/challenge/adminCreate', {type: this.type, mapsId: 4, exceptNations: this.exceptNations}).then(res=>{
+      api.getByPath('/api/v0/tuxun/challenge/adminCreate', {type: this.type, mapsId: 4, exceptNations: this.exceptNations, expectNations: this.expectNations}).then(res=>{
         if (res.data) {
           this.panos = res.data.rounds;
         }

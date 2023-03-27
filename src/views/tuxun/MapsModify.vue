@@ -47,7 +47,7 @@
           <div @click="toPano(item)">{{item.panoId}}</div>
           <div v-if="item.status === 'crawling'" class="status" style="color: yellow">准备中</div>
           <div v-if="item.status === 'publish'" class="status" style="color: green">已发布</div>
-          <div v-if="item.status === 'wait_check'" class="status" style="color: pink">待审核</div>
+          <div v-if="item.status === 'wait_check'" class="status" style="color: pink">待图寻审核</div>
           <div v-if="item.status === 'crawler_success' || item.status === 'ready'" class="status" style="color: white">待发布</div>
           <div v-if="item.status === 'crawler_fail'" class="status" style="color: red">准备失败</div>
         </div>

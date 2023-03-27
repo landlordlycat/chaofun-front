@@ -14,7 +14,7 @@
           <el-button  @click="toRank" >积分排行</el-button>
         </div>
       </div>
-      <div class="info">黑屏的用户过一会访问就会正常了</div>
+      <div class="info">提示：黑屏的用户过10分钟访问就会正常了</div>
       <div class="second-info" @click="raiseVIP" v-if="$store.state.user.userInfo.userId !== 54242 && $store.state.user.islogin"> 会员费用下月即将停止优惠，将会调至「9.99/月」「69.99/年」欲购从速 </div>
       <div v-if="times" class="times">总轮次数：<span style="font-size: 18px">{{times}}</span></div>
       <section class="game_entrance">
