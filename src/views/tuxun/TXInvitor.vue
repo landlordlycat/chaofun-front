@@ -120,7 +120,7 @@
         <img v-if="lastRound && lastRound.source === 'baidu_pano'" style="user-select: none; z-index: 5000; position: absolute; bottom: 10px; margin: auto; width: 100px" src="https://webmap0.bdimg.com/wolfman/static/pano/images/pano-logo_7969e0c.png">
         <div v-if="showRoundResult" class="round_result">
           <div class="round_result_top">
-            <span v-if="gameData.type === 'daily_challenge'">每日挑战<span v-if="gameData.move && gameData.mapsId !== 9">(全球移动)</span><span v-if="!gameData.move && gameData.mapsId !== 9">(全球固定)</span><span v-if="!gameData.move && gameData.mapsId === 9">(中国固定)</span> - </span>
+            <span v-if="gameData.type === 'daily_challenge'">每日挑战<span v-if="gameData.mapsId !== 9">(全球)</span><span v-if="gameData.mapsId === 9">(中国)</span> - </span>
             <span v-if="gameData.type === 'challenge'">{{gameData.mapsName}}<span v-if="gameData.move">(移动)</span><span v-if="!gameData.move">(固定)</span> - </span>
             <span v-if="gameData.type === 'country_streak'">国家连胜<span v-if="gameData.move">(移动)</span><span v-if="!gameData.move">(固定)</span> - </span>
             <span v-if="gameData.type === 'province_streak'">省份连胜 - </span>
