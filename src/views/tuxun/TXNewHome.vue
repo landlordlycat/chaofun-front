@@ -53,15 +53,15 @@
         <div class="first_session_head">多人</div>
         <div class="line"></div>
         <div class="grid_main">
-        <div class="card" @click="redirectPage( '/tuxun/guoqing')">
+          <div class="card" @click="redirectPage( '/tuxun/guoqing')">
             <div class="title">
               淘汰赛
             </div>
             <div class="describe">
               满3人发车
             </div>
-          <div class="card-top-right">可移动</div>
-        </div>
+            <div class="card-top-right">可移动</div>
+          </div>
           <div class="card" @click="redirectPage( '/tuxun/main_game')">
             <div class="title">
               积分赛
@@ -91,7 +91,15 @@
 
         <div class="first_session_head">其他</div>
         <div class="line"></div>
-          <div class="grid_main">
+        <div class="grid_main">
+          <div class="card" @click="$toast('尽请期待')">
+            <div class="title">
+              实验室
+            </div>
+            <div class="describe">
+              新的模式和功能
+            </div>
+          </div>
 
           <div class="card" @click="redirectPage( '/tuxun/wonders')">
             <div class="title">
@@ -115,15 +123,15 @@
 
 
 
-<!--          <div class="card" @click="redirectPage( '/tuxun/')">-->
-<!--            <div class="title">-->
-<!--              随机百度街景-->
-<!--            </div>-->
-<!--            <div class="describe">-->
-<!--              走遍神舟大陆-->
-<!--            </div>-->
-<!--            <div class="card-top-right">可移动</div>-->
-<!--          </div>-->
+          <!--          <div class="card" @click="redirectPage( '/tuxun/')">-->
+          <!--            <div class="title">-->
+          <!--              随机百度街景-->
+          <!--            </div>-->
+          <!--            <div class="describe">-->
+          <!--              走遍神舟大陆-->
+          <!--            </div>-->
+          <!--            <div class="card-top-right">可移动</div>-->
+          <!--          </div>-->
           <div class="card" @click="toBilibili">
             <div class="title">
               直播/视频/教程
@@ -156,9 +164,9 @@
           <div @click="toUpdate" style="cursor: pointer; color: white;font-size: medium; padding-top: 1rem; padding-right: 1rem; text-decoration:underline;">
             更新日志
           </div>
-<!--          <div @click="window.location.href = '/tuxun/change_log'" style="color: white;font-size: medium; padding-top: 1rem; text-decoration:underline;">-->
-<!--            更新日志-->
-<!--          </div>-->
+          <!--          <div @click="window.location.href = '/tuxun/change_log'" style="color: white;font-size: medium; padding-top: 1rem; text-decoration:underline;">-->
+          <!--            更新日志-->
+          <!--          </div>-->
         </div>
         <div class="thx">
           <p>提示：如倒计时不准/卡死/黑屏，可关闭代理，系统时间对齐互联网时间再试</p>
@@ -204,9 +212,9 @@ export default {
     }
   },
   created() {
-      if (!location.host.includes('tuxun.fun') && !location.host.includes('8099')) {
-        window.location.href = 'https://tuxun.fun';
-      }
+    if (!location.host.includes('tuxun.fun') && !location.host.includes('8099')) {
+      window.location.href = 'https://tuxun.fun';
+    }
   },
 
   mounted() {
@@ -246,7 +254,7 @@ export default {
 
     toParty() {
       this.doLoginStatus().then((res) => {
-          tuxunJump('/tuxun/party');
+        tuxunJump('/tuxun/party');
       })
     },
 

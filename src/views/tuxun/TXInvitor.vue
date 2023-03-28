@@ -808,6 +808,7 @@ export default {
             this.obsoleteUsers = [];
 
             this.heading = this.lastRound.heading;
+            this.headingMap[this.panoId] = this.heading;
 
             setTimeout(function () {
                 if (!this.viewer) {
@@ -1490,15 +1491,7 @@ export default {
       this.panoId = panoId;
       // 调整视角大小的
       if (panoId.length === 27 ) {
-        api.getByPath('/api/v0/tuxun/mapProxy/getPanoInfo', {pano: panoId}).then(res => {
-          this.headingMap[res.data.pano] = res.data.heading;
-          if (res.data.links) {
-            res.data.links.forEach((item) => {
-              this.headingMap[item.pano] = item.centerHeading;
-            })
-          }
-          this.setPanoId(panoId, move);
-        })
+        this.setPanoId(panoId, move);
       } else {
         this.setPanoId(panoId, move);
       }

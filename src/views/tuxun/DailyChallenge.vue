@@ -12,21 +12,15 @@
           {{this.getDate()}}
         </div>
         <div class="hint">
-          每日0点更新，三种模式各5个所有人统一的题目，满分25000，使用小号会被取消每日挑战资格，不建议看过当日解析视频/讨论的用户挑战
-          <p>
-            固定街景为不可移动的街景，较考验技术，移动街景为可无限制移动的街景，更侧重趣味性。
-          </p>
+          每日0点更新，两个模式各5个所有人统一的题目，每个模式前两题为移动，后三题为固定，每题5000分，满分25000，作弊会清空成绩
         </div>
         <div class="tab_container">
           <div class="tab">
             <div @click="type='china';reload();" :class="{'normal': type!=='china', 'choose': type==='china'}">
-              中国固定
+              中国
             </div>
-            <div @click="type='noMove';reload();" :class="{'normal': type!=='noMove', 'choose': type==='noMove'}">
-              全球固定
-            </div>
-            <div @click="type='move';reload()" :class="{'normal': type!=='move', 'choose': type==='move'}">
-              全球移动
+            <div @click="type='world';reload();" :class="{'normal': type!=='world', 'choose': type==='world'}">
+              全球
             </div>
           </div>
         </div>
@@ -87,6 +81,9 @@ export default {
       window.location.href = window.location.href.replace(location.host + '/tuxun', 'tuxun.fun')
     }
     this.type = this.$route.query.type;
+    if (this.type === 'move' || this.type === 'noMove') {
+      this.type = 'world';
+    }
     if (!this.type) {
       this.type = 'china'
     }
@@ -127,15 +124,7 @@ export default {
       this.total = null;
       this.rank = null;
 
-      if (this.type === 'move') {
-        api.getByPath('/api/v0/tuxun/vip/check').then(res => {
-          if (res.data) {
-            this.initSelfRank();
-          }
-        })
-      } else {
-        this.initSelfRank();
-      }
+      this.initSelfRank();
 
       api.getByPath('/api/v0/tuxun/challenge/getDailyChallengeId', {type: this.type}).then(res => {
         if (res.data) {
@@ -161,20 +150,12 @@ export default {
       })
     },
     begin() {
+      this.beginCall();
+
       this.doLoginStatus().then(res => {
         console.log(res)
         if (res) {
-          if (this.type === 'move') {
-            api.getByPath('/api/v0/tuxun/vip/check').then(res=>{
-              if (res.data) {
-                this.beginCall();
-              } else {
-                this.$vip();
-              }
-            })
-          } else {
-            this.beginCall();
-          }
+          this.beginCall();
         }
       });
       // window.location.href =

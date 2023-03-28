@@ -173,6 +173,7 @@ export default {
       maxMapHeight: '60%',
       isMapSmall: true,
       mapPin: false,
+      headingMap: {},
       ranks: null,
     }
   },
@@ -350,20 +351,7 @@ export default {
     },
     setGoogle(panoId) {
       this.panoId = panoId;
-      // 调整视角大小的
-      if (panoId.length === 27 ) {
-        api.getByPath('/api/v0/tuxun/mapProxy/getPanoInfo', {pano: panoId}).then(res => {
-          this.headingMap[res.data.pano] = res.data.heading;
-          if (res.data.links) {
-            res.data.links.forEach((item) => {
-              this.headingMap[item.pano] = item.centerHeading;
-            })
-          }
-          this.setPanoId(panoId, false);
-        })
-      } else {
-        this.setPanoId(panoId, false);
-      }
+      this.setPanoId(panoId, false);
     },
     setPanoId(panoId, move) {
       this.viewer.setPano(panoId);
@@ -427,6 +415,7 @@ export default {
           this.showMap = false;
           this.heading = data.data.heading;
           this.panoId = data.data.panoId;
+          this.headingMap[this.panoId] = this.heading;
 
           // this.baiduPano = data.data.baiduPano;
           this.contents = data.data.contents;

@@ -71,7 +71,6 @@ export default {
   },
   mounted() {
     this.history = history;
-    console.log(this.history);
     this.mapsId = this.$route.query.mapsId;
     this.getMapsInfo();
     this.getRank();
