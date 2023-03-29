@@ -41,7 +41,7 @@
       <div style="margin-top: 1rem; font-size: 20px; color: white">
         街景列表
       </div>
-      <div v-if="status" style="font-size: 12px; color: white; padding-bottom: 6px"> (总数: {{status.total ? status.total : 0 }}, 已发布: {{status.publish ? status.publish : 0 }}, 待发布: {{status.crawler_success ? status.crawler_success : 0 }}, 准备中: {{status.crawling ? status.crawling : 0 }}, 准备失败: {{status.crawler_fail ? status.crawler_fail : 0 }})</div>
+      <div v-if="status" style="font-size: 12px; color: white; padding-bottom: 6px"> (总数: {{status.total ? status.total : 0 }}, 已发布: {{status.publish ? status.publish : 0 }}, 待发布: {{status.ready ? status.ready: 0 }}, 待审核: {{status.wait_check ? status.wait_check: 0 }} 准备中: {{status.crawling ? status.crawling : 0 }}, 准备失败: {{status.crawler_fail ? status.crawler_fail : 0 }})</div>
       <div v-for="(item, index) in panos" class="list_item" style="display: flex;justify-content: space-between ">
         <div style="display: flex; color: white">
           <div @click="toPano(item)">{{item.panoId}}</div>
