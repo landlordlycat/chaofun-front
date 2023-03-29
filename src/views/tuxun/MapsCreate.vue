@@ -25,7 +25,7 @@
     </div>
     <div style="color: white; margin-top: 2rem">题库名字</div>
     <el-input v-model="name" id="input" placeholder="题库名字" style="max-width: 60%;" round></el-input>
-    <div style="color: white; margin-top: 1rem">题库描述</div>
+    <div style="color: white; margin-top: 1rem">题库描述(可选)</div>
     <el-input v-model="desc" id="input" placeholder="题库描述" style="max-width: 60%;" round></el-input>
     <div></div>
     <el-button v-if="!modify" @click="addMap" style="margin-top: 1rem" type="primary">创建</el-button>

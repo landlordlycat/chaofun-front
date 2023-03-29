@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="back_home">
-      <el-button v-if="history && history.length !== 1" @click="goBack" size="small" round>←返回</el-button>
+      <el-button v-if="history && history.length > 1" @click="goBack" size="small" round>←返回</el-button>
       <el-button @click="goHome" size="small" round>←首页</el-button>
       <el-button size="small" v-if="modify" @click="deleteGame" round>删除</el-button>
     </div>

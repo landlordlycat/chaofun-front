@@ -2,7 +2,7 @@
   <div class="container">
     <div id="map" class="maps"></div>
     <div class="back_home">
-      <el-button v-if="history && history.length !== 1" @click="goBack" size="small" round>←返回</el-button>
+      <el-button v-if="history && history.length > 1" @click="goBack" size="small" round>←返回</el-button>
       <el-button v-else @click="goHome" size="small" round>←首页</el-button>
     </div>
   </div>

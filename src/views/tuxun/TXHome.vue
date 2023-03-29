@@ -59,7 +59,7 @@
       <el-button @mouseover.native="mapMouseOver"  class="not_stop_hover" v-else-if="!showMap && ISPHONE" @click="showMapTrue" round>选择地点</el-button>
     </div>
 
-    <div v-if="showMap && ISPHONE" style="position: absolute; left: 20px; bottom: 20px; z-index: 1000">
+    <div v-if="showMap && ISPHONE" style="position: absolute; left: 20px; bottom: 20px; z-index: 5003">
       <el-button @click="showMap = false" round>隐藏地图</el-button>
     </div>
 

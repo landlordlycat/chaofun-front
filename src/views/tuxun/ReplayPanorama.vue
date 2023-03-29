@@ -2,7 +2,7 @@
   <div class="container">
     <div id="viewer"  style="position: absolute; width: 100%; height: 100%"></div>
     <div class="back_home">
-      <el-button v-if="history && history.length !== 1" @click="goBack" size="small" round>←返回</el-button>
+      <el-button v-if="history && history.length > 1" @click="goBack" size="small" round>←返回</el-button>
       <el-button v-else @click="goReplay" size="small" round>返回复盘</el-button>
       <el-button @click="goHome" size="small" round>首页</el-button>
       <el-button @click="toReport" size="small"  round> 坏题反馈 </el-button>

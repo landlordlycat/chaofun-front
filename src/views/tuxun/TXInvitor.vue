@@ -373,7 +373,7 @@
       </div>
 
       <div class="home">
-        <el-button v-if="history && history.length !== 1" size="mini" @click="goBack" round>←返回</el-button>
+        <el-button v-if="history && history.length > 1" size="mini" @click="goBack" round>←返回</el-button>
         <el-button v-if="gameData.type === 'challenge' || gameData.type === 'battle_royale'" size="mini" @click="goHome" round>首页</el-button>
         <el-button size="mini" v-if="gameData && gameData.type !== 'daily_challenge'" @click="toReport" round> 坏题反馈 </el-button>
         <el-button v-if="lastRound && lastRound.move" size="mini"  @click="reset" round> 回到原点</el-button>
