@@ -97,7 +97,7 @@
               实验室
             </div>
             <div class="describe">
-              新的模式和功能
+              新的模式和功能(开发中
             </div>
           </div>
 
