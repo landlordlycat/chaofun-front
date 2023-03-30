@@ -144,14 +144,19 @@ export default {
       tuxunJump('/tuxun/');
     },
     beginCall() {
-      api.getByPath('/api/v0/tuxun/challenge/start', {'gameId': this.gameData.id}).then(res=>{
-        this.gameData= res.data;
-        tuxunJump( '/tuxun/challenge?challengeId=' + this.gameData.challengeId);
-      })
+      this.doLoginStatus().then(res => {
+        console.log(res)
+        if (res) {
+
+          api.getByPath('/api/v0/tuxun/challenge/start', {'gameId': this.gameData.id}).then(res => {
+            this.gameData = res.data;
+            tuxunJump('/tuxun/challenge?challengeId=' + this.gameData.challengeId);
+          })
+        }
+      });
     },
     begin() {
       this.beginCall();
-
       this.doLoginStatus().then(res => {
         console.log(res)
         if (res) {
