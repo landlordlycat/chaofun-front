@@ -302,6 +302,7 @@ export default {
                   showRoadLabels: false,
                   scaleControl: false,
                   zoomControl: false,
+                  keyboardShortcuts: false,
                   panControlOptions: {
                     position: google.maps.ControlPosition.BOTTOM_LEFT,
                   },
