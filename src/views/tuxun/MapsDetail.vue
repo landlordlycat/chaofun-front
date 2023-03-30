@@ -14,8 +14,8 @@
     <div v-if="userInfo" class="players">
       作者: {{userInfo.userName}}
     </div>
-    <div v-if="mapsData" class="players">
-      地点: {{mapsData.players}}
+    <div v-if="mapsData && mapsData.pcount" class="players">
+      地点: {{mapsData.pcount}}
     </div>
     <div v-if="mapsData" class="players">
       人次: {{mapsData.players}}
