@@ -15,7 +15,7 @@
       作者: {{userInfo.userName}}
     </div>
     <div v-if="mapsData" class="players">
-      玩家人次: {{mapsData.players}}
+      人次: {{mapsData.players}}
     </div>
     <div v-if="mapsData && mapsData.difficulty" class="players">
       难度: {{mapsData.difficulty}}

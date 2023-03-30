@@ -10,12 +10,12 @@
     <el-button type="primary" @click.stop="toMapsCreate">创建</el-button>
     <div class="game_entrance">
     <div class="grid_main" v-if="pagedata && pagedata.length >= 1">
-      <div v-for="(item, index) in pagedata" :style="{'background-image': 'linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.6)), url('+ imgOrigin + (item.cover ?? 'biz/1659323781589_7d19c33667a54a4dabb0405ee5aec20f.jpeg') + '?x-oss-process=image/resize,h_400)','background-size':'cover'}" class="card">
+      <div v-for="(item, index) in pagedata" :style="{'background-image': 'linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.6)), url('+ imgOrigin + (item.cover ?? 'biz/1659323781589_7d19c33667a54a4dabb0405ee5aec20f.jpeg') + '?x-oss-process=image/resize,h_400)','background-size':'cover'}" @click="toMapDetail(item)" class="card">
         <div class="title">
           {{item.name}}
         </div>
         <div class="players">
-          玩家人次: {{item.players}}
+          人次: {{item.players}}
         </div>
         <div>
           <el-button style="background-color: unset; color: white"  type="primary" @click.stop="toMapsModify(item.id)" round>编辑</el-button>
@@ -70,6 +70,9 @@ export default {
       api.getByPath('/api/v0/tuxun/maps/publish', {mapsId: id}).then(res=>{
         this.getMapsList();
       })
+    },
+    toMapDetail(item) {
+      tuxunJump('/tuxun/maps_detail?mapsId=' + item.id )
     },
     deleteMaps(id) {
       this.$confirm(`是否确定删除该题库吗？`, "提示", {
