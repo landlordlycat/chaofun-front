@@ -156,7 +156,6 @@ export default {
       });
     },
     begin() {
-      this.beginCall();
       this.doLoginStatus().then(res => {
         console.log(res)
         if (res) {
